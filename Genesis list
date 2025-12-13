@@ -19,7 +19,7 @@ local titleSize = isMobile and 16 or 20
 local buttonTextSize = isMobile and 12 or 14
 local scrollHeight = isMobile and 165 or 210
 local scrollWidth = isMobile and 190 or 240
-local buttonHeight = isMobile and 35 or 40
+local buttonHeight = isMobile and 40 or 45
 -- Toggle Button (Small draggable square)
 local toggleButton = Instance.new("TextButton")
 toggleButton.Name = "ToggleButton"
@@ -31,12 +31,12 @@ toggleButton.BorderSizePixel = 0
 toggleButton.Text = ""
 toggleButton.Parent = screenGui
 local toggleCorner = Instance.new("UICorner")
-toggleCorner.CornerRadius = UDim.new(0, 14)
+toggleCorner.CornerRadius = UDim.new(0, 16)
 toggleCorner.Parent = toggleButton
 local toggleBorder = Instance.new("UIStroke")
 toggleBorder.Color = Color3.fromRGB(255, 255, 255)
-toggleBorder.Thickness = 1.5
-toggleBorder.Transparency = 0.6
+toggleBorder.Thickness = 1
+toggleBorder.Transparency = 0.7
 toggleBorder.Parent = toggleButton
 -- Main Frame
 local mainFrame = Instance.new("Frame")
@@ -44,38 +44,26 @@ mainFrame.Name = "MainFrame"
 mainFrame.Size = mainFrameSize
 mainFrame.Position = isMobile and UDim2.new(0.5, -110, 0.5, -110) or UDim2.new(0.5, -140, 0.5, -140)
 mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-mainFrame.BackgroundTransparency = 0.4
+mainFrame.BackgroundTransparency = 0.3
 mainFrame.BorderSizePixel = 0
 mainFrame.Visible = false
 mainFrame.Parent = screenGui
 -- Rounded corners for main frame
 local mainCorner = Instance.new("UICorner")
-mainCorner.CornerRadius = UDim.new(0, 18)
+mainCorner.CornerRadius = UDim.new(0, 20)
 mainCorner.Parent = mainFrame
 -- Elegant white border
 local borderFrame = Instance.new("Frame")
 borderFrame.Size = UDim2.new(1, 2, 1, 2)
 borderFrame.Position = UDim2.new(0, -1, 0, -1)
 borderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-borderFrame.BackgroundTransparency = 0.8
+borderFrame.BackgroundTransparency = 0.9
 borderFrame.BorderSizePixel = 0
 borderFrame.ZIndex = 0
 borderFrame.Parent = mainFrame
 local borderCorner = Instance.new("UICorner")
-borderCorner.CornerRadius = UDim.new(0, 18)
+borderCorner.CornerRadius = UDim.new(0, 20)
 borderCorner.Parent = borderFrame
--- Inner glow effect
-local glowFrame = Instance.new("Frame")
-glowFrame.Size = UDim2.new(1, -4, 1, -4)
-glowFrame.Position = UDim2.new(0, 2, 0, 2)
-glowFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-glowFrame.BackgroundTransparency = 0.95
-glowFrame.BorderSizePixel = 0
-glowFrame.ZIndex = 0
-glowFrame.Parent = mainFrame
-local glowCorner = Instance.new("UICorner")
-glowCorner.CornerRadius = UDim.new(0, 16)
-glowCorner.Parent = glowFrame
 -- Title Label
 local titleLabel = Instance.new("TextLabel")
 titleLabel.Name = "TitleLabel"
@@ -86,14 +74,14 @@ titleLabel.Text = "Genesis FE Scripts"
 titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 titleLabel.TextSize = titleSize
 titleLabel.Font = Enum.Font.GothamBold
-titleLabel.TextTransparency = 0.1
+titleLabel.TextTransparency = 0
 titleLabel.Parent = mainFrame
 -- Title underline
 local titleLine = Instance.new("Frame")
-titleLine.Size = isMobile and UDim2.new(0, 140, 0, 2) or UDim2.new(0, 180, 0, 2)
+titleLine.Size = isMobile and UDim2.new(0, 140, 0, 1) or UDim2.new(0, 180, 0, 1)
 titleLine.Position = isMobile and UDim2.new(0.5, -70, 0, 38) or UDim2.new(0.5, -90, 0, 43)
 titleLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-titleLine.BackgroundTransparency = 0.7
+titleLine.BackgroundTransparency = 0.8
 titleLine.BorderSizePixel = 0
 titleLine.Parent = mainFrame
 local lineCorner = Instance.new("UICorner")
@@ -105,21 +93,21 @@ teleportToggle.Name = "TeleportToggle"
 teleportToggle.Size = isMobile and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 24, 0, 24)
 teleportToggle.Position = isMobile and UDim2.new(0, 8, 0, 8) or UDim2.new(0, 8, 0, 8)
 teleportToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-teleportToggle.BackgroundTransparency = 0.5
+teleportToggle.BackgroundTransparency = 0.6
 teleportToggle.BorderSizePixel = 0
 teleportToggle.Text = "T"
 teleportToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 teleportToggle.TextSize = isMobile and 10 or 12
 teleportToggle.Font = Enum.Font.GothamBold
-teleportToggle.TextTransparency = 0.2
+teleportToggle.TextTransparency = 0.1
 teleportToggle.Parent = mainFrame
 local teleportCorner = Instance.new("UICorner")
-teleportCorner.CornerRadius = UDim.new(0, 6)
+teleportCorner.CornerRadius = UDim.new(0, 8)
 teleportCorner.Parent = teleportToggle
 local teleportBorder = Instance.new("UIStroke")
 teleportBorder.Color = Color3.fromRGB(255, 255, 255)
 teleportBorder.Thickness = 1
-teleportBorder.Transparency = 0.7
+teleportBorder.Transparency = 0.8
 teleportBorder.Parent = teleportToggle
 -- Universal Rigs Toggle Button (inside main frame - top right)
 local rigsToggle = Instance.new("TextButton")
@@ -127,21 +115,21 @@ rigsToggle.Name = "RigsToggle"
 rigsToggle.Size = isMobile and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 24, 0, 24)
 rigsToggle.Position = isMobile and UDim2.new(1, -52, 0, 8) or UDim2.new(1, -60, 0, 8)
 rigsToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-rigsToggle.BackgroundTransparency = 0.5
+rigsToggle.BackgroundTransparency = 0.6
 rigsToggle.BorderSizePixel = 0
 rigsToggle.Text = "R"
 rigsToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 rigsToggle.TextSize = isMobile and 10 or 12
 rigsToggle.Font = Enum.Font.GothamBold
-rigsToggle.TextTransparency = 0.2
+rigsToggle.TextTransparency = 0.1
 rigsToggle.Parent = mainFrame
 local rigsCorner = Instance.new("UICorner")
-rigsCorner.CornerRadius = UDim.new(0, 6)
+rigsCorner.CornerRadius = UDim.new(0, 8)
 rigsCorner.Parent = rigsToggle
 local rigsBorder = Instance.new("UIStroke")
 rigsBorder.Color = Color3.fromRGB(255, 255, 255)
 rigsBorder.Thickness = 1
-rigsBorder.Transparency = 0.7
+rigsBorder.Transparency = 0.8
 rigsBorder.Parent = rigsToggle
 -- Items Toggle Button (inside main frame - next to rigs)
 local itemsToggle = Instance.new("TextButton")
@@ -149,21 +137,21 @@ itemsToggle.Name = "ItemsToggle"
 itemsToggle.Size = isMobile and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 24, 0, 24)
 itemsToggle.Position = isMobile and UDim2.new(1, -28, 0, 8) or UDim2.new(1, -32, 0, 8)
 itemsToggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-itemsToggle.BackgroundTransparency = 0.5
+itemsToggle.BackgroundTransparency = 0.6
 itemsToggle.BorderSizePixel = 0
 itemsToggle.Text = "I"
 itemsToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 itemsToggle.TextSize = isMobile and 10 or 12
 itemsToggle.Font = Enum.Font.GothamBold
-itemsToggle.TextTransparency = 0.2
+itemsToggle.TextTransparency = 0.1
 itemsToggle.Parent = mainFrame
 local itemsToggleCorner = Instance.new("UICorner")
-itemsToggleCorner.CornerRadius = UDim.new(0, 6)
+itemsToggleCorner.CornerRadius = UDim.new(0, 8)
 itemsToggleCorner.Parent = itemsToggle
 local itemsToggleBorder = Instance.new("UIStroke")
 itemsToggleBorder.Color = Color3.fromRGB(255, 255, 255)
 itemsToggleBorder.Thickness = 1
-itemsToggleBorder.Transparency = 0.7
+itemsToggleBorder.Transparency = 0.8
 itemsToggleBorder.Parent = itemsToggle
 -- ScrollingFrame for scripts
 local scrollFrame = Instance.new("ScrollingFrame")
@@ -171,30 +159,30 @@ scrollFrame.Name = "ScrollFrame"
 scrollFrame.Size = UDim2.new(0, scrollWidth, 0, scrollHeight)
 scrollFrame.Position = isMobile and UDim2.new(0.5, -95, 0, 45) or UDim2.new(0.5, -120, 0, 50)
 scrollFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-scrollFrame.BackgroundTransparency = 0.6
+scrollFrame.BackgroundTransparency = 0.7
 scrollFrame.BorderSizePixel = 0
 scrollFrame.ScrollBarThickness = isMobile and 4 or 5
 scrollFrame.ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255)
-scrollFrame.ScrollBarImageTransparency = 0.5
+scrollFrame.ScrollBarImageTransparency = 0.6
 scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 scrollFrame.Parent = mainFrame
 local scrollCorner = Instance.new("UICorner")
-scrollCorner.CornerRadius = UDim.new(0, 14)
+scrollCorner.CornerRadius = UDim.new(0, 16)
 scrollCorner.Parent = scrollFrame
 local scrollBorder = Instance.new("UIStroke")
 scrollBorder.Color = Color3.fromRGB(255, 255, 255)
 scrollBorder.Thickness = 1
-scrollBorder.Transparency = 0.8
+scrollBorder.Transparency = 0.9
 scrollBorder.Parent = scrollFrame
 local listLayout = Instance.new("UIListLayout")
 listLayout.SortOrder = Enum.SortOrder.LayoutOrder
-listLayout.Padding = UDim.new(0, 8)
+listLayout.Padding = UDim.new(0, 10)
 listLayout.Parent = scrollFrame
 local padding = Instance.new("UIPadding")
-padding.PaddingTop = UDim.new(0, 10)
-padding.PaddingBottom = UDim.new(0, 10)
-padding.PaddingLeft = UDim.new(0, 10)
-padding.PaddingRight = UDim.new(0, 10)
+padding.PaddingTop = UDim.new(0, 12)
+padding.PaddingBottom = UDim.new(0, 12)
+padding.PaddingLeft = UDim.new(0, 12)
+padding.PaddingRight = UDim.new(0, 12)
 padding.Parent = scrollFrame
 -- Scripts data
 local scripts = {
@@ -240,10 +228,21 @@ local scripts = {
             ["PredictionFling"] = true,
             ["ToolFling"] = false
         }
-    }}
+    }},
+    {name = "Ink Monster", url = "https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty6.lua"},
+    {name = "Fake Vr", url = "https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty45.lua"}
 }
 -- Item data for Lightning Cannon info
 local itemData = {
+    {category = "C00LKIDD ITEMS", items = {
+        {name = "White Block for throwing block", url = "https://www.roblox.com/catalog/12383790958/Faceless-Block-Head-Tone9"},
+        {name = "Glitched dummy for ability", url = "https://www.roblox.com/catalog/98099894849025/VHS-Glitched-Dummy-Animated"},
+    }},
+    {category = "NOLI ITEMS", items = {
+        {name = "Noli star for nova", url = "https://www.roblox.com/catalog/74013526892143/Noli-GLOWING-Star-Forsaken-White"},
+        {name = "Glitched dummy for ability", url = "https://www.roblox.com/catalog/98099894849025/VHS-Glitched-Dummy-Animated"},
+        {name = "Noli crown", url = "https://www.roblox.com/catalog/126461620175785/Noli-Crown"},
+    }},
     {category = "BLACK LIGHTNING CANNON", items = {
         {name = "Black cannon part P1", url = "https://www.roblox.com/catalog/117311153426168/Lightning-Cannon-V2-P1"},
         {name = "Black cannon part P2", url = "https://www.roblox.com/catalog/116940095199813/Lightning-Cannon-V2-P2"},
@@ -385,34 +384,31 @@ local itemData = {
 local function createScriptButton(scriptData, index)
     local button = Instance.new("TextButton")
     button.Name = scriptData.name
-    button.Size = UDim2.new(1, -20, 0, buttonHeight)
+    button.Size = UDim2.new(1, -24, 0, buttonHeight)
     button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    button.BackgroundTransparency = 0.5
+    button.BackgroundTransparency = 0.6
     button.BorderSizePixel = 0
     button.Text = scriptData.name
     button.TextColor3 = Color3.fromRGB(255, 255, 255)
     button.TextSize = buttonTextSize
     button.Font = Enum.Font.GothamSemibold
-    button.TextTransparency = 0.15
+    button.TextTransparency = 0.05
     button.Parent = scrollFrame
- 
     local btnCorner = Instance.new("UICorner")
-    btnCorner.CornerRadius = UDim.new(0, 12)
+    btnCorner.CornerRadius = UDim.new(0, 14)
     btnCorner.Parent = button
- 
     local btnBorder = Instance.new("UIStroke")
     btnBorder.Color = Color3.fromRGB(255, 255, 255)
     btnBorder.Thickness = 1
-    btnBorder.Transparency = 0.75
+    btnBorder.Transparency = 0.85
     btnBorder.Parent = button
- 
     button.MouseButton1Click:Connect(function()
-        TweenService:Create(button, TweenInfo.new(0.15), {BackgroundTransparency = 0.3}):Play()
-        TweenService:Create(btnBorder, TweenInfo.new(0.15), {Transparency = 0.4}):Play()
+        TweenService:Create(button, TweenInfo.new(0.15), {BackgroundTransparency = 0.4}):Play()
+        TweenService:Create(btnBorder, TweenInfo.new(0.15), {Transparency = 0.5}):Play()
         wait(0.15)
-        TweenService:Create(button, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
-        TweenService:Create(btnBorder, TweenInfo.new(0.2), {Transparency = 0.75}):Play()
-     
+        TweenService:Create(button, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
+        TweenService:Create(btnBorder, TweenInfo.new(0.2), {Transparency = 0.85}):Play()
+    
         task.spawn(function()
             local success, err = pcall(function()
                 if scriptData.config then
@@ -424,21 +420,19 @@ local function createScriptButton(scriptData, index)
                     scriptFunc()
                 end
             end)
-         
+        
             if not success then
                 warn("Failed to load " .. scriptData.name .. ": " .. tostring(err))
             end
         end)
     end)
- 
     button.MouseEnter:Connect(function()
-        TweenService:Create(button, TweenInfo.new(0.2), {BackgroundTransparency = 0.35, TextTransparency = 0}):Play()
-        TweenService:Create(btnBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
+        TweenService:Create(button, TweenInfo.new(0.2), {BackgroundTransparency = 0.45, TextTransparency = 0}):Play()
+        TweenService:Create(btnBorder, TweenInfo.new(0.2), {Transparency = 0.6}):Play()
     end)
- 
     button.MouseLeave:Connect(function()
-        TweenService:Create(button, TweenInfo.new(0.2), {BackgroundTransparency = 0.5, TextTransparency = 0.15}):Play()
-        TweenService:Create(btnBorder, TweenInfo.new(0.2), {Transparency = 0.75}):Play()
+        TweenService:Create(button, TweenInfo.new(0.2), {BackgroundTransparency = 0.6, TextTransparency = 0.05}):Play()
+        TweenService:Create(btnBorder, TweenInfo.new(0.2), {Transparency = 0.85}):Play()
     end)
 end
 -- Create all script buttons
@@ -446,9 +440,9 @@ for i, scriptData in ipairs(scripts) do
     createScriptButton(scriptData, i)
 end
 -- Update canvas size
-scrollFrame.CanvasSize = UDim2.new(0, 0, 0, listLayout.AbsoluteContentSize.Y + 20)
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, listLayout.AbsoluteContentSize.Y + 24)
 listLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-    scrollFrame.CanvasSize = UDim2.new(0, 0, 0, listLayout.AbsoluteContentSize.Y + 20)
+    scrollFrame.CanvasSize = UDim2.new(0, 0, 0, listLayout.AbsoluteContentSize.Y + 24)
 end)
 -- Blur effect for teleport confirmation
 local blurEffect = Instance.new("BlurEffect")
@@ -467,12 +461,12 @@ confirmFrame.Visible = false
 confirmFrame.ZIndex = 100
 confirmFrame.Parent = screenGui
 local confirmCorner = Instance.new("UICorner")
-confirmCorner.CornerRadius = UDim.new(0, 16)
+confirmCorner.CornerRadius = UDim.new(0, 18)
 confirmCorner.Parent = confirmFrame
 local confirmBorder = Instance.new("UIStroke")
 confirmBorder.Color = Color3.fromRGB(255, 255, 255)
-confirmBorder.Thickness = 1.5
-confirmBorder.Transparency = 0.6
+confirmBorder.Thickness = 1
+confirmBorder.Transparency = 0.7
 confirmBorder.Parent = confirmFrame
 -- Warning text
 local warningLabel = Instance.new("TextLabel")
@@ -492,7 +486,7 @@ yesButton.Name = "YesButton"
 yesButton.Size = isMobile and UDim2.new(0, 100, 0, 32) or UDim2.new(0, 120, 0, 36)
 yesButton.Position = isMobile and UDim2.new(0, 20, 1, -42) or UDim2.new(0, 20, 1, -46)
 yesButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-yesButton.BackgroundTransparency = 0.4
+yesButton.BackgroundTransparency = 0.5
 yesButton.BorderSizePixel = 0
 yesButton.Text = "YES"
 yesButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -501,12 +495,12 @@ yesButton.Font = Enum.Font.GothamBold
 yesButton.ZIndex = 101
 yesButton.Parent = confirmFrame
 local yesCorner = Instance.new("UICorner")
-yesCorner.CornerRadius = UDim.new(0, 10)
+yesCorner.CornerRadius = UDim.new(0, 12)
 yesCorner.Parent = yesButton
 local yesBorder = Instance.new("UIStroke")
 yesBorder.Color = Color3.fromRGB(255, 255, 255)
 yesBorder.Thickness = 1
-yesBorder.Transparency = 0.7
+yesBorder.Transparency = 0.8
 yesBorder.Parent = yesButton
 -- No button
 local noButton = Instance.new("TextButton")
@@ -514,7 +508,7 @@ noButton.Name = "NoButton"
 noButton.Size = isMobile and UDim2.new(0, 100, 0, 32) or UDim2.new(0, 120, 0, 36)
 noButton.Position = isMobile and UDim2.new(1, -120, 1, -42) or UDim2.new(1, -140, 1, -46)
 noButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-noButton.BackgroundTransparency = 0.4
+noButton.BackgroundTransparency = 0.5
 noButton.BorderSizePixel = 0
 noButton.Text = "NO"
 noButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -523,12 +517,12 @@ noButton.Font = Enum.Font.GothamBold
 noButton.ZIndex = 101
 noButton.Parent = confirmFrame
 local noCorner = Instance.new("UICorner")
-noCorner.CornerRadius = UDim.new(0, 10)
+noCorner.CornerRadius = UDim.new(0, 12)
 noCorner.Parent = noButton
 local noBorder = Instance.new("UIStroke")
 noBorder.Color = Color3.fromRGB(255, 255, 255)
 noBorder.Thickness = 1
-noBorder.Transparency = 0.7
+noBorder.Transparency = 0.8
 noBorder.Parent = noButton
 -- Teleport toggle functionality
 teleportToggle.MouseButton1Click:Connect(function()
@@ -539,71 +533,71 @@ teleportToggle.MouseButton1Click:Connect(function()
     yesButton.TextTransparency = 1
     noButton.BackgroundTransparency = 1
     noButton.TextTransparency = 1
-  
+ 
     -- Blur screen
     TweenService:Create(blurEffect, TweenInfo.new(0.3), {Size = 20}):Play()
-  
+ 
     -- Fade in dialog
     TweenService:Create(confirmFrame, TweenInfo.new(0.3), {BackgroundTransparency = 0.3}):Play()
     TweenService:Create(warningLabel, TweenInfo.new(0.3), {TextTransparency = 0}):Play()
-    TweenService:Create(yesButton, TweenInfo.new(0.3), {BackgroundTransparency = 0.4, TextTransparency = 0}):Play()
-    TweenService:Create(noButton, TweenInfo.new(0.3), {BackgroundTransparency = 0.4, TextTransparency = 0}):Play()
+    TweenService:Create(yesButton, TweenInfo.new(0.3), {BackgroundTransparency = 0.5, TextTransparency = 0}):Play()
+    TweenService:Create(noButton, TweenInfo.new(0.3), {BackgroundTransparency = 0.5, TextTransparency = 0}):Play()
 end)
 -- Yes button - teleport to game
 yesButton.MouseButton1Click:Connect(function()
-    TweenService:Create(yesButton, TweenInfo.new(0.1), {BackgroundTransparency = 0.2}):Play()
+    TweenService:Create(yesButton, TweenInfo.new(0.1), {BackgroundTransparency = 0.3}):Play()
     wait(0.1)
-  
+ 
     local placeId = 78220771968979
     local success, err = pcall(function()
         TeleportService:Teleport(placeId, player)
     end)
-  
+ 
     if not success then
         warn("Teleport failed: " .. tostring(err))
     end
 end)
 -- No button - close dialog
 noButton.MouseButton1Click:Connect(function()
-    TweenService:Create(noButton, TweenInfo.new(0.1), {BackgroundTransparency = 0.2}):Play()
+    TweenService:Create(noButton, TweenInfo.new(0.1), {BackgroundTransparency = 0.3}):Play()
     wait(0.1)
-  
+ 
     -- Fade out dialog
     TweenService:Create(confirmFrame, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
     TweenService:Create(warningLabel, TweenInfo.new(0.2), {TextTransparency = 1}):Play()
     TweenService:Create(yesButton, TweenInfo.new(0.2), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
     TweenService:Create(noButton, TweenInfo.new(0.2), {BackgroundTransparency = 1, TextTransparency = 1}):Play()
-  
+ 
     -- Remove blur
     TweenService:Create(blurEffect, TweenInfo.new(0.2), {Size = 0}):Play()
-  
+ 
     wait(0.2)
     confirmFrame.Visible = false
 end)
 -- Confirmation button hover effects
 yesButton.MouseEnter:Connect(function()
-    TweenService:Create(yesButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.25}):Play()
-    TweenService:Create(yesBorder, TweenInfo.new(0.2), {Transparency = 0.4}):Play()
+    TweenService:Create(yesButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.35}):Play()
+    TweenService:Create(yesBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
 end)
 yesButton.MouseLeave:Connect(function()
-    TweenService:Create(yesButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
-    TweenService:Create(yesBorder, TweenInfo.new(0.2), {Transparency = 0.7}):Play()
+    TweenService:Create(yesButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
+    TweenService:Create(yesBorder, TweenInfo.new(0.2), {Transparency = 0.8}):Play()
 end)
 noButton.MouseEnter:Connect(function()
-    TweenService:Create(noButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.25}):Play()
-    TweenService:Create(noBorder, TweenInfo.new(0.2), {Transparency = 0.4}):Play()
+    TweenService:Create(noButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.35}):Play()
+    TweenService:Create(noBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
 end)
 noButton.MouseLeave:Connect(function()
-    TweenService:Create(noButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
-    TweenService:Create(noBorder, TweenInfo.new(0.2), {Transparency = 0.7}):Play()
+    TweenService:Create(noButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
+    TweenService:Create(noBorder, TweenInfo.new(0.2), {Transparency = 0.8}):Play()
 end)
 teleportToggle.MouseEnter:Connect(function()
-    TweenService:Create(teleportToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.2}):Play()
-    TweenService:Create(teleportBorder, TweenInfo.new(0.2), {Transparency = 0.4}):Play()
+    TweenService:Create(teleportToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
+    TweenService:Create(teleportBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
 end)
 teleportToggle.MouseLeave:Connect(function()
-    TweenService:Create(teleportToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
-    TweenService:Create(teleportBorder, TweenInfo.new(0.2), {Transparency = 0.7}):Play()
+    TweenService:Create(teleportToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
+    TweenService:Create(teleportBorder, TweenInfo.new(0.2), {Transparency = 0.8}):Play()
 end)
 -- Universal Rigs Frame
 local rigsFrame = Instance.new("Frame")
@@ -611,17 +605,17 @@ rigsFrame.Name = "RigsFrame"
 rigsFrame.Size = isMobile and UDim2.new(0, 240, 0, 320) or UDim2.new(0, 280, 0, 360)
 rigsFrame.Position = isMobile and UDim2.new(0.5, -120, 0.5, -160) or UDim2.new(0.5, -140, 0.5, -180)
 rigsFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-rigsFrame.BackgroundTransparency = 0.4
+rigsFrame.BackgroundTransparency = 0.3
 rigsFrame.BorderSizePixel = 0
 rigsFrame.Visible = false
 rigsFrame.Parent = screenGui
 local rigsFrameCorner = Instance.new("UICorner")
-rigsFrameCorner.CornerRadius = UDim.new(0, 16)
+rigsFrameCorner.CornerRadius = UDim.new(0, 18)
 rigsFrameCorner.Parent = rigsFrame
 local rigsFrameBorder = Instance.new("UIStroke")
 rigsFrameBorder.Color = Color3.fromRGB(255, 255, 255)
-rigsFrameBorder.Thickness = 1.5
-rigsFrameBorder.Transparency = 0.7
+rigsFrameBorder.Thickness = 1
+rigsFrameBorder.Transparency = 0.8
 rigsFrameBorder.Parent = rigsFrame
 -- Rigs Title
 local rigsTitle = Instance.new("TextLabel")
@@ -631,14 +625,14 @@ rigsTitle.Text = "Universal Rigs"
 rigsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 rigsTitle.TextSize = isMobile and 13 or 15
 rigsTitle.Font = Enum.Font.GothamBold
-rigsTitle.TextTransparency = 0.1
+rigsTitle.TextTransparency = 0
 rigsTitle.Parent = rigsFrame
 -- Close button for rigs
 local rigsClose = Instance.new("TextButton")
 rigsClose.Size = isMobile and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 24, 0, 24)
 rigsClose.Position = isMobile and UDim2.new(1, -25, 0, 5) or UDim2.new(1, -29, 0, 5)
 rigsClose.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-rigsClose.BackgroundTransparency = 0.5
+rigsClose.BackgroundTransparency = 0.6
 rigsClose.Text = "X"
 rigsClose.TextColor3 = Color3.fromRGB(255, 255, 255)
 rigsClose.TextSize = isMobile and 10 or 12
@@ -646,31 +640,31 @@ rigsClose.Font = Enum.Font.GothamBold
 rigsClose.BorderSizePixel = 0
 rigsClose.Parent = rigsFrame
 local closeCorner = Instance.new("UICorner")
-closeCorner.CornerRadius = UDim.new(0, 8)
+closeCorner.CornerRadius = UDim.new(0, 10)
 closeCorner.Parent = rigsClose
 -- Rigs ScrollFrame
 local rigsScroll = Instance.new("ScrollingFrame")
 rigsScroll.Size = isMobile and UDim2.new(1, -20, 1, -40) or UDim2.new(1, -20, 1, -45)
 rigsScroll.Position = isMobile and UDim2.new(0, 10, 0, 35) or UDim2.new(0, 10, 0, 40)
 rigsScroll.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-rigsScroll.BackgroundTransparency = 0.6
+rigsScroll.BackgroundTransparency = 0.7
 rigsScroll.BorderSizePixel = 0
 rigsScroll.ScrollBarThickness = isMobile and 3 or 4
 rigsScroll.ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255)
-rigsScroll.ScrollBarImageTransparency = 0.5
+rigsScroll.ScrollBarImageTransparency = 0.6
 rigsScroll.Parent = rigsFrame
 local rigsScrollCorner = Instance.new("UICorner")
-rigsScrollCorner.CornerRadius = UDim.new(0, 12)
+rigsScrollCorner.CornerRadius = UDim.new(0, 14)
 rigsScrollCorner.Parent = rigsScroll
 local rigsLayout = Instance.new("UIListLayout")
 rigsLayout.SortOrder = Enum.SortOrder.LayoutOrder
-rigsLayout.Padding = UDim.new(0, 4)
+rigsLayout.Padding = UDim.new(0, 6)
 rigsLayout.Parent = rigsScroll
 local rigsPadding = Instance.new("UIPadding")
-rigsPadding.PaddingTop = UDim.new(0, 6)
-rigsPadding.PaddingBottom = UDim.new(0, 6)
-rigsPadding.PaddingLeft = UDim.new(0, 6)
-rigsPadding.PaddingRight = UDim.new(0, 6)
+rigsPadding.PaddingTop = UDim.new(0, 8)
+rigsPadding.PaddingBottom = UDim.new(0, 8)
+rigsPadding.PaddingLeft = UDim.new(0, 8)
+rigsPadding.PaddingRight = UDim.new(0, 8)
 rigsPadding.Parent = rigsScroll
 -- Rig items data
 local rigItems = {
@@ -706,37 +700,37 @@ for _, rigData in ipairs(rigItems) do
     local categoryLabel = Instance.new("TextLabel")
     categoryLabel.Size = UDim2.new(1, -16, 0, isMobile and 22 or 25)
     categoryLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    categoryLabel.BackgroundTransparency = 0.9
+    categoryLabel.BackgroundTransparency = 0.95
     categoryLabel.Text = rigData.category
     categoryLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     categoryLabel.TextSize = isMobile and 10 or 12
     categoryLabel.Font = Enum.Font.GothamBold
     categoryLabel.BorderSizePixel = 0
     categoryLabel.Parent = rigsScroll
-  
+ 
     local catCorner = Instance.new("UICorner")
-    catCorner.CornerRadius = UDim.new(0, 6)
+    catCorner.CornerRadius = UDim.new(0, 8)
     catCorner.Parent = categoryLabel
-  
+ 
     for _, item in ipairs(rigData.items) do
         -- Container frame for image and text
         local itemFrame = Instance.new("Frame")
         itemFrame.Size = UDim2.new(1, -16, 0, isMobile and 42 or 50)
         itemFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-        itemFrame.BackgroundTransparency = 0.5
+        itemFrame.BackgroundTransparency = 0.6
         itemFrame.BorderSizePixel = 0
         itemFrame.Parent = rigsScroll
-      
+     
         local itemCorner = Instance.new("UICorner")
-        itemCorner.CornerRadius = UDim.new(0, 8)
+        itemCorner.CornerRadius = UDim.new(0, 10)
         itemCorner.Parent = itemFrame
-      
+     
         local itemBorder = Instance.new("UIStroke")
         itemBorder.Color = Color3.fromRGB(255, 255, 255)
         itemBorder.Thickness = 1
-        itemBorder.Transparency = 0.8
+        itemBorder.Transparency = 0.9
         itemBorder.Parent = itemFrame
-      
+     
         -- Image for the hat (LEFT SIDE)
         local itemImage = Instance.new("ImageLabel")
         itemImage.Size = isMobile and UDim2.new(0, 34, 0, 34) or UDim2.new(0, 42, 0, 42)
@@ -745,28 +739,28 @@ for _, rigData in ipairs(rigItems) do
         itemImage.Image = "rbxthumb://type=Asset&id=" .. item.id .. "&w=150&h=150"
         itemImage.ScaleType = Enum.ScaleType.Fit
         itemImage.Parent = itemFrame
-      
+     
         -- Decal preview (RIGHT SIDE)
         local decalPreview = Instance.new("ImageLabel")
         decalPreview.Size = isMobile and UDim2.new(0, 34, 0, 34) or UDim2.new(0, 42, 0, 42)
         decalPreview.Position = UDim2.new(1, isMobile and -38 or -46, 0.5, isMobile and -17 or -21)
         decalPreview.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-        decalPreview.BackgroundTransparency = 0.3
+        decalPreview.BackgroundTransparency = 0.4
         decalPreview.BorderSizePixel = 0
         decalPreview.Image = "rbxthumb://type=Asset&id=" .. item.id .. "&w=150&h=150"
         decalPreview.ScaleType = Enum.ScaleType.Fit
         decalPreview.Parent = itemFrame
-      
+     
         local decalCorner = Instance.new("UICorner")
-        decalCorner.CornerRadius = UDim.new(0, 6)
+        decalCorner.CornerRadius = UDim.new(0, 8)
         decalCorner.Parent = decalPreview
-      
+     
         local decalBorder = Instance.new("UIStroke")
         decalBorder.Color = Color3.fromRGB(255, 255, 255)
         decalBorder.Thickness = 0.5
-        decalBorder.Transparency = 0.9
+        decalBorder.Transparency = 0.95
         decalBorder.Parent = decalPreview
-      
+     
         -- Text label for name (ADJUSTED WIDTH TO FIT BOTH IMAGES)
         local itemLabel = Instance.new("TextLabel")
         itemLabel.Size = UDim2.new(1, isMobile and -85 or -98, 1, 0)
@@ -779,38 +773,38 @@ for _, rigData in ipairs(rigItems) do
         itemLabel.TextXAlignment = Enum.TextXAlignment.Left
         itemLabel.TextWrapped = true
         itemLabel.Parent = itemFrame
-      
+     
         -- Invisible button overlay
         local itemButton = Instance.new("TextButton")
         itemButton.Size = UDim2.new(1, 0, 1, 0)
         itemButton.BackgroundTransparency = 1
         itemButton.Text = ""
         itemButton.Parent = itemFrame
-      
+     
         -- Click functionality
         itemButton.MouseButton1Click:Connect(function()
             -- Visual feedback
-            TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.3}):Play()
-          
+            TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.4}):Play()
+         
             -- Mark as clicked and animate white fade in/out
             if not clickedItems[item.id] then
                 clickedItems[item.id] = true
-              
+             
                 -- Fade to white
                 TweenService:Create(itemFrame, TweenInfo.new(0.3), {
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    BackgroundTransparency = 0.3
+                    BackgroundTransparency = 0.4
                 }):Play()
                 TweenService:Create(itemLabel, TweenInfo.new(0.3), {
                     TextColor3 = Color3.fromRGB(0, 0, 0)
                 }):Play()
-              
+             
                 wait(0.5)
-              
+             
                 -- Fade back to original
                 TweenService:Create(itemFrame, TweenInfo.new(0.4), {
                     BackgroundColor3 = Color3.fromRGB(0, 0, 0),
-                    BackgroundTransparency = 0.5
+                    BackgroundTransparency = 0.6
                 }):Play()
                 TweenService:Create(itemLabel, TweenInfo.new(0.4), {
                     TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -819,45 +813,45 @@ for _, rigData in ipairs(rigItems) do
                 -- If already clicked, do a quick flash
                 TweenService:Create(itemFrame, TweenInfo.new(0.15), {
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    BackgroundTransparency = 0.2
+                    BackgroundTransparency = 0.3
                 }):Play()
                 TweenService:Create(itemLabel, TweenInfo.new(0.15), {
                     TextColor3 = Color3.fromRGB(0, 0, 0)
                 }):Play()
-              
+             
                 wait(0.3)
-              
+             
                 TweenService:Create(itemFrame, TweenInfo.new(0.3), {
                     BackgroundColor3 = Color3.fromRGB(0, 0, 0),
-                    BackgroundTransparency = 0.5
+                    BackgroundTransparency = 0.6
                 }):Play()
                 TweenService:Create(itemLabel, TweenInfo.new(0.3), {
                     TextColor3 = Color3.fromRGB(255, 255, 255)
                 }):Play()
             end
-          
+         
             wait(0.1)
-            TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.5}):Play()
-          
+            TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.6}):Play()
+         
             -- Copy full ID to clipboard
             local fullId = "https://www.roblox.com/catalog/" .. item.id
             setclipboard(fullId)
-          
+         
             -- Show copied notification
             local originalText = itemLabel.Text
             itemLabel.Text = item.name .. " (Copied!)"
             wait(1.5)
             itemLabel.Text = originalText
         end)
-      
+     
         itemButton.MouseEnter:Connect(function()
-            TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.35}):Play()
-            TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
+            TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.45}):Play()
+            TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.6}):Play()
         end)
-      
+     
         itemButton.MouseLeave:Connect(function()
-            TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
-            TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.8}):Play()
+            TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
+            TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.9}):Play()
         end)
     end
 end
@@ -870,35 +864,35 @@ local rigsOpen = false
 rigsToggle.MouseButton1Click:Connect(function()
     rigsOpen = not rigsOpen
     rigsFrame.Visible = rigsOpen
-  
+ 
     if rigsOpen then
         rigsFrame.BackgroundTransparency = 1
         rigsTitle.TextTransparency = 1
         rigsScroll.BackgroundTransparency = 1
         rigsClose.BackgroundTransparency = 1
-      
-        TweenService:Create(rigsFrame, TweenInfo.new(0.3), {BackgroundTransparency = 0.4}):Play()
-        TweenService:Create(rigsTitle, TweenInfo.new(0.3), {TextTransparency = 0.1}):Play()
-        TweenService:Create(rigsScroll, TweenInfo.new(0.3), {BackgroundTransparency = 0.6}):Play()
-        TweenService:Create(rigsClose, TweenInfo.new(0.3), {BackgroundTransparency = 0.5}):Play()
-      
+     
+        TweenService:Create(rigsFrame, TweenInfo.new(0.3), {BackgroundTransparency = 0.3}):Play()
+        TweenService:Create(rigsTitle, TweenInfo.new(0.3), {TextTransparency = 0}):Play()
+        TweenService:Create(rigsScroll, TweenInfo.new(0.3), {BackgroundTransparency = 0.7}):Play()
+        TweenService:Create(rigsClose, TweenInfo.new(0.3), {BackgroundTransparency = 0.6}):Play()
+     
         -- Rotate button when opening
         TweenService:Create(rigsToggle, TweenInfo.new(0.3), {
             Rotation = 90,
-            BackgroundTransparency = 0.3
+            BackgroundTransparency = 0.4
         }):Play()
     else
         TweenService:Create(rigsFrame, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
         TweenService:Create(rigsTitle, TweenInfo.new(0.2), {TextTransparency = 1}):Play()
         TweenService:Create(rigsScroll, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
         TweenService:Create(rigsClose, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
-      
+     
         -- Rotate button back when closing
         TweenService:Create(rigsToggle, TweenInfo.new(0.3), {
             Rotation = 0,
-            BackgroundTransparency = 0.5
+            BackgroundTransparency = 0.6
         }):Play()
-      
+     
         wait(0.2)
         rigsFrame.Visible = false
     end
@@ -909,33 +903,33 @@ rigsClose.MouseButton1Click:Connect(function()
     TweenService:Create(rigsTitle, TweenInfo.new(0.2), {TextTransparency = 1}):Play()
     TweenService:Create(rigsScroll, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
     TweenService:Create(rigsClose, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
-  
+ 
     -- Rotate button back when closing via X button
     TweenService:Create(rigsToggle, TweenInfo.new(0.3), {
         Rotation = 0,
-        BackgroundTransparency = 0.5
+        BackgroundTransparency = 0.6
     }):Play()
-  
+ 
     wait(0.2)
     rigsFrame.Visible = false
 end)
 rigsToggle.MouseEnter:Connect(function()
-    TweenService:Create(rigsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.2}):Play()
-    TweenService:Create(rigsBorder, TweenInfo.new(0.2), {Transparency = 0.4}):Play()
+    TweenService:Create(rigsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
+    TweenService:Create(rigsBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
 end)
 rigsToggle.MouseLeave:Connect(function()
     if rigsOpen then
-        TweenService:Create(rigsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.3}):Play()
+        TweenService:Create(rigsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
     else
-        TweenService:Create(rigsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
+        TweenService:Create(rigsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
     end
-    TweenService:Create(rigsBorder, TweenInfo.new(0.2), {Transparency = 0.7}):Play()
+    TweenService:Create(rigsBorder, TweenInfo.new(0.2), {Transparency = 0.8}):Play()
 end)
 rigsClose.MouseEnter:Connect(function()
-    TweenService:Create(rigsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.3}):Play()
+    TweenService:Create(rigsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
 end)
 rigsClose.MouseLeave:Connect(function()
-    TweenService:Create(rigsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
+    TweenService:Create(rigsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
 end)
 -- Dragging functionality for rigs frame
 local draggingRigs = false
@@ -945,7 +939,6 @@ local function updateRigs(input)
     if dragTweenRigs then
         dragTweenRigs:Cancel()
     end
- 
     local delta = input.Position - mousePosRigs
     local targetPos = UDim2.new(
         framePosRigs.X.Scale,
@@ -953,7 +946,6 @@ local function updateRigs(input)
         framePosRigs.Y.Scale,
         framePosRigs.Y.Offset + delta.Y
     )
- 
     dragTweenRigs = TweenService:Create(rigsFrame, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
         Position = targetPos
     })
@@ -964,7 +956,7 @@ rigsFrame.InputBegan:Connect(function(input)
         draggingRigs = true
         mousePosRigs = input.Position
         framePosRigs = rigsFrame.Position
-     
+    
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 draggingRigs = false
@@ -988,21 +980,18 @@ itemsFrame.Name = "ItemsFrame"
 itemsFrame.Size = isMobile and UDim2.new(0, 240, 0, 320) or UDim2.new(0, 280, 0, 360)
 itemsFrame.Position = isMobile and UDim2.new(0.5, -120, 0.5, -160) or UDim2.new(0.5, -140, 0.5, -180)
 itemsFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-itemsFrame.BackgroundTransparency = 1
+itemsFrame.BackgroundTransparency = 0.3
 itemsFrame.BorderSizePixel = 0
 itemsFrame.Visible = false
 itemsFrame.Parent = screenGui
-
 local itemsFrameCorner = Instance.new("UICorner")
-itemsFrameCorner.CornerRadius = UDim.new(0, 16)
+itemsFrameCorner.CornerRadius = UDim.new(0, 18)
 itemsFrameCorner.Parent = itemsFrame
-
 local itemsFrameBorder = Instance.new("UIStroke")
 itemsFrameBorder.Color = Color3.fromRGB(255, 255, 255)
-itemsFrameBorder.Thickness = 1.5
-itemsFrameBorder.Transparency = 0.7
+itemsFrameBorder.Thickness = 1
+itemsFrameBorder.Transparency = 0.8
 itemsFrameBorder.Parent = itemsFrame
-
 -- Items Title
 local itemsTitle = Instance.new("TextLabel")
 itemsTitle.Size = UDim2.new(1, 0, 0, isMobile and 30 or 35)
@@ -1011,91 +1000,79 @@ itemsTitle.Text = "Item IDs"
 itemsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 itemsTitle.TextSize = isMobile and 13 or 15
 itemsTitle.Font = Enum.Font.GothamBold
-itemsTitle.TextTransparency = 1
+itemsTitle.TextTransparency = 0
 itemsTitle.Parent = itemsFrame
-
 -- Close button for items
 local itemsClose = Instance.new("TextButton")
 itemsClose.Size = isMobile and UDim2.new(0, 20, 0, 20) or UDim2.new(0, 24, 0, 24)
 itemsClose.Position = isMobile and UDim2.new(1, -25, 0, 5) or UDim2.new(1, -29, 0, 5)
 itemsClose.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-itemsClose.BackgroundTransparency = 1
+itemsClose.BackgroundTransparency = 0.6
 itemsClose.Text = "X"
 itemsClose.TextColor3 = Color3.fromRGB(255, 255, 255)
 itemsClose.TextSize = isMobile and 10 or 12
 itemsClose.Font = Enum.Font.GothamBold
 itemsClose.BorderSizePixel = 0
 itemsClose.Parent = itemsFrame
-
 local itemsCloseCorner = Instance.new("UICorner")
-itemsCloseCorner.CornerRadius = UDim.new(0, 8)
+itemsCloseCorner.CornerRadius = UDim.new(0, 10)
 itemsCloseCorner.Parent = itemsClose
-
 -- Items ScrollFrame
 local itemsScroll = Instance.new("ScrollingFrame")
 itemsScroll.Size = isMobile and UDim2.new(1, -20, 1, -40) or UDim2.new(1, -20, 1, -45)
 itemsScroll.Position = isMobile and UDim2.new(0, 10, 0, 35) or UDim2.new(0, 10, 0, 40)
 itemsScroll.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-itemsScroll.BackgroundTransparency = 1
+itemsScroll.BackgroundTransparency = 0.7
 itemsScroll.BorderSizePixel = 0
 itemsScroll.ScrollBarThickness = isMobile and 3 or 4
 itemsScroll.ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255)
-itemsScroll.ScrollBarImageTransparency = 0.5
+itemsScroll.ScrollBarImageTransparency = 0.6
 itemsScroll.Parent = itemsFrame
-
 local itemsScrollCorner = Instance.new("UICorner")
-itemsScrollCorner.CornerRadius = UDim.new(0, 12)
+itemsScrollCorner.CornerRadius = UDim.new(0, 14)
 itemsScrollCorner.Parent = itemsScroll
-
 local itemsLayout = Instance.new("UIListLayout")
 itemsLayout.SortOrder = Enum.SortOrder.LayoutOrder
-itemsLayout.Padding = UDim.new(0, 4)
+itemsLayout.Padding = UDim.new(0, 6)
 itemsLayout.Parent = itemsScroll
-
 local itemsPadding = Instance.new("UIPadding")
-itemsPadding.PaddingTop = UDim.new(0, 6)
-itemsPadding.PaddingBottom = UDim.new(0, 6)
-itemsPadding.PaddingLeft = UDim.new(0, 6)
-itemsPadding.PaddingRight = UDim.new(0, 6)
+itemsPadding.PaddingTop = UDim.new(0, 8)
+itemsPadding.PaddingBottom = UDim.new(0, 8)
+itemsPadding.PaddingLeft = UDim.new(0, 8)
+itemsPadding.PaddingRight = UDim.new(0, 8)
 itemsPadding.Parent = itemsScroll
-
 -- Create item entries
 for _, categoryData in ipairs(itemData) do
     local categoryLabel = Instance.new("TextLabel")
     categoryLabel.Size = UDim2.new(1, -16, 0, isMobile and 22 or 25)
     categoryLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    categoryLabel.BackgroundTransparency = 0.9
+    categoryLabel.BackgroundTransparency = 0.95
     categoryLabel.Text = categoryData.category
     categoryLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     categoryLabel.TextSize = isMobile and 10 or 12
     categoryLabel.Font = Enum.Font.GothamBold
     categoryLabel.BorderSizePixel = 0
     categoryLabel.Parent = itemsScroll
-
     local catCorner = Instance.new("UICorner")
-    catCorner.CornerRadius = UDim.new(0, 6)
+    catCorner.CornerRadius = UDim.new(0, 8)
     catCorner.Parent = categoryLabel
-
     for _, item in ipairs(categoryData.items) do
         local id = item.url:match("/catalog/(%d+)/")
         if id then
             local itemFrame = Instance.new("Frame")
             itemFrame.Size = UDim2.new(1, -16, 0, isMobile and 42 or 50)
             itemFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            itemFrame.BackgroundTransparency = 0.5
+            itemFrame.BackgroundTransparency = 0.6
             itemFrame.BorderSizePixel = 0
             itemFrame.Parent = itemsScroll
-
             local itemCorner = Instance.new("UICorner")
-            itemCorner.CornerRadius = UDim.new(0, 8)
+            itemCorner.CornerRadius = UDim.new(0, 10)
             itemCorner.Parent = itemFrame
-
             local itemBorder = Instance.new("UIStroke")
             itemBorder.Color = Color3.fromRGB(255, 255, 255)
             itemBorder.Thickness = 1
-            itemBorder.Transparency = 0.8
+            itemBorder.Transparency = 0.9
             itemBorder.Parent = itemFrame
-
             local itemImage = Instance.new("ImageLabel")
             itemImage.Size = isMobile and UDim2.new(0, 34, 0, 34) or UDim2.new(0, 42, 0, 42)
             itemImage.Position = UDim2.new(0, 4, 0.5, isMobile and -17 or -21)
@@ -1103,27 +1080,23 @@ for _, categoryData in ipairs(itemData) do
             itemImage.Image = "rbxthumb://type=Asset&id=" .. id .. "&w=150&h=150"
             itemImage.ScaleType = Enum.ScaleType.Fit
             itemImage.Parent = itemFrame
-
             local decalPreview = Instance.new("ImageLabel")
             decalPreview.Size = isMobile and UDim2.new(0, 34, 0, 34) or UDim2.new(0, 42, 0, 42)
             decalPreview.Position = UDim2.new(1, isMobile and -38 or -46, 0.5, isMobile and -17 or -21)
             decalPreview.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-            decalPreview.BackgroundTransparency = 0.3
+            decalPreview.BackgroundTransparency = 0.4
             decalPreview.BorderSizePixel = 0
             decalPreview.Image = "rbxthumb://type=Asset&id=" .. id .. "&w=150&h=150"
             decalPreview.ScaleType = Enum.ScaleType.Fit
             decalPreview.Parent = itemFrame
-
             local decalCorner = Instance.new("UICorner")
-            decalCorner.CornerRadius = UDim.new(0, 6)
+            decalCorner.CornerRadius = UDim.new(0, 8)
             decalCorner.Parent = decalPreview
-
             local decalBorder = Instance.new("UIStroke")
             decalBorder.Color = Color3.fromRGB(255, 255, 255)
             decalBorder.Thickness = 0.5
-            decalBorder.Transparency = 0.9
+            decalBorder.Transparency = 0.95
             decalBorder.Parent = decalPreview
-
             local itemLabel = Instance.new("TextLabel")
             itemLabel.Size = UDim2.new(1, isMobile and -85 or -98, 1, 0)
             itemLabel.Position = isMobile and UDim2.new(0, 42, 0, 0) or UDim2.new(0, 50, 0, 0)
@@ -1135,60 +1108,49 @@ for _, categoryData in ipairs(itemData) do
             itemLabel.TextXAlignment = Enum.TextXAlignment.Left
             itemLabel.TextWrapped = true
             itemLabel.Parent = itemFrame
-
             local itemButton = Instance.new("TextButton")
             itemButton.Size = UDim2.new(1, 0, 1, 0)
             itemButton.BackgroundTransparency = 1
             itemButton.Text = ""
             itemButton.Parent = itemFrame
-
             itemButton.MouseButton1Click:Connect(function()
-                TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.3}):Play()
-
+                TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.4}):Play()
                 TweenService:Create(itemFrame, TweenInfo.new(0.3), {
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    BackgroundTransparency = 0.3
+                    BackgroundTransparency = 0.4
                 }):Play()
                 TweenService:Create(itemLabel, TweenInfo.new(0.3), {
                     TextColor3 = Color3.fromRGB(0, 0, 0)
                 }):Play()
-
                 wait(0.5)
-
                 TweenService:Create(itemFrame, TweenInfo.new(0.4), {
                     BackgroundColor3 = Color3.fromRGB(0, 0, 0),
-                    BackgroundTransparency = 0.5
+                    BackgroundTransparency = 0.6
                 }):Play()
                 TweenService:Create(itemLabel, TweenInfo.new(0.4), {
                     TextColor3 = Color3.fromRGB(255, 255, 255)
                 }):Play()
-
                 setclipboard(id)
-
                 local originalText = itemLabel.Text
                 itemLabel.Text = item.name .. " (Copied!)"
                 wait(1.5)
                 itemLabel.Text = originalText
             end)
-
             itemButton.MouseEnter:Connect(function()
-                TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.35}):Play()
-                TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
+                TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.45}):Play()
+                TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.6}):Play()
             end)
-
             itemButton.MouseLeave:Connect(function()
-                TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
-                TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.8}):Play()
+                TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
+                TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.9}):Play()
             end)
         end
     end
 end
-
 itemsScroll.CanvasSize = UDim2.new(0, 0, 0, itemsLayout.AbsoluteContentSize.Y + 16)
 itemsLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     itemsScroll.CanvasSize = UDim2.new(0, 0, 0, itemsLayout.AbsoluteContentSize.Y + 16)
 end)
-
 -- Items close functionality
 local itemsOpen = false
 itemsClose.MouseButton1Click:Connect(function()
@@ -1199,65 +1161,55 @@ itemsClose.MouseButton1Click:Connect(function()
     TweenService:Create(itemsClose, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
     TweenService:Create(itemsToggle, TweenInfo.new(0.3), {
         Rotation = 0,
-        BackgroundTransparency = 0.5
+        BackgroundTransparency = 0.6
     }):Play()
     wait(0.2)
     itemsFrame.Visible = false
 end)
-
 itemsClose.MouseEnter:Connect(function()
-    TweenService:Create(itemsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.3}):Play()
+    TweenService:Create(itemsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
 end)
-
 itemsClose.MouseLeave:Connect(function()
-    TweenService:Create(itemsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
+    TweenService:Create(itemsClose, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
 end)
-
 -- Items toggle functionality
 itemsToggle.MouseButton1Click:Connect(function()
     itemsOpen = not itemsOpen
     itemsFrame.Visible = itemsOpen
-
     if itemsOpen then
-        TweenService:Create(itemsFrame, TweenInfo.new(0.3), {BackgroundTransparency = 0.4}):Play()
-        TweenService:Create(itemsTitle, TweenInfo.new(0.3), {TextTransparency = 0.1}):Play()
-        TweenService:Create(itemsScroll, TweenInfo.new(0.3), {BackgroundTransparency = 0.6}):Play()
-        TweenService:Create(itemsClose, TweenInfo.new(0.3), {BackgroundTransparency = 0.5}):Play()
-
+        TweenService:Create(itemsFrame, TweenInfo.new(0.3), {BackgroundTransparency = 0.3}):Play()
+        TweenService:Create(itemsTitle, TweenInfo.new(0.3), {TextTransparency = 0}):Play()
+        TweenService:Create(itemsScroll, TweenInfo.new(0.3), {BackgroundTransparency = 0.7}):Play()
+        TweenService:Create(itemsClose, TweenInfo.new(0.3), {BackgroundTransparency = 0.6}):Play()
         TweenService:Create(itemsToggle, TweenInfo.new(0.3), {
             Rotation = 90,
-            BackgroundTransparency = 0.3
+            BackgroundTransparency = 0.4
         }):Play()
     else
         TweenService:Create(itemsFrame, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
         TweenService:Create(itemsTitle, TweenInfo.new(0.2), {TextTransparency = 1}):Play()
         TweenService:Create(itemsScroll, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
         TweenService:Create(itemsClose, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
-
         TweenService:Create(itemsToggle, TweenInfo.new(0.3), {
             Rotation = 0,
-            BackgroundTransparency = 0.5
+            BackgroundTransparency = 0.6
         }):Play()
-
         wait(0.2)
         itemsFrame.Visible = false
     end
 end)
-
 itemsToggle.MouseEnter:Connect(function()
-    TweenService:Create(itemsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.2}):Play()
-    TweenService:Create(itemsToggleBorder, TweenInfo.new(0.2), {Transparency = 0.4}):Play()
+    TweenService:Create(itemsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
+    TweenService:Create(itemsToggleBorder, TweenInfo.new(0.2), {Transparency = 0.5}):Play()
 end)
-
 itemsToggle.MouseLeave:Connect(function()
     if itemsOpen then
-        TweenService:Create(itemsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.3}):Play()
+        TweenService:Create(itemsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.4}):Play()
     else
-        TweenService:Create(itemsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
+        TweenService:Create(itemsToggle, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
     end
-    TweenService:Create(itemsToggleBorder, TweenInfo.new(0.2), {Transparency = 0.7}):Play()
+    TweenService:Create(itemsToggleBorder, TweenInfo.new(0.2), {Transparency = 0.8}):Play()
 end)
-
 -- Dragging functionality for items frame
 local draggingItems = false
 local dragInputItems, mousePosItems, framePosItems
@@ -1266,7 +1218,6 @@ local function updateItems(input)
     if dragTweenItems then
         dragTweenItems:Cancel()
     end
-
     local delta = input.Position - mousePosItems
     local targetPos = UDim2.new(
         framePosItems.X.Scale,
@@ -1274,19 +1225,16 @@ local function updateItems(input)
         framePosItems.Y.Scale,
         framePosItems.Y.Offset + delta.Y
     )
-
     dragTweenItems = TweenService:Create(itemsFrame, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
         Position = targetPos
     })
     dragTweenItems:Play()
 end
-
 itemsFrame.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         draggingItems = true
         mousePosItems = input.Position
         framePosItems = itemsFrame.Position
-
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 draggingItems = false
@@ -1294,13 +1242,11 @@ itemsFrame.InputBegan:Connect(function(input)
         end)
     end
 end)
-
 itemsFrame.InputChanged:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
         dragInputItems = input
     end
 end)
-
 UserInputService.InputChanged:Connect(function(input)
     if input == dragInputItems and draggingItems then
         updateItems(input)
@@ -1310,56 +1256,49 @@ end)
 local isOpen = false
 toggleButton.MouseButton1Click:Connect(function()
     isOpen = not isOpen
- 
     if isOpen then
         mainFrame.Visible = true
         mainFrame.BackgroundTransparency = 1
         titleLabel.TextTransparency = 1
         scrollFrame.BackgroundTransparency = 1
         borderFrame.BackgroundTransparency = 1
-        glowFrame.BackgroundTransparency = 1
-        titleLine.BackgroundTransparency = 1
-     
+    
         for _, button in ipairs(scrollFrame:GetChildren()) do
             if button:IsA("TextButton") then
                 button.BackgroundTransparency = 1
                 button.TextTransparency = 1
             end
         end
-     
+    
         TweenService:Create(mainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-            BackgroundTransparency = 0.4
+            BackgroundTransparency = 0.3
         }):Play()
-     
+    
         TweenService:Create(borderFrame, TweenInfo.new(0.4), {
+            BackgroundTransparency = 0.9
+        }):Play()
+    
+        TweenService:Create(titleLabel, TweenInfo.new(0.4), {
+            TextTransparency = 0
+        }):Play()
+    
+        TweenService:Create(titleLine, TweenInfo.new(0.4), {
             BackgroundTransparency = 0.8
         }):Play()
-     
-        TweenService:Create(glowFrame, TweenInfo.new(0.4), {
-            BackgroundTransparency = 0.95
-        }):Play()
-     
-        TweenService:Create(titleLabel, TweenInfo.new(0.4), {
-            TextTransparency = 0.1
-        }):Play()
-     
-        TweenService:Create(titleLine, TweenInfo.new(0.4), {
+    
+        TweenService:Create(scrollFrame, TweenInfo.new(0.4), {
             BackgroundTransparency = 0.7
         }):Play()
-     
-        TweenService:Create(scrollFrame, TweenInfo.new(0.4), {
-            BackgroundTransparency = 0.6
-        }):Play()
-     
+    
         for _, button in ipairs(scrollFrame:GetChildren()) do
             if button:IsA("TextButton") then
                 TweenService:Create(button, TweenInfo.new(0.4), {
-                    BackgroundTransparency = 0.5,
-                    TextTransparency = 0.15
+                    BackgroundTransparency = 0.6,
+                    TextTransparency = 0.05
                 }):Play()
             end
         end
-     
+    
         TweenService:Create(toggleButton, TweenInfo.new(0.3), {
             BackgroundTransparency = 0.5,
             Rotation = 90
@@ -1368,27 +1307,23 @@ toggleButton.MouseButton1Click:Connect(function()
         TweenService:Create(mainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
             BackgroundTransparency = 1
         }):Play()
-     
+    
         TweenService:Create(borderFrame, TweenInfo.new(0.3), {
             BackgroundTransparency = 1
         }):Play()
-     
-        TweenService:Create(glowFrame, TweenInfo.new(0.3), {
-            BackgroundTransparency = 1
-        }):Play()
-     
+    
         TweenService:Create(titleLabel, TweenInfo.new(0.3), {
             TextTransparency = 1
         }):Play()
-     
+    
         TweenService:Create(titleLine, TweenInfo.new(0.3), {
             BackgroundTransparency = 1
         }):Play()
-     
+    
         TweenService:Create(scrollFrame, TweenInfo.new(0.3), {
             BackgroundTransparency = 1
         }):Play()
-     
+    
         for _, button in ipairs(scrollFrame:GetChildren()) do
             if button:IsA("TextButton") then
                 TweenService:Create(button, TweenInfo.new(0.3), {
@@ -1397,12 +1332,12 @@ toggleButton.MouseButton1Click:Connect(function()
                 }):Play()
             end
         end
-     
+    
         TweenService:Create(toggleButton, TweenInfo.new(0.3), {
             BackgroundTransparency = 0.3,
             Rotation = 0
         }):Play()
-     
+    
         wait(0.3)
         mainFrame.Visible = false
     end
@@ -1412,7 +1347,7 @@ toggleButton.MouseEnter:Connect(function()
         BackgroundTransparency = 0.2
     }):Play()
     TweenService:Create(toggleBorder, TweenInfo.new(0.2), {
-        Transparency = 0.3
+        Transparency = 0.4
     }):Play()
 end)
 toggleButton.MouseLeave:Connect(function()
@@ -1426,7 +1361,7 @@ toggleButton.MouseLeave:Connect(function()
         }):Play()
     end
     TweenService:Create(toggleBorder, TweenInfo.new(0.2), {
-        Transparency = 0.6
+        Transparency = 0.7
     }):Play()
 end)
 -- Dragging functionality for toggle button
@@ -1437,7 +1372,6 @@ local function updateToggle(input)
     if dragTweenToggle then
         dragTweenToggle:Cancel()
     end
- 
     local delta = input.Position - mousePosToggle
     local targetPos = UDim2.new(
         framePosToggle.X.Scale,
@@ -1445,7 +1379,6 @@ local function updateToggle(input)
         framePosToggle.Y.Scale,
         framePosToggle.Y.Offset + delta.Y
     )
- 
     dragTweenToggle = TweenService:Create(toggleButton, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
         Position = targetPos
     })
@@ -1456,7 +1389,7 @@ toggleButton.InputBegan:Connect(function(input)
         draggingToggle = true
         mousePosToggle = input.Position
         framePosToggle = toggleButton.Position
-     
+    
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 draggingToggle = false
@@ -1482,7 +1415,6 @@ local function updateMain(input)
     if dragTweenMain then
         dragTweenMain:Cancel()
     end
- 
     local delta = input.Position - mousePosMain
     local targetPos = UDim2.new(
         framePosMain.X.Scale,
@@ -1490,7 +1422,6 @@ local function updateMain(input)
         framePosMain.Y.Scale,
         framePosMain.Y.Offset + delta.Y
     )
- 
     dragTweenMain = TweenService:Create(mainFrame, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
         Position = targetPos
     })
@@ -1501,7 +1432,7 @@ mainFrame.InputBegan:Connect(function(input)
         draggingMain = true
         mousePosMain = input.Position
         framePosMain = mainFrame.Position
-     
+    
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 draggingMain = false
