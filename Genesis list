@@ -236,7 +236,12 @@ local scripts = {
     {name = "Pursuer", url = "https://gist.githubusercontent.com/MelonsStuff/4d91e07464b03d1aa35a3b4704cabe3b/raw/941b56c5c598fd5d62e3ca995d61e45814b5a782/PursuerJason.lua"},
     {name = "Jason", url = "https://gist.githubusercontent.com/MelonsStuff/6203b323781cfb0a7ad35e4e9f60e026/raw/222815c2a4f6ffe38f8ae3965f6b3640c180ab4c/Jason.lua"},
     {name = "Admin Noli", url = "https://rawscripts.net/raw/Universal-Script-Admin-noli-credits-to-melon-scripter-64701"},
-    {name = "Blade Ball", url = "https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty51.lua"}
+    {name = "Blade Ball", url = "https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty51.lua"},
+    {name = "Kinetic Gun", url = "https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty10.lua"},
+    {name = "Minos Prime", url = "https://rawscripts.net/raw/Universal-Script-Minos-prime-script-credits-to-melon-scripter-64672"},
+    {name = "BaseBall Bat", url = "https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty43.lua"},
+    {name = "KJ", code = [[_G.fling = false loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty47.lua"))()]]},
+    {name = "Simple Dancer", code = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/Oxide/refs/heads/main/LoadstringPerma"))() loadstring(game:HttpGet("https://gist.githubusercontent.com/lolidkwhy678/8789dcee674b733f339fc9376e512287/raw/0faff48438c6091deb3b3672a430cdfb07417111"))() loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Epik%20R6%20Dancezz.lua"))()]]}
 }
 -- Item data for Lightning Cannon info
 local itemData = {
@@ -429,6 +434,13 @@ local itemData = {
         {name = "Ball", url = "https://www.roblox.com/catalog/6685365462/Red-Stickman-Head"},
         {name = "Blade", url = "https://www.roblox.com/catalog/15997771866/Executioners-Blade"},
         {name = "Cyrstal", url = "https://www.roblox.com/bundles/598/Elemental-Crystal-Golem"}
+    }},
+    {category = "KINETIC GUN ITEMS", items = {
+        {name = "Gun", url = "https://www.roblox.com/catalog/17163596085/Sky-Blue-Cybernetic-Rifle"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
+    }},
+    {category = "BASEBALL BAT ITEMS", items = {
+        {name = "Baseball Bat", url = "https://www.roblox.com/catalog/12433640377/Baseball-Bat"}
     }}
 }
 -- Function to create script buttons
@@ -459,7 +471,7 @@ local function createScriptButton(scriptData, index)
         wait(0.15)
         TweenService:Create(button, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
         TweenService:Create(btnBorder, TweenInfo.new(0.2), {Transparency = 0.85}):Play()
-   
+  
         task.spawn(function()
             local success, err = pcall(function()
                 if scriptData.config then
@@ -476,7 +488,7 @@ local function createScriptButton(scriptData, index)
                     scriptFunc()
                 end
             end)
-       
+      
             if not success then
                 warn("Failed to load " .. scriptData.name .. ": " .. tostring(err))
             end
@@ -781,17 +793,17 @@ for _, rigData in ipairs(rigItems) do
         itemFrame.BackgroundTransparency = 0.6
         itemFrame.BorderSizePixel = 0
         itemFrame.Parent = rigsScroll
-    
+   
         local itemCorner = Instance.new("UICorner")
         itemCorner.CornerRadius = UDim.new(0, 10)
         itemCorner.Parent = itemFrame
-    
+   
         local itemBorder = Instance.new("UIStroke")
         itemBorder.Color = Color3.fromRGB(255, 255, 255)
         itemBorder.Thickness = 1
         itemBorder.Transparency = 0.9
         itemBorder.Parent = itemFrame
-    
+   
         -- Image for the hat (LEFT SIDE)
         local itemImage = Instance.new("ImageLabel")
         itemImage.Size = isMobile and UDim2.new(0, 34, 0, 34) or UDim2.new(0, 42, 0, 42)
@@ -800,7 +812,7 @@ for _, rigData in ipairs(rigItems) do
         itemImage.Image = "rbxthumb://type=Asset&id=" .. item.id .. "&w=150&h=150"
         itemImage.ScaleType = Enum.ScaleType.Fit
         itemImage.Parent = itemFrame
-    
+   
         -- Decal preview (RIGHT SIDE)
         local decalPreview = Instance.new("ImageLabel")
         decalPreview.Size = isMobile and UDim2.new(0, 34, 0, 34) or UDim2.new(0, 42, 0, 42)
@@ -811,17 +823,17 @@ for _, rigData in ipairs(rigItems) do
         decalPreview.Image = "rbxthumb://type=Asset&id=" .. item.id .. "&w=150&h=150"
         decalPreview.ScaleType = Enum.ScaleType.Fit
         decalPreview.Parent = itemFrame
-    
+   
         local decalCorner = Instance.new("UICorner")
         decalCorner.CornerRadius = UDim.new(0, 8)
         decalCorner.Parent = decalPreview
-    
+   
         local decalBorder = Instance.new("UIStroke")
         decalBorder.Color = Color3.fromRGB(255, 255, 255)
         decalBorder.Thickness = 0.5
         decalBorder.Transparency = 0.95
         decalBorder.Parent = decalPreview
-    
+   
         -- Text label for name (ADJUSTED WIDTH TO FIT BOTH IMAGES)
         local itemLabel = Instance.new("TextLabel")
         itemLabel.Size = UDim2.new(1, isMobile and -85 or -98, 1, 0)
@@ -834,23 +846,23 @@ for _, rigData in ipairs(rigItems) do
         itemLabel.TextXAlignment = Enum.TextXAlignment.Left
         itemLabel.TextWrapped = true
         itemLabel.Parent = itemFrame
-    
+   
         -- Invisible button overlay
         local itemButton = Instance.new("TextButton")
         itemButton.Size = UDim2.new(1, 0, 1, 0)
         itemButton.BackgroundTransparency = 1
         itemButton.Text = ""
         itemButton.Parent = itemFrame
-    
+   
         -- Click functionality
         itemButton.MouseButton1Click:Connect(function()
             -- Visual feedback
             TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.4}):Play()
-        
+       
             -- Mark as clicked and animate white fade in/out
             if not clickedItems[item.id] then
                 clickedItems[item.id] = true
-            
+           
                 -- Fade to white
                 TweenService:Create(itemFrame, TweenInfo.new(0.3), {
                     BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -859,9 +871,9 @@ for _, rigData in ipairs(rigItems) do
                 TweenService:Create(itemLabel, TweenInfo.new(0.3), {
                     TextColor3 = Color3.fromRGB(0, 0, 0)
                 }):Play()
-            
+           
                 wait(0.5)
-            
+           
                 -- Fade back to original
                 TweenService:Create(itemFrame, TweenInfo.new(0.4), {
                     BackgroundColor3 = Color3.fromRGB(0, 0, 0),
@@ -879,9 +891,9 @@ for _, rigData in ipairs(rigItems) do
                 TweenService:Create(itemLabel, TweenInfo.new(0.15), {
                     TextColor3 = Color3.fromRGB(0, 0, 0)
                 }):Play()
-            
+           
                 wait(0.3)
-            
+           
                 TweenService:Create(itemFrame, TweenInfo.new(0.3), {
                     BackgroundColor3 = Color3.fromRGB(0, 0, 0),
                     BackgroundTransparency = 0.6
@@ -890,26 +902,26 @@ for _, rigData in ipairs(rigItems) do
                     TextColor3 = Color3.fromRGB(255, 255, 255)
                 }):Play()
             end
-        
+       
             wait(0.1)
             TweenService:Create(itemFrame, TweenInfo.new(0.1), {BackgroundTransparency = 0.6}):Play()
-        
+       
             -- Copy full ID to clipboard
             local fullId = "https://www.roblox.com/catalog/" .. item.id
             setclipboard(fullId)
-        
+       
             -- Show copied notification
             local originalText = itemLabel.Text
             itemLabel.Text = item.name .. " (Copied!)"
             wait(1.5)
             itemLabel.Text = originalText
         end)
-    
+   
         itemButton.MouseEnter:Connect(function()
             TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.45}):Play()
             TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.6}):Play()
         end)
-    
+   
         itemButton.MouseLeave:Connect(function()
             TweenService:Create(itemFrame, TweenInfo.new(0.2), {BackgroundTransparency = 0.6}):Play()
             TweenService:Create(itemBorder, TweenInfo.new(0.2), {Transparency = 0.9}):Play()
@@ -930,12 +942,12 @@ rigsToggle.MouseButton1Click:Connect(function()
         rigsTitle.TextTransparency = 1
         rigsScroll.BackgroundTransparency = 1
         rigsClose.BackgroundTransparency = 1
-    
+   
         TweenService:Create(rigsFrame, TweenInfo.new(0.3), {BackgroundTransparency = 0.3}):Play()
         TweenService:Create(rigsTitle, TweenInfo.new(0.3), {TextTransparency = 0}):Play()
         TweenService:Create(rigsScroll, TweenInfo.new(0.3), {BackgroundTransparency = 0.7}):Play()
         TweenService:Create(rigsClose, TweenInfo.new(0.3), {BackgroundTransparency = 0.6}):Play()
-    
+   
         -- Rotate button when opening
         TweenService:Create(rigsToggle, TweenInfo.new(0.3), {
             Rotation = 90,
@@ -946,13 +958,13 @@ rigsToggle.MouseButton1Click:Connect(function()
         TweenService:Create(rigsTitle, TweenInfo.new(0.2), {TextTransparency = 1}):Play()
         TweenService:Create(rigsScroll, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
         TweenService:Create(rigsClose, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
-    
+   
         -- Rotate button back when closing
         TweenService:Create(rigsToggle, TweenInfo.new(0.3), {
             Rotation = 0,
             BackgroundTransparency = 0.6
         }):Play()
-    
+   
         wait(0.2)
         rigsFrame.Visible = false
     end
@@ -1014,7 +1026,7 @@ rigsFrame.InputBegan:Connect(function(input)
         draggingRigs = true
         mousePosRigs = input.Position
         framePosRigs = rigsFrame.Position
-   
+  
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 draggingRigs = false
@@ -1320,34 +1332,34 @@ toggleButton.MouseButton1Click:Connect(function()
         titleLabel.TextTransparency = 1
         scrollFrame.BackgroundTransparency = 1
         borderFrame.BackgroundTransparency = 1
-   
+  
         for _, button in ipairs(scrollFrame:GetChildren()) do
             if button:IsA("TextButton") then
                 button.BackgroundTransparency = 1
                 button.TextTransparency = 1
             end
         end
-   
+  
         TweenService:Create(mainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
             BackgroundTransparency = 0.3
         }):Play()
-   
+  
         TweenService:Create(borderFrame, TweenInfo.new(0.4), {
             BackgroundTransparency = 0.9
         }):Play()
-   
+  
         TweenService:Create(titleLabel, TweenInfo.new(0.4), {
             TextTransparency = 0
         }):Play()
-   
+  
         TweenService:Create(titleLine, TweenInfo.new(0.4), {
             BackgroundTransparency = 0.8
         }):Play()
-   
+  
         TweenService:Create(scrollFrame, TweenInfo.new(0.4), {
             BackgroundTransparency = 0.7
         }):Play()
-   
+  
         for _, button in ipairs(scrollFrame:GetChildren()) do
             if button:IsA("TextButton") then
                 TweenService:Create(button, TweenInfo.new(0.4), {
@@ -1356,7 +1368,7 @@ toggleButton.MouseButton1Click:Connect(function()
                 }):Play()
             end
         end
-   
+  
         TweenService:Create(toggleButton, TweenInfo.new(0.3), {
             BackgroundTransparency = 0.5,
             Rotation = 90
@@ -1365,23 +1377,23 @@ toggleButton.MouseButton1Click:Connect(function()
         TweenService:Create(mainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
             BackgroundTransparency = 1
         }):Play()
-   
+  
         TweenService:Create(borderFrame, TweenInfo.new(0.3), {
             BackgroundTransparency = 1
         }):Play()
-   
+  
         TweenService:Create(titleLabel, TweenInfo.new(0.3), {
             TextTransparency = 1
         }):Play()
-   
+  
         TweenService:Create(titleLine, TweenInfo.new(0.3), {
             BackgroundTransparency = 1
         }):Play()
-   
+  
         TweenService:Create(scrollFrame, TweenInfo.new(0.3), {
             BackgroundTransparency = 1
         }):Play()
-   
+  
         for _, button in ipairs(scrollFrame:GetChildren()) do
             if button:IsA("TextButton") then
                 TweenService:Create(button, TweenInfo.new(0.3), {
@@ -1390,12 +1402,12 @@ toggleButton.MouseButton1Click:Connect(function()
                 }):Play()
             end
         end
-   
+  
         TweenService:Create(toggleButton, TweenInfo.new(0.3), {
             BackgroundTransparency = 0.3,
             Rotation = 0
         }):Play()
-   
+  
         wait(0.3)
         mainFrame.Visible = false
     end
@@ -1447,7 +1459,7 @@ toggleButton.InputBegan:Connect(function(input)
         draggingToggle = true
         mousePosToggle = input.Position
         framePosToggle = toggleButton.Position
-   
+  
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 draggingToggle = false
@@ -1490,7 +1502,7 @@ mainFrame.InputBegan:Connect(function(input)
         draggingMain = true
         mousePosMain = input.Position
         framePosMain = mainFrame.Position
-   
+  
         input.Changed:Connect(function()
             if input.UserInputState == Enum.UserInputState.End then
                 draggingMain = false
