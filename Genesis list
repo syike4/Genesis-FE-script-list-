@@ -241,7 +241,9 @@ local scripts = {
     {name = "Minos Prime", url = "https://rawscripts.net/raw/Universal-Script-Minos-prime-script-credits-to-melon-scripter-64672"},
     {name = "BaseBall Bat", url = "https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty43.lua"},
     {name = "KJ", code = [[_G.fling = false loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty47.lua"))()]]},
-    {name = "Simple Dancer", code = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/Oxide/refs/heads/main/LoadstringPerma"))() loadstring(game:HttpGet("https://gist.githubusercontent.com/lolidkwhy678/8789dcee674b733f339fc9376e512287/raw/0faff48438c6091deb3b3672a430cdfb07417111"))() loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Epik%20R6%20Dancezz.lua"))()]]}
+    {name = "Simple Dancer", code = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/Oxide/refs/heads/main/LoadstringPerma"))() loadstring(game:HttpGet("https://gist.githubusercontent.com/lolidkwhy678/8789dcee674b733f339fc9376e512287/raw/0faff48438c6091deb3b3672a430cdfb07417111"))() loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Epik%20R6%20Dancezz.lua"))()]]},
+    {name = "DubStep", url = "https://raw.githubusercontent.com/BloxinStud10/24-Hours/refs/heads/main/Obfuscations/DubstepGun.luau"},
+    {name = "Terraprisma", url = "https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty2.lua"}
 }
 -- Item data for Lightning Cannon info
 local itemData = {
@@ -263,7 +265,8 @@ local itemData = {
         {name = "LEFT ARM", url = "https://www.roblox.com/catalog/85392395166623/Black-Left-Arm"},
         {name = "RIGHT ARM", url = "https://www.roblox.com/catalog/131385506535381/Black-Right-Arm"},
         {name = "LEFT LEG", url = "https://www.roblox.com/catalog/106249329428811/Black-Left-Leg"},
-        {name = "RIGHT LEG", url = "https://www.roblox.com/catalog/129462518582032/Black-Right-Leg"}
+        {name = "RIGHT LEG", url = "https://www.roblox.com/catalog/129462518582032/Black-Right-Leg"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "WHITE LIGHTNING CANNON", items = {
         {name = "White cannon P1", url = "https://www.roblox.com/catalog/136055191177936/Lightning-Cannon-P1"},
@@ -274,7 +277,8 @@ local itemData = {
         {name = "LEFT ARM", url = "https://www.roblox.com/catalog/102599402682100/White-Arm-Extension"},
         {name = "RIGHT ARM", url = "https://www.roblox.com/catalog/82942681251131/White-Arm-Extension"},
         {name = "LEFT LEG", url = "https://www.roblox.com/catalog/140395948277978/White-Arm-Extension"},
-        {name = "RIGHT LEG", url = "https://www.roblox.com/catalog/90960046381276/White-Arm-Extension"}
+        {name = "RIGHT LEG", url = "https://www.roblox.com/catalog/90960046381276/White-Arm-Extension"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "Neptunian V", items = {
         {name = "Void Large Sword", url = "https://www.roblox.com/catalog/5268602207/Void-Lord-Sword"},
@@ -290,7 +294,8 @@ local itemData = {
         {name = "Frozen Demonic Greatsword", url = "https://www.roblox.com/catalog/4458601937/Frozen-Demonic-Greatsword"}
     }},
     {category = "AK-47", items = {
-        {name = "Eminence White Purple", url = "https://www.roblox.com/catalog/14847744375/Eminence-White-Purple"}
+        {name = "Eminence White Purple", url = "https://www.roblox.com/catalog/14847744375/Eminence-White-Purple"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "Normal BanHammer", items = {
         {name = "Normal BanHammer", url = "https://www.roblox.com/catalog/15427288323/XL-Banhammer-back"},
@@ -316,7 +321,8 @@ local itemData = {
         {name = "Green MiniGun", url = "https://www.roblox.com/catalog/17598434795/Military-S-T-R-Y-K-E-R-Minigun-back-Green"},
         {name = "Orange MiniGun", url = "https://www.roblox.com/catalog/17598212551/Military-S-T-R-Y-K-E-R-Minigun-back-Orange"},
         {name = "Pixel MiniGun (RED)", url = "https://www.roblox.com/catalog/17174236857/Pixel-Minigun"},
-        {name = "Normal Pixel MiniGun", url = "https://www.roblox.com/catalog/17382649150/Pixel-Champion-Minigun"}
+        {name = "Normal Pixel MiniGun", url = "https://www.roblox.com/catalog/17382649150/Pixel-Champion-Minigun"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "Puppet Master", items = {
         {name = "Noob Doll", url = "https://www.roblox.com/catalog/15222706412/Noob"},
@@ -346,7 +352,8 @@ local itemData = {
         {name = "Orange Baton", url = "https://www.roblox.com/catalog/12980340684/Waist-Stun-Baton-Orange"},
         {name = "Normal Baton 2", url = "https://www.roblox.com/catalog/8590591043/Nightstick"},
         {name = "Emerald Gun", url = "https://www.roblox.com/catalog/14561260228/Emerald-Gun"},
-        {name = "Blue Gun", url = "https://www.roblox.com/catalog/12830343073/Blue-Cyber-Heavy-Revolver-Right"}
+        {name = "Blue Gun", url = "https://www.roblox.com/catalog/12830343073/Blue-Cyber-Heavy-Revolver-Right"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "Neko", items = {
         {name = "Prop Knife Kawaii P1", url = "https://www.roblox.com/catalog/14132081157/Prop-Kawaii-Knife"},
@@ -376,19 +383,24 @@ local itemData = {
     {category = "Banisher", items = {
         {name = "Heavy Pulse Rifle", url = "https://www.roblox.com/catalog/5164517317/Mk-82-Heavy-Pulse-Rifle"},
         {name = "Heavy Pulse Rifle 2.0", url = "https://www.roblox.com/catalog/5164509129/Mk-82-C7-Heavy-Pulse-Rifle"},
-        {name = "RailGun", url = "https://www.roblox.com/catalog/4623059912/Starslayer-Railgun"}
+        {name = "RailGun", url = "https://www.roblox.com/catalog/4623059912/Starslayer-Railgun"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "Pistol", items = {
         {name = "Green Revolver", url = "https://www.roblox.com/catalog/12830351516/Green-Cyber-Heavy-Revolver-Left"},
         {name = "Blue Revolver", url = "https://www.roblox.com/catalog/12830338562/Blue-Cyber-Heavy-Revolver-Left"},
-        {name = "Ancient Plasma Pistol", url = "https://www.roblox.com/catalog/11694545311/Ancient-Plasma-Pistol"}
+        {name = "Ancient Plasma Pistol", url = "https://www.roblox.com/catalog/11694545311/Ancient-Plasma-Pistol"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "SIN DRAGON", items = {
         {name = "Dragon Head P1", url = "https://www.roblox.com/catalog/111793953309477/Dragon-backpack-part-1"},
         {name = "Dragon Head P2", url = "https://www.roblox.com/catalog/113048125789248/Dragon-backpack-part-2"},
         {name = "Dragon Claw Black", url = "https://www.roblox.com/catalog/10238814782/Black-Dragon-Claw-Face-Hand"},
         {name = "Dragon Claw White", url = "https://www.roblox.com/catalog/10239245976/White-Dragon-Claw-Face-Hand"},
-        {name = "Aura Effect", url = "https://www.roblox.com/catalog/16755111087/Purple-Anime-Aura"}
+        {name = "Aura Effect", url = "https://www.roblox.com/catalog/16755111087/Purple-Anime-Aura"},
+        {name = "Small Dragon Claw 1", url = "https://www.roblox.com/catalog/117186631495734/small-claw"},
+        {name = "Small Dragon Claw 2", url = "https://www.roblox.com/catalog/132770514241770/small-claw-2"},
+        {name = "Beam", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"}
     }},
     {category = "HACKLORD ITEMS", items = {
         {name = "HackLord Sword on back", url = "https://www.roblox.com/catalog/106895658225908/Hacklord-Sword"},
@@ -402,7 +414,33 @@ local itemData = {
         {name = "Main HackLord sword", url = "https://www.roblox.com/catalog/112311161810826/Hacklord-Shedletskys-Greatsword-of-Hatred"},
         {name = "HackLord Dummy", url = "https://www.roblox.com/catalog/123845356193764/Black-VHS-Glitched-Dummy-Animated"},
         {name = "HackLord Left Leg", url = "https://www.roblox.com/catalog/106249329428811/Black-Left-Leg"},
-        {name = "HackLord Right Leg", url = "https://www.roblox.com/catalog/129462518582032/Black-Right-Leg"}
+        {name = "HackLord Right Leg", url = "https://www.roblox.com/catalog/129462518582032/Black-Right-Leg"},
+        {name = "The Erlking Greatsword V2", url = "https://www.roblox.com/catalog/18972529464/The-Erlkings-Greatsword-V2"},
+        {name = "Void Titan Greatsword", url = "https://www.roblox.com/catalog/11460084205/Void-Titan-Greatsword"},
+        {name = "Black Sword", url = "https://www.roblox.com/catalog/96606079405209/Black-Sword"},
+        {name = "Big Greatsword", url = "https://www.roblox.com/catalog/131348586827675/Big-Greatsword"},
+        {name = "Biggest Greatsword", url = "https://www.roblox.com/catalog/76313018969279/Biggest-Greatsword"},
+        {name = "Void Evil Knight Greatsword", url = "https://www.roblox.com/catalog/11495244307/Void-Evil-Knight-Greatsword"},
+        {name = "Purple GreatSword", url = "https://www.roblox.com/catalog/4506945409/Corrupt-Demonic-Greatsword"},
+        {name = "Cyan GreatSword", url = "https://www.roblox.com/catalog/4458601937/Frozen-Demonic-Greatsword"},
+        {name = "DarkHeart Sword", url = "https://www.roblox.com/catalog/102043780869380/Darkheart-Back"},
+        {name = "GhostWalker Sword", url = "https://www.roblox.com/catalog/91026685566277/Ghostwalker-Back"},
+        {name = "Classic Sword", url = "https://www.roblox.com/catalog/78396622993231/Classic-Sword"},
+        {name = "Katana Sword", url = "https://www.roblox.com/catalog/16315380517/Sword"},
+        {name = "Golden Sword", url = "https://www.roblox.com/catalog/11330989470/Sword"},
+        {name = "God Sword", url = "https://www.roblox.com/catalog/18806029251/Sword"},
+        {name = "1x1x1x1x1 Sword", url = "https://www.roblox.com/catalog/118009299022227/1x1x1x1x1"},
+        {name = "HackLord Sword 2", url = "https://www.roblox.com/catalog/121290673270759/OFFICIAL-The-Hacklords-Venom-Greatsword"},
+        {name = "Halloween Black Moon Witch Backdrop", url = "https://www.roblox.com/catalog/80979029181126/Halloween-Black-Moon-Witch-Backdrop"},
+        {name = "Crescent sigilism moon", url = "https://www.roblox.com/catalog/87110799539894/Crescent-sigilism-moon"},
+        {name = "Blue Ornate Moon Background", url = "https://www.roblox.com/catalog/10971858125/Ornate-Moon-Background-Blue"},
+        {name = "White Ornate Moon Background", url = "https://www.roblox.com/catalog/12332919426/Ornate-Moon-Background-White"},
+        {name = "Hotdog Suit", url = "https://www.roblox.com/catalog/5028584774/Hotdog-Suit"},
+        {name = "Banana Suit", url = "https://www.roblox.com/catalog/4962552589/Banana-Suit"},
+        {name = "Iron Coffin", url = "https://www.roblox.com/catalog/15230527145/Iron-maiden"},
+        {name = "Coffin", url = "https://www.roblox.com/catalog/135731544879121/Coffin"},
+        {name = "Erlking Coffin", url = "https://www.roblox.com/catalog/118644874678351/Erlking-Heathcliffs-Catherines-Coffin"},
+        {name = "Wild Hunt Heathcliffs Coffin", url = "https://www.roblox.com/catalog/18999927321/Wild-Hunt-Heathcliffs-Iron-Maiden-Coffin"}
     }},
     {category = "STARGLITCHER 2.0 ITEMS", items = {
         {name = "Star glitcher sword one item id", url = "https://www.roblox.com/catalog/5316479641/Demon-God-Sword"},
@@ -419,13 +457,32 @@ local itemData = {
         {name = "LEFT ARM", url = "https://www.roblox.com/catalog/85392395166623/Black-Left-Arm"},
         {name = "RIGHT ARM", url = "https://www.roblox.com/catalog/131385506535381/Black-Right-Arm"},
         {name = "LEFT LEG", url = "https://www.roblox.com/catalog/106249329428811/Black-Left-Leg"},
-        {name = "RIGHT LEG", url = "https://www.roblox.com/catalog/129462518582032/Black-Right-Leg"}
+        {name = "RIGHT LEG", url = "https://www.roblox.com/catalog/129462518582032/Black-Right-Leg"},
+        {name = "Minecraft Diamond Sword", url = "https://www.roblox.com/catalog/18566246244/Diamond-Sword"},
+        {name = "White Pumpkin Diamond Axe", url = "https://www.roblox.com/catalog/140088091435468/White-Pumpkin-Diamond-Axe-Forsaken"},
+        {name = "Forsaken TOON sword", url = "https://www.roblox.com/catalog/96343269446448/FORSAKEN-Toon-1x1x1x1-Sword"},
+        {name = "Red Real Knife", url = "https://www.roblox.com/catalog/13791877812/Red-Real-Knife"},
+        {name = "Undyne Spear of Justice", url = "https://www.roblox.com/catalog/135594174508502/Undyne-Spear-of-Justice"},
+        {name = "DarkHeart P1", url = "https://www.roblox.com/catalog/18877079510/Darkheart"},
+        {name = "DarkHeart P2", url = "https://www.roblox.com/catalog/14775020059/Darkheart-Waist"},
+        {name = "Kris Sword P1", url = "https://www.roblox.com/catalog/131895494199007/Kris-Sword-Deltarune-Back"},
+        {name = "Kris Sword P2", url = "https://www.roblox.com/catalog/80425865712106/Kris-Sword-Waist"},
+        {name = "PvZ Zombie CutOut", url = "https://www.roblox.com/catalog/132111438882232/Zombie-PvZ-Cutout"},
+        {name = "Birthday Pinata Buddy", url = "https://www.roblox.com/catalog/18100924519/Birthday-Pinata-Buddy-Add-on"},
+        {name = "Skeleton Bear White", url = "https://www.roblox.com/catalog/70399600466603/Skeleton-bear-white"},
+        {name = "Undertale Papyrus Cutout", url = "https://www.roblox.com/catalog/115797927844321/Undertale-Papyrus"},
+        {name = "Extra Shedletsky Dummy", url = "https://www.roblox.com/catalog/117662564986871/Extra-Shedletsky"}
     }},
     {category = "JASON ITEMS", items = {
         {name = "Two Time buddy", url = "https://www.roblox.com/catalog/138480343439270/Two-Time-buddy"},
         {name = "Fire axe", url = "https://www.roblox.com/catalog/5555611932/Fireaxe"},
         {name = "Red Chainsaw Sword", url = "https://www.roblox.com/catalog/14952103037/Red-Chainsaw-Sword"},
-        {name = "Jason mask", url = "https://www.roblox.com/catalog/103821169902048/Jason-Forsaken-Mask"}
+        {name = "Jason mask", url = "https://www.roblox.com/catalog/103821169902048/Jason-Forsaken-Mask"},
+        {name = "Penguin", url = "https://www.roblox.com/catalog/8275940644/Emperor-Penguin"},
+        {name = "Eraser Cat", url = "https://www.roblox.com/catalog/89788338095437/Eraser-Cat"},
+        {name = "Jason Vorhees Machete", url = "https://www.roblox.com/catalog/106118632964784/Jason-Vorhees-Machete"},
+        {name = "DOOM Chainsaw", url = "https://www.roblox.com/catalog/89661258615392/DOOM-Chainsaw"},
+        {name = "DOOM Sword Crucible", url = "https://www.roblox.com/catalog/111163795354946/DOOM-Sword-Crucible"}
     }},
     {category = "ADMIN NOLI ITEMS", items = {
         {name = "Btool Devesto", url = "https://www.roblox.com/catalog/89392828628286/Devestos-F3X-Forsaken-Die-of-Death-Waist-Holdable"}
@@ -441,6 +498,33 @@ local itemData = {
     }},
     {category = "BASEBALL BAT ITEMS", items = {
         {name = "Baseball Bat", url = "https://www.roblox.com/catalog/12433640377/Baseball-Bat"}
+    }},
+    {category = "KJ ITEMS", items = {
+        {name = "KJ Head", url = "https://www.roblox.com/catalog/17309357457/KJs-Head"}
+    }},
+    {category = "DUBSTEP ITEMS", items = {
+        {name = "DubStep Gun Bass Cannon", url = "https://www.roblox.com/catalog/137063455124987/Dubstep-Gun-Bass-cannon"},
+        {name = "RailGun", url = "https://www.roblox.com/catalog/4623059912/Starslayer-Railgun"},
+        {name = "Green RailGun", url = "https://www.roblox.com/catalog/16027125555/Sci-fi-Pulse-Railgun-Green"},
+        {name = "Red RailGun", url = "https://www.roblox.com/catalog/15360496421/Sci-fi-Pulse-Railgun-Red-Gun"},
+        {name = "Blue RailGun", url = "https://www.roblox.com/catalog/15360499581/Sci-fi-Pulse-Railgun-Blue-Gun"},
+        {name = "Black Shark Gun", url = "https://www.roblox.com/catalog/14843532359/Water-Gun-Shark-Black"},
+        {name = "Olive Cannon", url = "https://www.roblox.com/catalog/16027138639/Sci-fi-T-22-Kicker-Cannon-Olive"},
+        {name = "Snow Hunter Gun", url = "https://www.roblox.com/catalog/6113437566/Mk-62V-Snow-Hunter"},
+        {name = "Desert Pulse Rifle", url = "https://www.roblox.com/catalog/4933301463/Desert-Type-37-Pulse-Rifle"},
+        {name = "Divine CannonBlade", url = "https://www.roblox.com/catalog/6411973956/Divine-Cannonblade"},
+        {name = "Demonic CannonBlade", url = "https://www.roblox.com/catalog/6411969239/Carmesim-Cannonblade"},
+        {name = "Bullet", url = "https://www.roblox.com/catalog/4504231783/Elemental-Crystal-Golem-Shoulder-Rock"},
+        {name = "Purple Aura", url = "https://www.roblox.com/catalog/16755111087/Purple-Anime-Aura"},
+        {name = "White Aura", url = "https://www.roblox.com/catalog/16755121565/White-Anime-Aura"},
+        {name = "Blue Aura", url = "https://www.roblox.com/catalog/16755106041/Blue-Anime-Aura"},
+        {name = "Red Aura", url = "https://www.roblox.com/catalog/16755118407/Red-Anime-Aura"},
+        {name = "Green Aura", url = "https://www.roblox.com/catalog/16755106840/Green-Anime-Aura"}
+    }},
+    {category = "TERRAPRISMA ITEMS", items = {
+        {name = "Yellow Gold Neon Sword", url = "https://www.roblox.com/catalog/75133535004735/Yellow-Gold-Neon-Sword-Back"},
+        {name = "Purple Neon Sword", url = "https://www.roblox.com/catalog/124711435393884/Purple-Neon-Sword-Back"},
+        {name = "Rainbow Neon Sword", url = "https://www.roblox.com/catalog/84513687194285/Rainbow-Neon-Sword-Back"}
     }}
 }
 -- Function to create script buttons
@@ -765,7 +849,9 @@ local rigItems = {
         {name = "Gojo Left arm", id = "121926720373973"},
         {name = "Gojo Right arm", id = "86308251937339"},
         {name = "Gojo Left leg", id = "84830111227206"},
-        {name = "Gojo Right leg", id = "114368458356247"}
+        {name = "Gojo Right leg", id = "114368458356247"},
+        {name = "Pumpkin Head (Showman Minecraft)", id = "111355768914934"},
+        {name = "Pumpkin Head (White Jason)", id = "129970275766230"}
     }}
 }
 -- Track clicked items
@@ -1525,4 +1611,4 @@ toggleButton.Position = UDim2.new(0, -100, 0.5, -25)
 TweenService:Create(toggleButton, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
     Position = UDim2.new(0, 20, 0.5, -25)
 }):Play()
-print("Genesis FE Scripts GUI loaded successfully!")
+print("Genesis FE Scripts GUI loaded successfully with all updates!")
