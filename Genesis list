@@ -243,7 +243,7 @@ local scripts = {
     {name = "KJ", code = [[_G.fling = false loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty47.lua"))()]]},
     {name = "Simple Dancer", code = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/Nitro-GT/Oxide/refs/heads/main/LoadstringPerma"))() loadstring(game:HttpGet("https://gist.githubusercontent.com/lolidkwhy678/8789dcee674b733f339fc9376e512287/raw/0faff48438c6091deb3b3672a430cdfb07417111"))() loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Epik%20R6%20Dancezz.lua"))()]]},
     {name = "DubStep", url = "https://raw.githubusercontent.com/BloxinStud10/24-Hours/refs/heads/main/Obfuscations/DubstepGun.luau"},
-    {name = "Terraprisma", url = "https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty2.lua"}
+    {name = "Terraprisma", url = "https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty54.lua"}
 }
 -- Item data for Lightning Cannon info
 local itemData = {
