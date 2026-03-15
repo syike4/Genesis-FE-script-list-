@@ -447,7 +447,7 @@ local scripts = {
     {name = "StarGlitcher 2.0", url = "https://raw.githubusercontent.com/BloxinStud10/24-Hours/refs/heads/main/Obfuscations/StarGlitcherV1.luau"},
     {name = "Pursuer", url = "https://raw.githubusercontent.com/syike4/Modded-pursuer/refs/heads/main/Pursuer"},
     {name = "Jason", url = "https://gist.githubusercontent.com/MelonsStuff/6203b323781cfb0a7ad35e4e9f60e026/raw/222815c2a4f6ffe38f8ae3965f6b3640c180ab4c/Jason.lua"},
-    {name = "Admin Noli", url = "https://rawscripts.net/raw/Universal-Script-Admin-noli-credits-to-melon-scripter-64701"},
+    {name = "Admin Noli", code = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/MelonsStuff/FEVerse/refs/heads/main/OpenSource/Admin.luau"))()]]},
     {name = "Blade Ball", url = "https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty51.lua"},
     {name = "Kinetic Gun", url = "https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty10.lua"},
     {name = "Minos Prime", url = "https://raw.githubusercontent.com/syike4/Modded-minos-prime/refs/heads/main/Minos%20prime"},
@@ -784,7 +784,15 @@ hatItems = {
         {name = "DOOM Sword Crucible", id = "111163795354946"}
     }},
     {category = "ADMIN NOLI ITEMS", items = {
-        {name = "Btool Devesto", id = "89392828628286"}
+        {name = "Tesseract Void Cube", id = "126174506610997"},
+        {name = "Noli YAAI Tab Forsaken", id = "79778797065018"},
+        {name = "Noli's Star/Nova (Forsaken)", id = "107375989698675"},
+        {name = "Admin Noli Command Block", id = "138094177071382"},
+        {name = "Devesto's F3X Forsaken/Die of Death Waist/Holdable", id = "89392828628286"},
+        {name = "Noli Red Room Curse Cursor Forsaken", id = "81135739703341"},
+        {name = "Noli Umbra Eye Forsaken", id = "75152516777442"},
+        {name = "R6 Noli Holdable Right Star | Forsaken", id = "107316507359032"},
+        {name = "[R6] Left Holdable Bloxy Cola", id = "18427767574"}
     }},
     {category = "BLADE BALL ITEMS", items = {
         {name = "Ball", id = "6685365462"},
@@ -1679,8 +1687,108 @@ for _, category in ipairs(rigItems) do
 totalItems = totalItems + #category.items + 1 -- +1 for category header
 end
 scrollFrame.CanvasSize = UDim2.new(0, 0, 0, totalItems * 60 + 20)
+
+-- Create "Put rig in chat" toggle at the top - matching script toggle style
+local putRigInChatMode = false -- false = copy mode, true = chat mode
+
+-- Shadow for toggle
+local rigChatToggleShadow = Instance.new("ImageLabel")
+rigChatToggleShadow.Name = "RigChatToggleShadow"
+rigChatToggleShadow.BackgroundTransparency = 1
+rigChatToggleShadow.Image = "rbxassetid://6014261993"
+rigChatToggleShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+rigChatToggleShadow.ImageTransparency = 0.5
+rigChatToggleShadow.ScaleType = Enum.ScaleType.Slice
+rigChatToggleShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+rigChatToggleShadow.Size = UDim2.new(0, 270, 0, 80)
+rigChatToggleShadow.Position = UDim2.new(0, 55, 0, -5)
+rigChatToggleShadow.ZIndex = 1
+rigChatToggleShadow.Parent = scrollFrame
+
+local rigChatToggleFrame = Instance.new("Frame")
+rigChatToggleFrame.Name = "RigChatToggleFrame"
+rigChatToggleFrame.Size = UDim2.new(0, 240, 0, 40)
+rigChatToggleFrame.Position = UDim2.new(0, 70, 0, 10)
+rigChatToggleFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+rigChatToggleFrame.BorderSizePixel = 0
+rigChatToggleFrame.ZIndex = 3
+rigChatToggleFrame.Parent = scrollFrame
+
+local rigChatToggleCorner = Instance.new("UICorner")
+rigChatToggleCorner.CornerRadius = UDim.new(0, 12)
+rigChatToggleCorner.Parent = rigChatToggleFrame
+
+local rigChatToggleGradient = Instance.new("UIGradient")
+rigChatToggleGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+rigChatToggleGradient.Rotation = 90
+rigChatToggleGradient.Parent = rigChatToggleFrame
+
+local rigChatToggleStroke = Instance.new("UIStroke")
+rigChatToggleStroke.Thickness = 1.5
+rigChatToggleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+rigChatToggleStroke.Color = Color3.fromRGB(100, 100, 100)
+rigChatToggleStroke.Transparency = 0.4
+rigChatToggleStroke.Parent = rigChatToggleFrame
+
+local rigChatToggleLabel = Instance.new("TextLabel")
+rigChatToggleLabel.Name = "Label"
+rigChatToggleLabel.Size = UDim2.new(1, 0, 1, 0)
+rigChatToggleLabel.BackgroundTransparency = 1
+rigChatToggleLabel.Text = "Put rig in chat"
+rigChatToggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+rigChatToggleLabel.TextTransparency = 0.2
+rigChatToggleLabel.Font = Enum.Font.GothamBold
+rigChatToggleLabel.TextSize = 11
+rigChatToggleLabel.ZIndex = 4
+rigChatToggleLabel.Parent = rigChatToggleFrame
+
+local rigChatToggleButton = Instance.new("TextButton")
+rigChatToggleButton.Name = "ToggleButton"
+rigChatToggleButton.Size = UDim2.new(1, 0, 1, 0)
+rigChatToggleButton.BackgroundTransparency = 1
+rigChatToggleButton.Text = ""
+rigChatToggleButton.ZIndex = 5
+rigChatToggleButton.Parent = rigChatToggleFrame
+
+-- Description text under toggle
+local rigChatToggleDesc = Instance.new("TextLabel")
+rigChatToggleDesc.Name = "Description"
+rigChatToggleDesc.Size = UDim2.new(0, 300, 0, 15)
+rigChatToggleDesc.Position = UDim2.new(0, 50, 0, 55)
+rigChatToggleDesc.BackgroundTransparency = 1
+rigChatToggleDesc.Text = "Puts rig -gr (RIG ID) in chat"
+rigChatToggleDesc.TextColor3 = Color3.fromRGB(200, 200, 200)
+rigChatToggleDesc.TextTransparency = 0.6
+rigChatToggleDesc.Font = Enum.Font.Gotham
+rigChatToggleDesc.TextSize = 9
+rigChatToggleDesc.TextXAlignment = Enum.TextXAlignment.Center
+rigChatToggleDesc.ZIndex = 3
+rigChatToggleDesc.Parent = scrollFrame
+
+rigChatToggleButton.MouseButton1Click:Connect(function()
+    putRigInChatMode = not putRigInChatMode
+    local targetColor = putRigInChatMode and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetGradientEnd = putRigInChatMode and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(0, 0, 0)
+    local targetStrokeColor = putRigInChatMode and Color3.fromRGB(220, 220, 220) or Color3.fromRGB(100, 100, 100)
+    local targetShadowColor = putRigInChatMode and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetTextColor = putRigInChatMode and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
+    
+    -- Animate
+    TweenService:Create(rigChatToggleFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(rigChatToggleStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(rigChatToggleShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(rigChatToggleLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    rigChatToggleGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+end)
+
 -- Create rig items
-local currentY = 0
+local currentY = 80 -- Start below the toggle and description
 for catIndex, category in ipairs(rigItems) do
 -- Category Header
 local categoryLabel = Instance.new("TextLabel")
@@ -2022,12 +2130,19 @@ rigGradient.Color = ColorSequence.new{
 ColorSequenceKeypoint.new(0, targetColor),
 ColorSequenceKeypoint.new(1, targetGradientEnd)
 }
--- Change text to "Copied!"
+-- Change text based on mode
 local originalText = rigLabel.Text
-rigLabel.Text = "Copied!"
--- Copy to clipboard
-setclipboard(item.id)
-print("Copied to clipboard:", item.name, "ID:", item.id)
+if putRigInChatMode then
+    rigLabel.Text = "Sent!"
+    -- Send to chat with -gr command
+    sendChatMessage("-gr " .. item.id)
+    print("Sent to chat:", item.name, "ID:", item.id)
+else
+    rigLabel.Text = "Copied!"
+    -- Copy to clipboard
+    setclipboard(item.id)
+    print("Copied to clipboard:", item.name, "ID:", item.id)
+end
 -- Fade back after 0.5 seconds
 task.wait(0.5)
 local fadeBackColor = Color3.fromRGB(80, 80, 80)
@@ -2091,8 +2206,108 @@ for _, category in ipairs(hatItems) do
 totalItems = totalItems + #category.items + 1 -- +1 for category header
 end
 scrollFrame.CanvasSize = UDim2.new(0, 0, 0, totalItems * 60 + 20)
+
+-- Create "Put hat in chat" toggle at the top - matching script toggle style
+local putHatInChatMode = false -- false = copy mode, true = chat mode
+
+-- Shadow for toggle
+local chatToggleShadow = Instance.new("ImageLabel")
+chatToggleShadow.Name = "ChatToggleShadow"
+chatToggleShadow.BackgroundTransparency = 1
+chatToggleShadow.Image = "rbxassetid://6014261993"
+chatToggleShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+chatToggleShadow.ImageTransparency = 0.5
+chatToggleShadow.ScaleType = Enum.ScaleType.Slice
+chatToggleShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+chatToggleShadow.Size = UDim2.new(0, 270, 0, 80)
+chatToggleShadow.Position = UDim2.new(0, 55, 0, -5)
+chatToggleShadow.ZIndex = 1
+chatToggleShadow.Parent = scrollFrame
+
+local chatToggleFrame = Instance.new("Frame")
+chatToggleFrame.Name = "ChatToggleFrame"
+chatToggleFrame.Size = UDim2.new(0, 240, 0, 40)
+chatToggleFrame.Position = UDim2.new(0, 70, 0, 10)
+chatToggleFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+chatToggleFrame.BorderSizePixel = 0
+chatToggleFrame.ZIndex = 3
+chatToggleFrame.Parent = scrollFrame
+
+local chatToggleCorner = Instance.new("UICorner")
+chatToggleCorner.CornerRadius = UDim.new(0, 12)
+chatToggleCorner.Parent = chatToggleFrame
+
+local chatToggleGradient = Instance.new("UIGradient")
+chatToggleGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+chatToggleGradient.Rotation = 90
+chatToggleGradient.Parent = chatToggleFrame
+
+local chatToggleStroke = Instance.new("UIStroke")
+chatToggleStroke.Thickness = 1.5
+chatToggleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+chatToggleStroke.Color = Color3.fromRGB(100, 100, 100)
+chatToggleStroke.Transparency = 0.4
+chatToggleStroke.Parent = chatToggleFrame
+
+local chatToggleLabel = Instance.new("TextLabel")
+chatToggleLabel.Name = "Label"
+chatToggleLabel.Size = UDim2.new(1, 0, 1, 0)
+chatToggleLabel.BackgroundTransparency = 1
+chatToggleLabel.Text = "Put hat in chat"
+chatToggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+chatToggleLabel.TextTransparency = 0.2
+chatToggleLabel.Font = Enum.Font.GothamBold
+chatToggleLabel.TextSize = 11
+chatToggleLabel.ZIndex = 4
+chatToggleLabel.Parent = chatToggleFrame
+
+local chatToggleButton = Instance.new("TextButton")
+chatToggleButton.Name = "ToggleButton"
+chatToggleButton.Size = UDim2.new(1, 0, 1, 0)
+chatToggleButton.BackgroundTransparency = 1
+chatToggleButton.Text = ""
+chatToggleButton.ZIndex = 5
+chatToggleButton.Parent = chatToggleFrame
+
+-- Description text under toggle
+local chatToggleDesc = Instance.new("TextLabel")
+chatToggleDesc.Name = "Description"
+chatToggleDesc.Size = UDim2.new(0, 300, 0, 15)
+chatToggleDesc.Position = UDim2.new(0, 50, 0, 55)
+chatToggleDesc.BackgroundTransparency = 1
+chatToggleDesc.Text = "Puts hat -gh (HAT ID) in chat"
+chatToggleDesc.TextColor3 = Color3.fromRGB(200, 200, 200)
+chatToggleDesc.TextTransparency = 0.6
+chatToggleDesc.Font = Enum.Font.Gotham
+chatToggleDesc.TextSize = 9
+chatToggleDesc.TextXAlignment = Enum.TextXAlignment.Center
+chatToggleDesc.ZIndex = 3
+chatToggleDesc.Parent = scrollFrame
+
+chatToggleButton.MouseButton1Click:Connect(function()
+    putHatInChatMode = not putHatInChatMode
+    local targetColor = putHatInChatMode and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetGradientEnd = putHatInChatMode and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(0, 0, 0)
+    local targetStrokeColor = putHatInChatMode and Color3.fromRGB(220, 220, 220) or Color3.fromRGB(100, 100, 100)
+    local targetShadowColor = putHatInChatMode and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetTextColor = putHatInChatMode and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
+    
+    -- Animate
+    TweenService:Create(chatToggleFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(chatToggleStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(chatToggleShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(chatToggleLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    chatToggleGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+end)
+
 -- Create hat items
-local currentY = 0
+local currentY = 80 -- Start below the toggle and description
 for catIndex, category in ipairs(hatItems) do
 -- Category Header with toggle button for GONER category
 local categoryLabel = Instance.new("TextLabel")
@@ -3175,7 +3390,7 @@ hatImage.Image = "https://www.roblox.com/asset-thumbnail/image?assetId=" .. item
 hatImage.ScaleType = Enum.ScaleType.Fit
 hatImage.ZIndex = 4
 hatImage.Parent = imageBox
--- Click functionality - copy to clipboard
+-- Click functionality - copy to clipboard OR send to chat
 hatBtn.MouseButton1Click:Connect(function()
 -- Flash to white with gradient update
 local targetColor = Color3.fromRGB(255, 255, 255)
@@ -3191,12 +3406,19 @@ hatGradient.Color = ColorSequence.new{
 ColorSequenceKeypoint.new(0, targetColor),
 ColorSequenceKeypoint.new(1, targetGradientEnd)
 }
--- Change text to "Copied!"
+-- Change text based on mode
 local originalText = hatLabel.Text
-hatLabel.Text = "Copied!"
--- Copy to clipboard
-setclipboard(item.id)
-print("Copied to clipboard:", item.name, "ID:", item.id)
+if putHatInChatMode then
+    hatLabel.Text = "Sent!"
+    -- Send to chat with -gh command
+    sendChatMessage("-gh " .. item.id)
+    print("Sent to chat:", item.name, "ID:", item.id)
+else
+    hatLabel.Text = "Copied!"
+    -- Copy to clipboard
+    setclipboard(item.id)
+    print("Copied to clipboard:", item.name, "ID:", item.id)
+end
 -- Fade back after 0.5 seconds
 task.wait(0.5)
 local fadeBackColor = Color3.fromRGB(80, 80, 80)
@@ -3438,3 +3660,7 @@ RunService.RenderStepped:Connect(function(deltaTime)
 end)
 print("GUI loaded successfully! Menu system with MAIN, RIG, and HAT ITEMS pages is ready!")
 print("Goner toggle button added - sends all hat IDs in a single line!")
+
+-- Send welcome message to chat
+task.wait(0.5) -- Small delay to ensure chat is ready
+sendChatMessage("Onyx hub made by fxtmse or known as onyx")
