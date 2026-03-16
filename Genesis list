@@ -468,6 +468,16 @@ local scripts = {
 }
 -- Function to execute script
 local function executeScript(scriptData)
+-- Check if this is Lightning Cannon and set lightmode from settings toggle
+if scriptData.name == "Lightning Cannon" then
+    -- lightmode is already set by the settings toggle
+    -- If not set, default to false
+    if getgenv().lightmode == nil then
+        getgenv().lightmode = false
+    end
+    print("Lightning Cannon loading with lightmode =", getgenv().lightmode)
+end
+
 if scriptData.code then
 -- Execute direct code
 loadstring(scriptData.code)()
@@ -1207,7 +1217,7 @@ local function createMenuButton(name, position, index)
 	btnLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	btnLabel.TextTransparency = 0.2
 	btnLabel.Font = Enum.Font.GothamBold
-	btnLabel.TextSize = 16
+	btnLabel.TextSize = (name == "SUPPORTED CLIENTS") and 12 or 16 -- 12px for SUPPORTED CLIENTS
 	btnLabel.Parent = btnFrame
 
 	local btn = Instance.new("TextButton")
@@ -1265,6 +1275,10 @@ end
 local mainBtn, mainData = createMenuButton("MAIN", 130, 1)
 local rigBtn, rigData = createMenuButton("RIG", 200, 2)
 local hatBtn, hatData = createMenuButton("HAT ITEMS", 270, 3)
+local settingsBtn, settingsData = createMenuButton("SETTINGS", 340, 4)
+
+-- Menu button 5: SUPPORTED CLIENTS
+local clientsBtn, clientsData = createMenuButton("SUPPORTED CLIENTS", 400, 5)
 
 -- Connect click events with radio behavior
 mainBtn.MouseButton1Click:Connect(function()
@@ -1281,6 +1295,17 @@ hatBtn.MouseButton1Click:Connect(function()
 	handleRadioToggle(hatData)
 	switchMenu("HAT ITEMS")
 end)
+
+settingsBtn.MouseButton1Click:Connect(function()
+	handleRadioToggle(settingsData)
+	switchMenu("SETTINGS")
+end)
+
+clientsBtn.MouseButton1Click:Connect(function()
+	handleRadioToggle(clientsData)
+	switchMenu("SUPPORTED CLIENTS")
+end)
+
 --------------------------------------------------------------------------------
 -- SEPARATOR LINE
 --------------------------------------------------------------------------------
@@ -1336,6 +1361,7 @@ rightBoxStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 rightBoxStroke.Color = Color3.fromRGB(100, 100, 100)
 rightBoxStroke.Transparency = 0.3
 rightBoxStroke.Parent = rightBox
+
 --------------------------------------------------------------------------------
 -- SCROLLING FRAMES FOR EACH MENU
 --------------------------------------------------------------------------------
@@ -1369,7 +1395,9 @@ scrollFrame.Parent = rightBox
 local scrollFrameCorner = Instance.new("UICorner")
 scrollFrameCorner.CornerRadius = UDim.new(0, 8)
 scrollFrameCorner.Parent = scrollFrame
+
 -- Create toggles
+local startY = 0
 for i, toggleName in ipairs(toggleNames) do
 local toggleShadow = Instance.new("ImageLabel")
 toggleShadow.Name = "ToggleShadow" .. i
@@ -1380,13 +1408,13 @@ toggleShadow.ImageTransparency = 0.5
 toggleShadow.ScaleType = Enum.ScaleType.Slice
 toggleShadow.SliceCenter = Rect.new(49,49,450,450)
 toggleShadow.Size = UDim2.new(0, 430, 0, 75)
-toggleShadow.Position = UDim2.new(0, -10, 0, (i - 1) * 60)
+toggleShadow.Position = UDim2.new(0, -10, 0, startY + (i - 1) * 60)
 toggleShadow.ZIndex = 2
 toggleShadow.Parent = scrollFrame
 local toggleFrame = Instance.new("Frame")
 toggleFrame.Name = "Toggle" .. i
 toggleFrame.Size = UDim2.new(0, 390, 0, 45)
-toggleFrame.Position = UDim2.new(0, 10, 0, (i - 1) * 60 + 15)
+toggleFrame.Position = UDim2.new(0, 10, 0, startY + (i - 1) * 60 + 15)
 toggleFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
 toggleFrame.BorderSizePixel = 0
 toggleFrame.ZIndex = 3
@@ -1429,26 +1457,83 @@ toggleBtn.Parent = toggleFrame
 local toggleState = false
 toggleBtn.MouseButton1Click:Connect(function()
 toggleState = not toggleState
-local targetColor = toggleState and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
-local targetGradientEnd = toggleState and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(0, 0, 0)
-local targetStrokeColor = toggleState and Color3.fromRGB(220, 220, 220) or Color3.fromRGB(100, 100, 100)
-local targetShadowColor = toggleState and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
-local targetTextColor = toggleState and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
--- Animate to white when toggled on
-TweenService:Create(toggleFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
-TweenService:Create(toggleStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
-TweenService:Create(toggleShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
-TweenService:Create(toggleLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
-toggleGradient.Color = ColorSequence.new{
-ColorSequenceKeypoint.new(0, targetColor),
-ColorSequenceKeypoint.new(1, targetGradientEnd)
-}
+
+-- Flash to white when toggled ON
+if toggleState then
+    local targetColor = Color3.fromRGB(255, 255, 255)
+    local targetGradientEnd = Color3.fromRGB(200, 200, 200)
+    local targetStrokeColor = Color3.fromRGB(220, 220, 220)
+    local targetShadowColor = Color3.fromRGB(255, 255, 255)
+    local targetTextColor = Color3.fromRGB(0, 0, 0)
+    
+    -- Flash to white (0.2s)
+    TweenService:Create(toggleFrame, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(toggleStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(toggleShadow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(toggleLabel, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    toggleGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+    
+    task.wait(0.1)
+    
+    -- Fade back to gray (0.5s)
+    local fadeBackColor = Color3.fromRGB(80, 80, 80)
+    local fadeBackGradientEnd = Color3.fromRGB(0, 0, 0)
+    local fadeBackStrokeColor = Color3.fromRGB(100, 100, 100)
+    local fadeBackShadowColor = Color3.fromRGB(80, 80, 80)
+    local fadeBackTextColor = Color3.fromRGB(255, 255, 255)
+    
+    TweenService:Create(toggleFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
+    TweenService:Create(toggleStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
+    TweenService:Create(toggleShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = fadeBackShadowColor}):Play()
+    TweenService:Create(toggleLabel, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = fadeBackTextColor}):Play()
+    toggleGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, fadeBackColor),
+        ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
+    }
+    toggleState = false -- Reset to OFF after flash
+else
+    -- Already off, do nothing
+    return
+end
+
 -- Execute script if toggled on and in MAIN menu
-if toggleState and menuName == "MAIN" then
+if menuName == "MAIN" then
 -- Find matching script
 for _, scriptData in ipairs(scripts) do
 if scriptData.name == toggleName then
 executeScript(scriptData)
+
+-- Auto-enable Self Outline with fade in when loading reanimate scripts
+task.spawn(function()
+    task.wait(2) -- Wait for script to load
+    if not selfOutlineEnabled then
+        selfOutlineEnabled = true
+        
+        -- Update toggle appearance
+        TweenService:Create(soSettingsFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+        TweenService:Create(soSettingsStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = Color3.fromRGB(220, 220, 220)}):Play()
+        TweenService:Create(soSettingsShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+        TweenService:Create(soSettingsLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = Color3.fromRGB(0, 0, 0)}):Play()
+        soSettingsGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(200, 200, 200))
+        }
+        
+        -- Create outline with fade in
+        createSelfOutline()
+        
+        -- Fade in the outline
+        if selfHighlight then
+            selfHighlight.OutlineTransparency = 1 -- Start invisible
+            TweenService:Create(selfHighlight, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {OutlineTransparency = 0}):Play()
+        end
+        
+        print("Self Outline: Auto-enabled and faded in after loading " .. scriptData.name)
+    end
+end)
 
 -- Universal Script Indicator UI for all scripts
 -- Remove existing UI if it exists
@@ -1625,8 +1710,8 @@ end)
 break
 end
 end
--- Wait 1.5 seconds then fade back to gray (but keep script UI visible)
-task.wait(1.5)
+-- Wait 0.1 seconds then fade back to gray FAST (like perma death)
+task.wait(0.1)
 
 toggleState = false
 local fadeBackColor = Color3.fromRGB(80, 80, 80)
@@ -1634,10 +1719,10 @@ local fadeBackGradientEnd = Color3.fromRGB(0, 0, 0)
 local fadeBackStrokeColor = Color3.fromRGB(100, 100, 100)
 local fadeBackShadowColor = Color3.fromRGB(80, 80, 80)
 local fadeBackTextColor = Color3.fromRGB(255, 255, 255)
-TweenService:Create(toggleFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
-TweenService:Create(toggleStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
-TweenService:Create(toggleShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = fadeBackShadowColor}):Play()
-TweenService:Create(toggleLabel, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = fadeBackTextColor}):Play()
+TweenService:Create(toggleFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
+TweenService:Create(toggleStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
+TweenService:Create(toggleShadow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = fadeBackShadowColor}):Play()
+TweenService:Create(toggleLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = fadeBackTextColor}):Play()
 toggleGradient.Color = ColorSequence.new{
 ColorSequenceKeypoint.new(0, fadeBackColor),
 ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
@@ -3496,6 +3581,980 @@ createScrollFrame("MAIN", {
 })
 createRigScrollFrame()
 createHatScrollFrame()
+
+--------------------------------------------------------------------------------
+-- SETTINGS SCROLL FRAME
+--------------------------------------------------------------------------------
+local function createSettingsScrollFrame()
+local menuName = "SETTINGS"
+local scrollFrameShadow = Instance.new("ImageLabel")
+scrollFrameShadow.Name = menuName .. "ScrollFrameShadow"
+scrollFrameShadow.BackgroundTransparency = 1
+scrollFrameShadow.Image = "rbxassetid://6014261993"
+scrollFrameShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+scrollFrameShadow.ImageTransparency = 0.3
+scrollFrameShadow.ScaleType = Enum.ScaleType.Slice
+scrollFrameShadow.SliceCenter = Rect.new(49,49,450,450)
+scrollFrameShadow.Size = UDim2.new(1, 30, 1, 30)
+scrollFrameShadow.Position = UDim2.new(0, -15, 0, -15)
+scrollFrameShadow.ZIndex = 0
+scrollFrameShadow.Parent = rightBox
+
+local scrollFrame = Instance.new("ScrollingFrame")
+scrollFrame.Name = menuName .. "ScrollFrame"
+scrollFrame.Size = UDim2.new(1, -20, 1, -20)
+scrollFrame.Position = UDim2.new(0, 10, 0, 10)
+scrollFrame.BackgroundTransparency = 1
+scrollFrame.BorderSizePixel = 0
+scrollFrame.ScrollBarThickness = 8
+scrollFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+scrollFrame.ScrollBarImageTransparency = 0
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 600)
+scrollFrame.ZIndex = 2
+scrollFrame.Visible = false
+scrollFrame.Parent = rightBox
+
+local scrollFrameCorner = Instance.new("UICorner")
+scrollFrameCorner.CornerRadius = UDim.new(0, 8)
+scrollFrameCorner.Parent = scrollFrame
+
+-- Settings title
+local settingsTitle = Instance.new("TextLabel")
+settingsTitle.Name = "SettingsTitle"
+settingsTitle.Size = UDim2.new(1, -20, 0, 40)
+settingsTitle.Position = UDim2.new(0, 10, 0, 10)
+settingsTitle.BackgroundTransparency = 1
+settingsTitle.Text = "SETTINGS"
+settingsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+settingsTitle.TextTransparency = 0.2
+settingsTitle.Font = Enum.Font.GothamBold
+settingsTitle.TextSize = 20
+settingsTitle.TextXAlignment = Enum.TextXAlignment.Center
+settingsTitle.ZIndex = 3
+settingsTitle.Parent = scrollFrame
+
+-- Current Y position for toggles
+local currentY = 60
+
+--------------------------------------------------------------------------------
+-- PERMA DEATH TOGGLE
+--------------------------------------------------------------------------------
+local pdSettingsShadow = Instance.new("ImageLabel")
+pdSettingsShadow.Name = "PdSettingsShadow"
+pdSettingsShadow.BackgroundTransparency = 1
+pdSettingsShadow.Image = "rbxassetid://6014261993"
+pdSettingsShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+pdSettingsShadow.ImageTransparency = 0.5
+pdSettingsShadow.ScaleType = Enum.ScaleType.Slice
+pdSettingsShadow.SliceCenter = Rect.new(49,49,450,450)
+pdSettingsShadow.Size = UDim2.new(0, 430, 0, 75)
+pdSettingsShadow.Position = UDim2.new(0, -10, 0, currentY)
+pdSettingsShadow.ZIndex = 2
+pdSettingsShadow.Parent = scrollFrame
+
+local pdSettingsFrame = Instance.new("Frame")
+pdSettingsFrame.Name = "PdSettingsToggle"
+pdSettingsFrame.Size = UDim2.new(0, 390, 0, 45)
+pdSettingsFrame.Position = UDim2.new(0, 10, 0, currentY + 15)
+pdSettingsFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+pdSettingsFrame.BorderSizePixel = 0
+pdSettingsFrame.ZIndex = 3
+pdSettingsFrame.Parent = scrollFrame
+
+local pdSettingsCorner = Instance.new("UICorner")
+pdSettingsCorner.CornerRadius = UDim.new(0, 12)
+pdSettingsCorner.Parent = pdSettingsFrame
+
+local pdSettingsGradient = Instance.new("UIGradient")
+pdSettingsGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+pdSettingsGradient.Rotation = 90
+pdSettingsGradient.Parent = pdSettingsFrame
+
+local pdSettingsStroke = Instance.new("UIStroke")
+pdSettingsStroke.Thickness = 1.5
+pdSettingsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+pdSettingsStroke.Color = Color3.fromRGB(100, 100, 100)
+pdSettingsStroke.Transparency = 0.4
+pdSettingsStroke.Parent = pdSettingsFrame
+
+local pdSettingsLabel = Instance.new("TextLabel")
+pdSettingsLabel.Name = "Label"
+pdSettingsLabel.Size = UDim2.new(1, 0, 1, 0)
+pdSettingsLabel.BackgroundTransparency = 1
+pdSettingsLabel.Text = "Put perma death chat"
+pdSettingsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+pdSettingsLabel.TextTransparency = 0.2
+pdSettingsLabel.Font = Enum.Font.GothamBold
+pdSettingsLabel.TextSize = 12
+pdSettingsLabel.ZIndex = 4
+pdSettingsLabel.Parent = pdSettingsFrame
+
+local pdSettingsButton = Instance.new("TextButton")
+pdSettingsButton.Name = "Button"
+pdSettingsButton.Size = UDim2.new(1, 0, 1, 0)
+pdSettingsButton.BackgroundTransparency = 1
+pdSettingsButton.Text = ""
+pdSettingsButton.ZIndex = 5
+pdSettingsButton.Parent = pdSettingsFrame
+
+pdSettingsButton.MouseButton1Click:Connect(function()
+    local targetColor = Color3.fromRGB(255, 255, 255)
+    local targetGradientEnd = Color3.fromRGB(200, 200, 200)
+    local targetStrokeColor = Color3.fromRGB(220, 220, 220)
+    local targetShadowColor = Color3.fromRGB(255, 255, 255)
+    local targetTextColor = Color3.fromRGB(0, 0, 0)
+    
+    TweenService:Create(pdSettingsFrame, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(pdSettingsStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(pdSettingsShadow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(pdSettingsLabel, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    pdSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+    
+    task.wait(0.1)
+    sendChatMessage("-pd")
+    print("Sent perma death command: -pd")
+    
+    local fadeBackColor = Color3.fromRGB(80, 80, 80)
+    local fadeBackGradientEnd = Color3.fromRGB(0, 0, 0)
+    local fadeBackStrokeColor = Color3.fromRGB(100, 100, 100)
+    local fadeBackShadowColor = Color3.fromRGB(80, 80, 80)
+    local fadeBackTextColor = Color3.fromRGB(255, 255, 255)
+    
+    TweenService:Create(pdSettingsFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
+    TweenService:Create(pdSettingsStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
+    TweenService:Create(pdSettingsShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = fadeBackShadowColor}):Play()
+    TweenService:Create(pdSettingsLabel, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = fadeBackTextColor}):Play()
+    pdSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, fadeBackColor),
+        ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
+    }
+end)
+
+currentY = currentY + 60
+
+--------------------------------------------------------------------------------
+-- REMOVE ESP HIGHLIGHT TOGGLE
+--------------------------------------------------------------------------------
+local espHighlightEnabled = true
+
+local espSettingsShadow = Instance.new("ImageLabel")
+espSettingsShadow.Name = "EspSettingsShadow"
+espSettingsShadow.BackgroundTransparency = 1
+espSettingsShadow.Image = "rbxassetid://6014261993"
+espSettingsShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+espSettingsShadow.ImageTransparency = 0.5
+espSettingsShadow.ScaleType = Enum.ScaleType.Slice
+espSettingsShadow.SliceCenter = Rect.new(49,49,450,450)
+espSettingsShadow.Size = UDim2.new(0, 430, 0, 75)
+espSettingsShadow.Position = UDim2.new(0, -10, 0, currentY)
+espSettingsShadow.ZIndex = 2
+espSettingsShadow.Parent = scrollFrame
+
+local espSettingsFrame = Instance.new("Frame")
+espSettingsFrame.Name = "EspSettingsToggle"
+espSettingsFrame.Size = UDim2.new(0, 390, 0, 45)
+espSettingsFrame.Position = UDim2.new(0, 10, 0, currentY + 15)
+espSettingsFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+espSettingsFrame.BorderSizePixel = 0
+espSettingsFrame.ZIndex = 3
+espSettingsFrame.Parent = scrollFrame
+
+local espSettingsCorner = Instance.new("UICorner")
+espSettingsCorner.CornerRadius = UDim.new(0, 12)
+espSettingsCorner.Parent = espSettingsFrame
+
+local espSettingsGradient = Instance.new("UIGradient")
+espSettingsGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+espSettingsGradient.Rotation = 90
+espSettingsGradient.Parent = espSettingsFrame
+
+local espSettingsStroke = Instance.new("UIStroke")
+espSettingsStroke.Thickness = 1.5
+espSettingsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+espSettingsStroke.Color = Color3.fromRGB(100, 100, 100)
+espSettingsStroke.Transparency = 0.4
+espSettingsStroke.Parent = espSettingsFrame
+
+local espSettingsLabel = Instance.new("TextLabel")
+espSettingsLabel.Name = "Label"
+espSettingsLabel.Size = UDim2.new(1, 0, 1, 0)
+espSettingsLabel.BackgroundTransparency = 1
+espSettingsLabel.Text = "Onyx Esp Highlight"
+espSettingsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+espSettingsLabel.TextTransparency = 0.2
+espSettingsLabel.Font = Enum.Font.GothamBold
+espSettingsLabel.TextSize = 12
+espSettingsLabel.ZIndex = 4
+espSettingsLabel.Parent = espSettingsFrame
+
+local espSettingsButton = Instance.new("TextButton")
+espSettingsButton.Name = "Button"
+espSettingsButton.Size = UDim2.new(1, 0, 1, 0)
+espSettingsButton.BackgroundTransparency = 1
+espSettingsButton.Text = ""
+espSettingsButton.ZIndex = 5
+espSettingsButton.Parent = espSettingsFrame
+
+-- Onyx ESP Highlight Animation (Optimized for zero lag)
+local onyxEspActive = false
+local onyxEspConnections = {}
+local cachedHighlights = {}
+local originalColors = {} -- Store original highlight colors
+
+espSettingsButton.MouseButton1Click:Connect(function()
+    onyxEspActive = not onyxEspActive
+    local targetColor = onyxEspActive and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetGradientEnd = onyxEspActive and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(0, 0, 0)
+    local targetStrokeColor = onyxEspActive and Color3.fromRGB(220, 220, 220) or Color3.fromRGB(100, 100, 100)
+    local targetShadowColor = onyxEspActive and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetTextColor = onyxEspActive and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
+    
+    TweenService:Create(espSettingsFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(espSettingsStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(espSettingsShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(espSettingsLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    espSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+    
+    -- When toggled ON (white), start Onyx ESP gradient animation
+    if onyxEspActive then
+        -- Cache ALL highlights in the entire game (includes player ESP, Sin Dragon, Gale Fighter, and any other script highlights)
+        -- BUT exclude local player's own character to preserve Self Outline
+        cachedHighlights = {}
+        originalColors = {}
+        local localCharacter = Players.LocalPlayer.Character
+        for _, obj in ipairs(game:GetDescendants()) do
+            if obj:IsA("Highlight") then
+                -- Skip highlights on local player's character (preserve Self Outline)
+                if not (localCharacter and obj:IsDescendantOf(localCharacter)) then
+                    table.insert(cachedHighlights, obj)
+                    -- Store original colors
+                    originalColors[obj] = {
+                        FillColor = obj.FillColor,
+                        OutlineColor = obj.OutlineColor,
+                        FillTransparency = obj.FillTransparency,
+                        OutlineTransparency = obj.OutlineTransparency
+                    }
+                end
+            end
+        end
+        
+        print("Onyx ESP: Found " .. #cachedHighlights .. " highlights (excludes self)")
+        
+        -- Listen for new highlights being added (from any source)
+        onyxEspConnections.added = game.DescendantAdded:Connect(function(obj)
+            if obj:IsA("Highlight") then
+                local localChar = Players.LocalPlayer.Character
+                -- Skip highlights on local player's character
+                if not (localChar and obj:IsDescendantOf(localChar)) then
+                    table.insert(cachedHighlights, obj)
+                    -- Store original colors for new highlights
+                    originalColors[obj] = {
+                        FillColor = obj.FillColor,
+                        OutlineColor = obj.OutlineColor,
+                        FillTransparency = obj.FillTransparency,
+                        OutlineTransparency = obj.OutlineTransparency
+                    }
+                end
+            end
+        end)
+        
+        -- Listen for highlights being removed
+        onyxEspConnections.removed = game.DescendantRemoving:Connect(function(obj)
+            if obj:IsA("Highlight") then
+                for i, highlight in ipairs(cachedHighlights) do
+                    if highlight == obj then
+                        table.remove(cachedHighlights, i)
+                        originalColors[obj] = nil
+                        break
+                    end
+                end
+            end
+        end)
+        
+        local speed = 2
+        
+        -- Function to update highlight color with fade effect
+        local function updateHighlight(highlight, v, transparency)
+            if highlight and highlight.Parent then
+                -- Black to white gradient
+                local color = Color3.new(v, v, v)
+                highlight.FillColor = color
+                highlight.OutlineColor = color
+                -- Remove outline
+                highlight.OutlineTransparency = 1
+                -- Fade in/out effect
+                highlight.FillTransparency = transparency
+            end
+        end
+        
+        -- Connect to RenderStepped with cached highlights
+        onyxEspConnections.renderStepped = RunService.RenderStepped:Connect(function()
+            local time = tick()
+            local v = (math.sin(time * speed) + 1) / 2 -- Calculate once per frame (color gradient)
+            local transparency = (math.sin(time * speed * 0.5) + 1) / 2 * 0.7 + 0.3 -- Fade between 0.3 and 1.0
+            
+            -- Only iterate through cached highlights
+            for i = #cachedHighlights, 1, -1 do
+                local highlight = cachedHighlights[i]
+                if highlight and highlight.Parent then
+                    updateHighlight(highlight, v, transparency)
+                else
+                    -- Remove invalid highlights
+                    table.remove(cachedHighlights, i)
+                end
+            end
+        end)
+        
+        print("Onyx ESP Highlight: ENABLED (Optimized Gradient Animation)")
+    else
+        -- Stop the animation and disconnect all connections
+        if onyxEspConnections.renderStepped then
+            onyxEspConnections.renderStepped:Disconnect()
+            onyxEspConnections.renderStepped = nil
+        end
+        if onyxEspConnections.added then
+            onyxEspConnections.added:Disconnect()
+            onyxEspConnections.added = nil
+        end
+        if onyxEspConnections.removed then
+            onyxEspConnections.removed:Disconnect()
+            onyxEspConnections.removed = nil
+        end
+        
+        -- Restore original colors INSTANTLY
+        for highlight, colors in pairs(originalColors) do
+            if highlight and highlight.Parent then
+                highlight.FillColor = colors.FillColor
+                highlight.OutlineColor = colors.OutlineColor
+                highlight.FillTransparency = colors.FillTransparency
+                highlight.OutlineTransparency = colors.OutlineTransparency
+            end
+        end
+        
+        cachedHighlights = {}
+        originalColors = {}
+        print("Onyx ESP Highlight: DISABLED (Original colors restored)")
+    end
+end)
+
+currentY = currentY + 60
+
+--------------------------------------------------------------------------------
+-- LIGHTNING CANNON WHITE TOGGLE
+--------------------------------------------------------------------------------
+local lightningCannonWhiteEnabled = false
+
+local lcSettingsShadow = Instance.new("ImageLabel")
+lcSettingsShadow.Name = "LcSettingsShadow"
+lcSettingsShadow.BackgroundTransparency = 1
+lcSettingsShadow.Image = "rbxassetid://6014261993"
+lcSettingsShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+lcSettingsShadow.ImageTransparency = 0.5
+lcSettingsShadow.ScaleType = Enum.ScaleType.Slice
+lcSettingsShadow.SliceCenter = Rect.new(49,49,450,450)
+lcSettingsShadow.Size = UDim2.new(0, 430, 0, 75)
+lcSettingsShadow.Position = UDim2.new(0, -10, 0, currentY)
+lcSettingsShadow.ZIndex = 2
+lcSettingsShadow.Parent = scrollFrame
+
+local lcSettingsFrame = Instance.new("Frame")
+lcSettingsFrame.Name = "LcSettingsToggle"
+lcSettingsFrame.Size = UDim2.new(0, 390, 0, 45)
+lcSettingsFrame.Position = UDim2.new(0, 10, 0, currentY + 15)
+lcSettingsFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+lcSettingsFrame.BorderSizePixel = 0
+lcSettingsFrame.ZIndex = 3
+lcSettingsFrame.Parent = scrollFrame
+
+local lcSettingsCorner = Instance.new("UICorner")
+lcSettingsCorner.CornerRadius = UDim.new(0, 12)
+lcSettingsCorner.Parent = lcSettingsFrame
+
+local lcSettingsGradient = Instance.new("UIGradient")
+lcSettingsGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+lcSettingsGradient.Rotation = 90
+lcSettingsGradient.Parent = lcSettingsFrame
+
+local lcSettingsStroke = Instance.new("UIStroke")
+lcSettingsStroke.Thickness = 1.5
+lcSettingsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+lcSettingsStroke.Color = Color3.fromRGB(100, 100, 100)
+lcSettingsStroke.Transparency = 0.4
+lcSettingsStroke.Parent = lcSettingsFrame
+
+local lcSettingsLabel = Instance.new("TextLabel")
+lcSettingsLabel.Name = "Label"
+lcSettingsLabel.Size = UDim2.new(1, 0, 1, 0)
+lcSettingsLabel.BackgroundTransparency = 1
+lcSettingsLabel.Text = "Lightning cannon white"
+lcSettingsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+lcSettingsLabel.TextTransparency = 0.2
+lcSettingsLabel.Font = Enum.Font.GothamBold
+lcSettingsLabel.TextSize = 12
+lcSettingsLabel.ZIndex = 4
+lcSettingsLabel.Parent = lcSettingsFrame
+
+local lcSettingsButton = Instance.new("TextButton")
+lcSettingsButton.Name = "Button"
+lcSettingsButton.Size = UDim2.new(1, 0, 1, 0)
+lcSettingsButton.BackgroundTransparency = 1
+lcSettingsButton.Text = ""
+lcSettingsButton.ZIndex = 5
+lcSettingsButton.Parent = lcSettingsFrame
+
+lcSettingsButton.MouseButton1Click:Connect(function()
+    lightningCannonWhiteEnabled = not lightningCannonWhiteEnabled
+    local targetColor = lightningCannonWhiteEnabled and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetGradientEnd = lightningCannonWhiteEnabled and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(0, 0, 0)
+    local targetStrokeColor = lightningCannonWhiteEnabled and Color3.fromRGB(220, 220, 220) or Color3.fromRGB(100, 100, 100)
+    local targetShadowColor = lightningCannonWhiteEnabled and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetTextColor = lightningCannonWhiteEnabled and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
+    
+    TweenService:Create(lcSettingsFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(lcSettingsStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(lcSettingsShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(lcSettingsLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    lcSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+    
+    -- Only set the lightmode variable, don't execute script
+    if lightningCannonWhiteEnabled then
+        getgenv().lightmode = true
+        print("Lightning Cannon White Mode: ENABLED (lightmode=true) - Load Lightning Cannon from MAIN menu")
+    else
+        getgenv().lightmode = false
+        print("Lightning Cannon White Mode: DISABLED (lightmode=false)")
+    end
+end)
+
+currentY = currentY + 60
+
+--------------------------------------------------------------------------------
+-- ANTI HAT FALL TOGGLE
+--------------------------------------------------------------------------------
+local antiHatFallEnabled = false
+
+local ahfSettingsShadow = Instance.new("ImageLabel")
+ahfSettingsShadow.Name = "AhfSettingsShadow"
+ahfSettingsShadow.BackgroundTransparency = 1
+ahfSettingsShadow.Image = "rbxassetid://6014261993"
+ahfSettingsShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+ahfSettingsShadow.ImageTransparency = 0.5
+ahfSettingsShadow.ScaleType = Enum.ScaleType.Slice
+ahfSettingsShadow.SliceCenter = Rect.new(49,49,450,450)
+ahfSettingsShadow.Size = UDim2.new(0, 430, 0, 75)
+ahfSettingsShadow.Position = UDim2.new(0, -10, 0, currentY)
+ahfSettingsShadow.ZIndex = 2
+ahfSettingsShadow.Parent = scrollFrame
+
+local ahfSettingsFrame = Instance.new("Frame")
+ahfSettingsFrame.Name = "AhfSettingsToggle"
+ahfSettingsFrame.Size = UDim2.new(0, 390, 0, 45)
+ahfSettingsFrame.Position = UDim2.new(0, 10, 0, currentY + 15)
+ahfSettingsFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+ahfSettingsFrame.BorderSizePixel = 0
+ahfSettingsFrame.ZIndex = 3
+ahfSettingsFrame.Parent = scrollFrame
+
+local ahfSettingsCorner = Instance.new("UICorner")
+ahfSettingsCorner.CornerRadius = UDim.new(0, 12)
+ahfSettingsCorner.Parent = ahfSettingsFrame
+
+local ahfSettingsGradient = Instance.new("UIGradient")
+ahfSettingsGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+ahfSettingsGradient.Rotation = 90
+ahfSettingsGradient.Parent = ahfSettingsFrame
+
+local ahfSettingsStroke = Instance.new("UIStroke")
+ahfSettingsStroke.Thickness = 1.5
+ahfSettingsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+ahfSettingsStroke.Color = Color3.fromRGB(100, 100, 100)
+ahfSettingsStroke.Transparency = 0.4
+ahfSettingsStroke.Parent = ahfSettingsFrame
+
+local ahfSettingsLabel = Instance.new("TextLabel")
+ahfSettingsLabel.Name = "Label"
+ahfSettingsLabel.Size = UDim2.new(1, 0, 1, 0)
+ahfSettingsLabel.BackgroundTransparency = 1
+ahfSettingsLabel.Text = "Anti hat fall"
+ahfSettingsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+ahfSettingsLabel.TextTransparency = 0.2
+ahfSettingsLabel.Font = Enum.Font.GothamBold
+ahfSettingsLabel.TextSize = 12
+ahfSettingsLabel.ZIndex = 4
+ahfSettingsLabel.Parent = ahfSettingsFrame
+
+local ahfSettingsButton = Instance.new("TextButton")
+ahfSettingsButton.Name = "Button"
+ahfSettingsButton.Size = UDim2.new(1, 0, 1, 0)
+ahfSettingsButton.BackgroundTransparency = 1
+ahfSettingsButton.Text = ""
+ahfSettingsButton.ZIndex = 5
+ahfSettingsButton.Parent = ahfSettingsFrame
+
+ahfSettingsButton.MouseButton1Click:Connect(function()
+    -- Flash to white (like main menu toggles)
+    local targetColor = Color3.fromRGB(255, 255, 255)
+    local targetGradientEnd = Color3.fromRGB(200, 200, 200)
+    local targetStrokeColor = Color3.fromRGB(220, 220, 220)
+    local targetShadowColor = Color3.fromRGB(255, 255, 255)
+    local targetTextColor = Color3.fromRGB(0, 0, 0)
+    
+    TweenService:Create(ahfSettingsFrame, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(ahfSettingsStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(ahfSettingsShadow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(ahfSettingsLabel, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    ahfSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+    
+    -- Execute Anti hat fall script
+    loadstring([[
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("SendNotification",{
+	Title = "Onyx Hub",
+	Text = "Your hats are still here but that's how it works",
+	Icon = "rbxassetid://127836636930596"
+})
+if not getgenv().Network then
+	getgenv().Network = {
+		BaseParts = {};
+		Velocity = Vector3.new(0,999,0);
+		Output = {
+			Enabled = true;
+			Prefix = "[ONYX HUB] ";
+			Send = function(Type,Output,BypassOutput)
+				if typeof(Type) == "function" and (Type == print or Type == warn or Type == error) and typeof(Output) == "string" then
+					if Network["Output"].Enabled == true or BypassOutput then
+						Type(Network["Output"].Prefix..Output)
+					end
+				end
+			end;
+		};
+	}
+	Network.Output.Send(print,": Onyx Hub Network Loaded.")
+end
+local hats = {}
+for _,h in pairs(LocalPlayer.Character:GetChildren()) do
+	if h:IsA("Accessory") then
+		local hd = h.Handle
+		hd.AccessoryWeld:Destroy()
+		table.insert(Network.BaseParts, hd)
+		table.insert(hats, hd)
+	end
+end
+Network["PartOwnership"] = {}
+Network["PartOwnership"]["Enabled"] = false
+Network["PartOwnership"]["Enable"] = coroutine.create(function()
+	if not Network["PartOwnership"]["Enabled"] then
+		Network["PartOwnership"]["Enabled"] = true
+		Network["PartOwnership"]["Connection"] = RunService.Heartbeat:Connect(function()
+			sethiddenproperty(LocalPlayer,"SimulationRadius",1/0)
+			for _,Part in pairs(Network.BaseParts) do
+				if Part:IsDescendantOf(workspace) then
+					coroutine.wrap(function()
+						Part.Velocity = Network.Velocity + Vector3.new(0,math.cos(tick()*10)/100,0)
+					end)()
+				end
+			end
+		end)
+		Network.Output.Send(print,"PartOwnership enabled.")
+	else
+		Network.Output.Send(warn,"PartOwnership already enabled.")
+	end
+end)
+coroutine.resume(Network["PartOwnership"]["Enable"])
+    ]])()
+    print("Anti hat fall: ENABLED")
+    
+    -- Wait 0.1 seconds then fade back to gray FAST (like main menu toggles)
+    task.wait(0.1)
+    
+    local fadeBackColor = Color3.fromRGB(80, 80, 80)
+    local fadeBackGradientEnd = Color3.fromRGB(0, 0, 0)
+    local fadeBackStrokeColor = Color3.fromRGB(100, 100, 100)
+    local fadeBackShadowColor = Color3.fromRGB(80, 80, 80)
+    local fadeBackTextColor = Color3.fromRGB(255, 255, 255)
+    
+    TweenService:Create(ahfSettingsFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
+    TweenService:Create(ahfSettingsStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
+    TweenService:Create(ahfSettingsShadow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = fadeBackShadowColor}):Play()
+    TweenService:Create(ahfSettingsLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = fadeBackTextColor}):Play()
+    ahfSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, fadeBackColor),
+        ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
+    }
+end)
+
+currentY = currentY + 60
+
+--------------------------------------------------------------------------------
+-- SELF OUTLINE TOGGLE
+--------------------------------------------------------------------------------
+local selfOutlineEnabled = false
+local selfHighlight = nil
+
+-- Function to create self outline
+local function createSelfOutline()
+    local character = Players.LocalPlayer.Character
+    if character and selfOutlineEnabled then
+        -- Remove existing highlight if it exists
+        if selfHighlight then
+            selfHighlight:Destroy()
+        end
+        
+        selfHighlight = Instance.new("Highlight")
+        selfHighlight.Name = "SelfOutline"
+        selfHighlight.FillTransparency = 1 -- No fill (completely transparent)
+        selfHighlight.OutlineTransparency = 0 -- Visible outline
+        selfHighlight.OutlineColor = Color3.fromRGB(128, 128, 128) -- Gray outline
+        selfHighlight.Parent = character
+        
+        print("Self Outline: Applied to character")
+    end
+end
+
+-- Listen for character respawn/reset
+Players.LocalPlayer.CharacterAdded:Connect(function(character)
+    if selfOutlineEnabled then
+        -- Wait for character to fully load
+        task.wait(0.5)
+        createSelfOutline()
+        print("Self Outline: Reloaded after respawn")
+    end
+end)
+
+local soSettingsShadow = Instance.new("ImageLabel")
+soSettingsShadow.Name = "SoSettingsShadow"
+soSettingsShadow.BackgroundTransparency = 1
+soSettingsShadow.Image = "rbxassetid://6014261993"
+soSettingsShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+soSettingsShadow.ImageTransparency = 0.5
+soSettingsShadow.ScaleType = Enum.ScaleType.Slice
+soSettingsShadow.SliceCenter = Rect.new(49,49,450,450)
+soSettingsShadow.Size = UDim2.new(0, 430, 0, 75)
+soSettingsShadow.Position = UDim2.new(0, -10, 0, currentY)
+soSettingsShadow.ZIndex = 2
+soSettingsShadow.Parent = scrollFrame
+
+local soSettingsFrame = Instance.new("Frame")
+soSettingsFrame.Name = "SoSettingsToggle"
+soSettingsFrame.Size = UDim2.new(0, 390, 0, 45)
+soSettingsFrame.Position = UDim2.new(0, 10, 0, currentY + 15)
+soSettingsFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+soSettingsFrame.BorderSizePixel = 0
+soSettingsFrame.ZIndex = 3
+soSettingsFrame.Parent = scrollFrame
+
+local soSettingsCorner = Instance.new("UICorner")
+soSettingsCorner.CornerRadius = UDim.new(0, 12)
+soSettingsCorner.Parent = soSettingsFrame
+
+local soSettingsGradient = Instance.new("UIGradient")
+soSettingsGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+soSettingsGradient.Rotation = 90
+soSettingsGradient.Parent = soSettingsFrame
+
+local soSettingsStroke = Instance.new("UIStroke")
+soSettingsStroke.Thickness = 1.5
+soSettingsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+soSettingsStroke.Color = Color3.fromRGB(100, 100, 100)
+soSettingsStroke.Transparency = 0.4
+soSettingsStroke.Parent = soSettingsFrame
+
+local soSettingsLabel = Instance.new("TextLabel")
+soSettingsLabel.Name = "Label"
+soSettingsLabel.Size = UDim2.new(1, 0, 1, 0)
+soSettingsLabel.BackgroundTransparency = 1
+soSettingsLabel.Text = "Self Outline"
+soSettingsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+soSettingsLabel.TextTransparency = 0.2
+soSettingsLabel.Font = Enum.Font.GothamBold
+soSettingsLabel.TextSize = 12
+soSettingsLabel.ZIndex = 4
+soSettingsLabel.Parent = soSettingsFrame
+
+local soSettingsButton = Instance.new("TextButton")
+soSettingsButton.Name = "Button"
+soSettingsButton.Size = UDim2.new(1, 0, 1, 0)
+soSettingsButton.BackgroundTransparency = 1
+soSettingsButton.Text = ""
+soSettingsButton.ZIndex = 5
+soSettingsButton.Parent = soSettingsFrame
+
+soSettingsButton.MouseButton1Click:Connect(function()
+    selfOutlineEnabled = not selfOutlineEnabled
+    local targetColor = selfOutlineEnabled and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetGradientEnd = selfOutlineEnabled and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(0, 0, 0)
+    local targetStrokeColor = selfOutlineEnabled and Color3.fromRGB(220, 220, 220) or Color3.fromRGB(100, 100, 100)
+    local targetShadowColor = selfOutlineEnabled and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetTextColor = selfOutlineEnabled and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
+    
+    TweenService:Create(soSettingsFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(soSettingsStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(soSettingsShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(soSettingsLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    soSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+    
+    -- Toggle self outline
+    if selfOutlineEnabled then
+        createSelfOutline()
+        print("Self Outline: ENABLED (Gray outline)")
+    else
+        -- Remove highlight
+        if selfHighlight then
+            selfHighlight:Destroy()
+            selfHighlight = nil
+        end
+        print("Self Outline: DISABLED")
+    end
+end)
+
+scrollFrames[menuName] = {
+	frame = scrollFrame,
+	shadow = scrollFrameShadow
+}
+end
+
+createSettingsScrollFrame()
+
+--------------------------------------------------------------------------------
+-- SUPPORTED CLIENTS SCROLL FRAME
+--------------------------------------------------------------------------------
+local function createSupportedClientsScrollFrame()
+local menuName = "SUPPORTED CLIENTS"
+local scrollFrameShadow = Instance.new("ImageLabel")
+scrollFrameShadow.Name = menuName .. "ScrollFrameShadow"
+scrollFrameShadow.BackgroundTransparency = 1
+scrollFrameShadow.Image = "rbxassetid://6014261993"
+scrollFrameShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+scrollFrameShadow.ImageTransparency = 0.3
+scrollFrameShadow.ScaleType = Enum.ScaleType.Slice
+scrollFrameShadow.SliceCenter = Rect.new(49,49,450,450)
+scrollFrameShadow.Size = UDim2.new(1, 30, 1, 30)
+scrollFrameShadow.Position = UDim2.new(0, -15, 0, -15)
+scrollFrameShadow.ZIndex = 0
+scrollFrameShadow.Parent = rightBox
+
+local scrollFrame = Instance.new("ScrollingFrame")
+scrollFrame.Name = menuName .. "ScrollFrame"
+scrollFrame.Size = UDim2.new(1, -20, 1, -20)
+scrollFrame.Position = UDim2.new(0, 10, 0, 10)
+scrollFrame.BackgroundTransparency = 1
+scrollFrame.BorderSizePixel = 0
+scrollFrame.ScrollBarThickness = 8
+scrollFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+scrollFrame.ScrollBarImageTransparency = 0
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 950)
+scrollFrame.ZIndex = 2
+scrollFrame.Visible = false
+scrollFrame.Parent = rightBox
+
+local scrollFrameCorner = Instance.new("UICorner")
+scrollFrameCorner.CornerRadius = UDim.new(0, 8)
+scrollFrameCorner.Parent = scrollFrame
+
+-- Title
+local clientsTitle = Instance.new("TextLabel")
+clientsTitle.Name = "ClientsTitle"
+clientsTitle.Size = UDim2.new(1, -20, 0, 40)
+clientsTitle.Position = UDim2.new(0, 10, 0, 10)
+clientsTitle.BackgroundTransparency = 1
+clientsTitle.Text = "SUPPORTED HAT REANIMATE EXECUTORS"
+clientsTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+clientsTitle.TextTransparency = 0.2
+clientsTitle.Font = Enum.Font.GothamBold
+clientsTitle.TextSize = 11
+clientsTitle.TextXAlignment = Enum.TextXAlignment.Center
+clientsTitle.ZIndex = 3
+clientsTitle.Parent = scrollFrame
+
+local currentY = 60
+
+-- Executor data
+local executors = {
+    {name = "Wave/Water (PAID)", link = "getwave.gg", virus = false},
+    {name = "Swift (VIRUS)", link = nil, virus = true},
+    {name = "SeliWare", link = "https://seliware.com", virus = false},
+    {name = "SirHurt", link = "https://sirhurt.net/", virus = false},
+    {name = "Potassium", link = "https://discord.gg/potassium", virus = false},
+    {name = "Ronix executor (VIRUS)", link = nil, virus = true},
+    {name = "Bunni.lol (VIRUS)", link = nil, virus = true},
+    {name = "Dynamic (doesn't work)", link = nil, virus = false},
+    {name = "Cryptic", link = "https://getcryptic.net/", virus = false},
+    {name = "Argon (Fuckass Rat)", link = nil, virus = true},
+    {name = "Valcano (Maybe Rat)", link = "https://volcano.wtf/", virus = true},
+    {name = "MacSploit", link = "https://www.abyssdigital.xyz/", virus = false},
+    {name = "Volt (RECOMMENDED)", link = "https://volt.bz/", virus = false},
+    {name = "SKIBIDI TECH (just a copy of delta)", link = nil, virus = false}
+}
+
+for _, exec in ipairs(executors) do
+    local isClickable = exec.link ~= nil
+    local textColor = exec.virus and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(255, 255, 255)
+    
+    -- Shadow
+    local execShadow = Instance.new("ImageLabel")
+    execShadow.Name = exec.name .. "Shadow"
+    execShadow.BackgroundTransparency = 1
+    execShadow.Image = "rbxassetid://6014261993"
+    execShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+    execShadow.ImageTransparency = 0.5
+    execShadow.ScaleType = Enum.ScaleType.Slice
+    execShadow.SliceCenter = Rect.new(49,49,450,450)
+    execShadow.Size = UDim2.new(0, 430, 0, 75)
+    execShadow.Position = UDim2.new(0, -10, 0, currentY)
+    execShadow.ZIndex = 2
+    execShadow.Parent = scrollFrame
+    
+    -- Main frame
+    local execFrame = Instance.new("Frame")
+    execFrame.Name = exec.name
+    execFrame.Size = UDim2.new(0, 390, 0, 45)
+    execFrame.Position = UDim2.new(0, 10, 0, currentY + 15)
+    execFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    execFrame.BorderSizePixel = 0
+    execFrame.ZIndex = 3
+    execFrame.Parent = scrollFrame
+    
+    local execCorner = Instance.new("UICorner")
+    execCorner.CornerRadius = UDim.new(0, 12)
+    execCorner.Parent = execFrame
+    
+    -- Gradient
+    local execGradient = Instance.new("UIGradient")
+    execGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+    }
+    execGradient.Rotation = 90
+    execGradient.Parent = execFrame
+    
+    local execStroke = Instance.new("UIStroke")
+    execStroke.Thickness = 1.5
+    execStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    execStroke.Color = exec.virus and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(100, 100, 100)
+    execStroke.Transparency = 0.4
+    execStroke.Parent = execFrame
+    
+    local execLabel = Instance.new("TextLabel")
+    execLabel.Name = "Label"
+    execLabel.Size = UDim2.new(1, 0, 1, 0)
+    execLabel.BackgroundTransparency = 1
+    execLabel.Text = exec.name
+    execLabel.TextColor3 = textColor
+    execLabel.TextTransparency = 0.2
+    execLabel.Font = Enum.Font.GothamBold
+    execLabel.TextSize = 12
+    execLabel.ZIndex = 4
+    execLabel.Parent = execFrame
+    
+    -- Add button if link exists
+    if isClickable then
+        local execButton = Instance.new("TextButton")
+        execButton.Name = "Button"
+        execButton.Size = UDim2.new(1, 0, 1, 0)
+        execButton.BackgroundTransparency = 1
+        execButton.Text = ""
+        execButton.ZIndex = 5
+        execButton.Parent = execFrame
+        
+        execButton.MouseButton1Click:Connect(function()
+            if setclipboard then
+                setclipboard(exec.link)
+                print("Copied to clipboard:", exec.link)
+                
+                -- Flash white animation
+                local targetColor = Color3.fromRGB(255, 255, 255)
+                local targetGradientEnd = Color3.fromRGB(200, 200, 200)
+                local targetStrokeColor = Color3.fromRGB(220, 220, 220)
+                local targetShadowColor = Color3.fromRGB(255, 255, 255)
+                local targetTextColor = Color3.fromRGB(0, 0, 0)
+                
+                TweenService:Create(execFrame, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+                TweenService:Create(execStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+                TweenService:Create(execShadow, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+                TweenService:Create(execLabel, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+                execGradient.Color = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0, targetColor),
+                    ColorSequenceKeypoint.new(1, targetGradientEnd)
+                }
+                
+                -- Show copied text
+                local originalText = execLabel.Text
+                execLabel.Text = exec.name .. " (Copied!)"
+                
+                -- Fade back
+                task.wait(0.3)
+                local fadeBackColor = Color3.fromRGB(80, 80, 80)
+                local fadeBackGradientEnd = Color3.fromRGB(0, 0, 0)
+                local fadeBackStrokeColor = exec.virus and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(100, 100, 100)
+                local fadeBackShadowColor = Color3.fromRGB(80, 80, 80)
+                local fadeBackTextColor = textColor
+                
+                TweenService:Create(execFrame, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
+                TweenService:Create(execStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
+                TweenService:Create(execShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = fadeBackShadowColor}):Play()
+                TweenService:Create(execLabel, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = fadeBackTextColor}):Play()
+                execGradient.Color = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0, fadeBackColor),
+                    ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
+                }
+                
+                task.wait(1.2)
+                execLabel.Text = originalText
+            end
+        end)
+    else
+        -- Non-clickable items have grayed out appearance
+        execFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        execGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, Color3.fromRGB(50, 50, 50)),
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(20, 20, 20))
+        }
+    end
+    
+    currentY = currentY + 60
+end
+
+scrollFrames[menuName] = {
+    frame = scrollFrame,
+    shadow = scrollFrameShadow
+}
+end
+
+createSupportedClientsScrollFrame()
+
 --------------------------------------------------------------------------------
 -- AVATAR CIRCLE
 --------------------------------------------------------------------------------
@@ -3664,3 +4723,137 @@ print("Goner toggle button added - sends all hat IDs in a single line!")
 -- Send welcome message to chat
 task.wait(0.5) -- Small delay to ensure chat is ready
 sendChatMessage("Onyx hub made by fxtmse or known as onyx")
+
+-- Detect and send executor to chat
+task.wait(0.3)
+local executor = "Unknown"
+
+-- Check for various executors (comprehensive list)
+if identifyexecutor then
+    executor = identifyexecutor() or "Unknown"
+elseif getexecutorname then
+    executor = getexecutorname() or "Unknown"
+-- Solara
+elseif getgenv().Solara or getgenv().IsSolara then
+    executor = "Solara"
+-- Wave
+elseif getgenv().IsWave or WaveExecutor or getgenv().Wave then
+    executor = "Wave"
+-- Synapse X / Synapse Z
+elseif syn and syn.request then
+    executor = "Synapse X"
+elseif getgenv().syn or _G.syn then
+    executor = "Synapse"
+-- Fluxus
+elseif Fluxus or getgenv().Fluxus or FLUXUS_LOADED then
+    executor = "Fluxus"
+-- Delta
+elseif Delta or getgenv().Delta or DELTA_LOADED then
+    executor = "Delta"
+-- Xeno
+elseif getgenv().Xeno_Executor or getgenv().isXeno then
+    executor = "Xeno"
+-- Arceus X
+elseif isarceus or getgenv().ArceusDupe then
+    executor = "Arceus X"
+-- Trigon
+elseif TRIGON_LOADED or getgenv().Trigon then
+    executor = "Trigon"
+-- Evon
+elseif EVON_LOADED or getgenv().Evon then
+    executor = "Evon"
+-- Electron
+elseif iselectron or getgenv().isElectron then
+    executor = "Electron"
+-- Codex
+elseif getgenv().codex or getgenv().Codex then
+    executor = "Codex"
+-- Cryptic
+elseif getgenv().IsCryptic or getgenv().Cryptic then
+    executor = "Cryptic"
+-- Cometrbx
+elseif getgenv().isComet or getgenv().Comet then
+    executor = "Comet"
+-- Nezur
+elseif getgenv().Nezur or getgenv().isNezur then
+    executor = "Nezur"
+-- Valyse
+elseif getgenv().Valyse or getgenv().isValyse then
+    executor = "Valyse"
+-- Zorara
+elseif getgenv().Zorara or getgenv().isZorara then
+    executor = "Zorara"
+--Nade
+elseif getgenv().Nade or getgenv().isNade then
+    executor = "Nade"
+-- Hydrogen
+elseif getgenv().Hydrogen or HYDROGEN_LOADED then
+    executor = "Hydrogen"
+-- Script-Ware
+elseif ScriptWare or getgenv().scriptware or _G.scriptware then
+    executor = "Script-Ware"
+-- KRNL
+elseif KRNL_LOADED or getgenv().KRNL then
+    executor = "KRNL"
+-- Oxygen U
+elseif OXYGEN_LOADED or getgenv().Oxygen then
+    executor = "Oxygen U"
+-- Celestial
+elseif Celestial or getgenv().Celestial then
+    executor = "Celestial"
+-- ProtoSmasher
+elseif PROTOSMASHER_LOADED or getgenv().ProtoSmasher then
+    executor = "ProtoSmasher"
+-- Sentinel
+elseif SENTINEL_LOADED or getgenv().Sentinel then
+    executor = "Sentinel"
+-- Sona
+elseif SONA_LOADED or getgenv().Sona then
+    executor = "Sona"
+-- Nihon
+elseif getgenv().Nihon or getgenv().isNihon then
+    executor = "Nihon"
+-- Incognito
+elseif getgenv().Incognito or getgenv().isIncognito then
+    executor = "Incognito"
+-- Exoliner
+elseif getgenv().Exoliner or getgenv().isExoliner then
+    executor = "Exoliner"
+-- Krampus
+elseif getgenv().Krampus or getgenv().isKrampus then
+    executor = "Krampus"
+-- Vega X
+elseif getgenv().VegaX or getgenv().isVegaX then
+    executor = "Vega X"
+-- XENO (alternative check)
+elseif getgenv().xeno then
+    executor = "Xeno"
+-- JJSploit
+elseif getgenv().JJSploit or JJSPLOIT_LOADED then
+    executor = "JJSploit"
+-- Cheat Engine
+elseif getgenv().CheatEngine or CHEATENGINE_LOADED then
+    executor = "Cheat Engine"
+-- Furk Ultra
+elseif getgenv().FurkUltra or getgenv().isFurk then
+    executor = "Furk Ultra"
+-- IonicX
+elseif getgenv().IonicX or getgenv().isIonicX then
+    executor = "IonicX"
+-- Delta X (different from Delta)
+elseif getgenv().DeltaX or getgenv().isDeltaX then
+    executor = "Delta X"
+end
+
+-- Send executor to chat
+task.wait(0.3)
+if executor:lower():find("xeno") then
+    sendChatMessage("Executor: (Xeno) Most of these reanimates may not work!")
+elseif executor:lower():find("jjsploit") then
+    sendChatMessage("Executor: (JJSPLOIT) may not work with all scripts!")
+elseif executor:lower():find("solara") then
+    sendChatMessage("Executor: (Solara) may not work with all scripts!")
+else
+    sendChatMessage("Executor: " .. executor)
+end
+print("Detected Executor:", executor)
