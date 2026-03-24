@@ -406,6 +406,54 @@ local function sendTacticalRigCommand()
 end
 
 --------------------------------------------------------------------------------
+-- BIG HAT RIG COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendBigHatRigCommand()
+    -- Big Hat Rig hat IDs
+    local bigHatRigIds = {
+        "118799338103138",  -- Big torso
+        "101379144205559",  -- Big left arm
+        "132416515427938",  -- Big right arm
+        "121360936156823",  -- Big left leg
+        "80628080423002",   -- Big right leg
+        "107852478332182"   -- Big head
+    }
+    
+    -- Combine all IDs into a single command line
+    local combinedCommand = "-gh " .. table.concat(bigHatRigIds, " ")
+    
+    -- Send the single combined message
+    sendChatMessage(combinedCommand)
+    print("Sent combined Big Hat Rig command:", combinedCommand)
+end
+
+--------------------------------------------------------------------------------
+-- IMMORTALITY LORD RIG COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendImmortalityLordRigCommand()
+    -- Immortality Lord RIG hat IDs
+    local immortalityLordRigIds = {
+        "17375337078",
+        "17270178857",
+        "17270001635",
+        "17269952801",
+        "17269983359",
+        "17269998373",
+        "17270231731",
+        "17270225913",
+        "17326812233",
+        "17326800544"
+    }
+    
+    -- Combine all IDs into a single command line
+    local combinedCommand = "-gh " .. table.concat(immortalityLordRigIds, " ")
+    
+    -- Send the single combined message
+    sendChatMessage(combinedCommand)
+    print("Sent combined Immortality Lord RIG command:", combinedCommand)
+end
+
+--------------------------------------------------------------------------------
 -- SCRIPTS DATABASE
 --------------------------------------------------------------------------------
 local scripts = {
@@ -545,6 +593,26 @@ rigItems = {
         {name = "Heavy Tactical Pouch Vest", id = "86465154221096"},
         {name = "CCG Sleeve Left", id = "108481194906069"},
         {name = "CCG Sleeve Right", id = "116720376142204"}
+    }},
+    {category = "BIG HAT RIG", items = {
+        {name = "Big torso", id = "118799338103138"},
+        {name = "Big left arm", id = "101379144205559"},
+        {name = "Big right arm", id = "132416515427938"},
+        {name = "Big left leg", id = "121360936156823"},
+        {name = "Big right leg", id = "80628080423002"},
+        {name = "Big head", id = "107852478332182"}
+    }},
+    {category = "IMMORTALITY LORD RIG", items = {
+        {name = "Head", id = "17375337078"},
+        {name = "Torso", id = "17270178857"},
+        {name = "Left Arm", id = "17270001635"},
+        {name = "Right Arm", id = "17269952801"},
+        {name = "Left Leg", id = "17269983359"},
+        {name = "Right Leg", id = "17269998373"},
+        {name = "Left Wing", id = "17270231731"},
+        {name = "Right Wing", id = "17270225913"},
+        {name = "Sword Part 1", id = "17326812233"},
+        {name = "Sword Part 2", id = "17326800544"}
     }}
 }
 --------------------------------------------------------------------------------
@@ -2101,6 +2169,146 @@ elseif category.category == "TACTICAL RIG" then
             ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
         }
     end)
+elseif category.category == "BIG HAT RIG" then
+    -- Image box style toggle button on the right side of BIG HAT RIG text
+    local bigHatRigToggleBtn = Instance.new("Frame")
+    bigHatRigToggleBtn.Name = "BigHatRigToggleBtn"
+    bigHatRigToggleBtn.Size = UDim2.new(0, 45, 0, 45)
+    bigHatRigToggleBtn.Position = UDim2.new(0, 345, 0, currentY - 5)
+    bigHatRigToggleBtn.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    bigHatRigToggleBtn.BorderSizePixel = 0
+    bigHatRigToggleBtn.ZIndex = 3
+    bigHatRigToggleBtn.Parent = scrollFrame
+    
+    local bigHatRigToggleCorner = Instance.new("UICorner")
+    bigHatRigToggleCorner.CornerRadius = UDim.new(0, 8)
+    bigHatRigToggleCorner.Parent = bigHatRigToggleBtn
+    
+    local bigHatRigToggleGradient = Instance.new("UIGradient")
+    bigHatRigToggleGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(60, 60, 60)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+    }
+    bigHatRigToggleGradient.Rotation = 90
+    bigHatRigToggleGradient.Parent = bigHatRigToggleBtn
+    
+    local bigHatRigToggleStroke = Instance.new("UIStroke")
+    bigHatRigToggleStroke.Thickness = 1.5
+    bigHatRigToggleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    bigHatRigToggleStroke.Color = Color3.fromRGB(100, 100, 100)
+    bigHatRigToggleStroke.Transparency = 0.4
+    bigHatRigToggleStroke.Parent = bigHatRigToggleBtn
+    
+    -- Clickable button inside
+    local bigHatRigToggleButton = Instance.new("TextButton")
+    bigHatRigToggleButton.Name = "Button"
+    bigHatRigToggleButton.Size = UDim2.new(1, 0, 1, 0)
+    bigHatRigToggleButton.BackgroundTransparency = 1
+    bigHatRigToggleButton.Text = ""
+    bigHatRigToggleButton.ZIndex = 4
+    bigHatRigToggleButton.Parent = bigHatRigToggleBtn
+    
+    -- Click functionality - send combined Big Hat Rig command
+    bigHatRigToggleButton.MouseButton1Click:Connect(function()
+        -- Flash to white with gradient update
+        local targetColor = Color3.fromRGB(255, 255, 255)
+        local targetGradientEnd = Color3.fromRGB(200, 200, 200)
+        local targetStrokeColor = Color3.fromRGB(220, 220, 220)
+        
+        TweenService:Create(bigHatRigToggleBtn, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+        TweenService:Create(bigHatRigToggleStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+        bigHatRigToggleGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, targetColor),
+            ColorSequenceKeypoint.new(1, targetGradientEnd)
+        }
+        
+        task.wait(0.1)
+        
+        -- Send the combined Big Hat Rig command
+        sendBigHatRigCommand()
+        
+        -- Fade back
+        local fadeBackColor = Color3.fromRGB(80, 80, 80)
+        local fadeBackGradientEnd = Color3.fromRGB(0, 0, 0)
+        local fadeBackStrokeColor = Color3.fromRGB(100, 100, 100)
+        
+        TweenService:Create(bigHatRigToggleBtn, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
+        TweenService:Create(bigHatRigToggleStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
+        bigHatRigToggleGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, fadeBackColor),
+            ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
+        }
+    end)
+elseif category.category == "IMMORTALITY LORD RIG" then
+    -- Image box style toggle button on the right side of IMMORTALITY LORD RIG text
+    local immortalityLordRigToggleBtn = Instance.new("Frame")
+    immortalityLordRigToggleBtn.Name = "ImmortalityLordRigToggleBtn"
+    immortalityLordRigToggleBtn.Size = UDim2.new(0, 45, 0, 45)
+    immortalityLordRigToggleBtn.Position = UDim2.new(0, 345, 0, currentY - 5)
+    immortalityLordRigToggleBtn.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    immortalityLordRigToggleBtn.BorderSizePixel = 0
+    immortalityLordRigToggleBtn.ZIndex = 3
+    immortalityLordRigToggleBtn.Parent = scrollFrame
+    
+    local immortalityLordRigToggleCorner = Instance.new("UICorner")
+    immortalityLordRigToggleCorner.CornerRadius = UDim.new(0, 8)
+    immortalityLordRigToggleCorner.Parent = immortalityLordRigToggleBtn
+    
+    local immortalityLordRigToggleGradient = Instance.new("UIGradient")
+    immortalityLordRigToggleGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(60, 60, 60)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+    }
+    immortalityLordRigToggleGradient.Rotation = 90
+    immortalityLordRigToggleGradient.Parent = immortalityLordRigToggleBtn
+    
+    local immortalityLordRigToggleStroke = Instance.new("UIStroke")
+    immortalityLordRigToggleStroke.Thickness = 1.5
+    immortalityLordRigToggleStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    immortalityLordRigToggleStroke.Color = Color3.fromRGB(100, 100, 100)
+    immortalityLordRigToggleStroke.Transparency = 0.4
+    immortalityLordRigToggleStroke.Parent = immortalityLordRigToggleBtn
+    
+    -- Clickable button inside
+    local immortalityLordRigToggleButton = Instance.new("TextButton")
+    immortalityLordRigToggleButton.Name = "Button"
+    immortalityLordRigToggleButton.Size = UDim2.new(1, 0, 1, 0)
+    immortalityLordRigToggleButton.BackgroundTransparency = 1
+    immortalityLordRigToggleButton.Text = ""
+    immortalityLordRigToggleButton.ZIndex = 4
+    immortalityLordRigToggleButton.Parent = immortalityLordRigToggleBtn
+    
+    -- Click functionality - send combined Immortality Lord RIG command
+    immortalityLordRigToggleButton.MouseButton1Click:Connect(function()
+        -- Flash to white with gradient update
+        local targetColor = Color3.fromRGB(255, 255, 255)
+        local targetGradientEnd = Color3.fromRGB(200, 200, 200)
+        local targetStrokeColor = Color3.fromRGB(220, 220, 220)
+        
+        TweenService:Create(immortalityLordRigToggleBtn, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+        TweenService:Create(immortalityLordRigToggleStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+        immortalityLordRigToggleGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, targetColor),
+            ColorSequenceKeypoint.new(1, targetGradientEnd)
+        }
+        
+        task.wait(0.1)
+        
+        -- Send the combined Immortality Lord RIG command
+        sendImmortalityLordRigCommand()
+        
+        -- Fade back
+        local fadeBackColor = Color3.fromRGB(80, 80, 80)
+        local fadeBackGradientEnd = Color3.fromRGB(0, 0, 0)
+        local fadeBackStrokeColor = Color3.fromRGB(100, 100, 100)
+        
+        TweenService:Create(immortalityLordRigToggleBtn, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = fadeBackColor}):Play()
+        TweenService:Create(immortalityLordRigToggleStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = fadeBackStrokeColor}):Play()
+        immortalityLordRigToggleGradient.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, fadeBackColor),
+            ColorSequenceKeypoint.new(1, fadeBackGradientEnd)
+        }
+    end)
 end
 
 currentY = currentY + 40
@@ -3609,7 +3817,7 @@ scrollFrame.BorderSizePixel = 0
 scrollFrame.ScrollBarThickness = 8
 scrollFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
 scrollFrame.ScrollBarImageTransparency = 0
-scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 600)
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 700)
 scrollFrame.ZIndex = 2
 scrollFrame.Visible = false
 scrollFrame.Parent = rightBox
@@ -4337,6 +4545,166 @@ soSettingsButton.MouseButton1Click:Connect(function()
             selfHighlight = nil
         end
         print("Self Outline: DISABLED")
+    end
+end)
+
+currentY = currentY + 60
+
+--------------------------------------------------------------------------------
+-- HAT COLLISION TOGGLE
+--------------------------------------------------------------------------------
+local hatCollisionEnabled = false
+local hatCollisionConnection = nil
+local hatCollisionCharConnection = nil
+
+local hcSettingsShadow = Instance.new("ImageLabel")
+hcSettingsShadow.Name = "HcSettingsShadow"
+hcSettingsShadow.BackgroundTransparency = 1
+hcSettingsShadow.Image = "rbxassetid://6014261993"
+hcSettingsShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+hcSettingsShadow.ImageTransparency = 0.5
+hcSettingsShadow.ScaleType = Enum.ScaleType.Slice
+hcSettingsShadow.SliceCenter = Rect.new(49,49,450,450)
+hcSettingsShadow.Size = UDim2.new(0, 430, 0, 75)
+hcSettingsShadow.Position = UDim2.new(0, -10, 0, currentY)
+hcSettingsShadow.ZIndex = 2
+hcSettingsShadow.Parent = scrollFrame
+
+local hcSettingsFrame = Instance.new("Frame")
+hcSettingsFrame.Name = "HcSettingsToggle"
+hcSettingsFrame.Size = UDim2.new(0, 390, 0, 45)
+hcSettingsFrame.Position = UDim2.new(0, 10, 0, currentY + 15)
+hcSettingsFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+hcSettingsFrame.BorderSizePixel = 0
+hcSettingsFrame.ZIndex = 3
+hcSettingsFrame.Parent = scrollFrame
+
+local hcSettingsCorner = Instance.new("UICorner")
+hcSettingsCorner.CornerRadius = UDim.new(0, 12)
+hcSettingsCorner.Parent = hcSettingsFrame
+
+local hcSettingsGradient = Instance.new("UIGradient")
+hcSettingsGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+hcSettingsGradient.Rotation = 90
+hcSettingsGradient.Parent = hcSettingsFrame
+
+local hcSettingsStroke = Instance.new("UIStroke")
+hcSettingsStroke.Thickness = 1.5
+hcSettingsStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+hcSettingsStroke.Color = Color3.fromRGB(100, 100, 100)
+hcSettingsStroke.Transparency = 0.4
+hcSettingsStroke.Parent = hcSettingsFrame
+
+local hcSettingsLabel = Instance.new("TextLabel")
+hcSettingsLabel.Name = "Label"
+hcSettingsLabel.Size = UDim2.new(1, 0, 1, 0)
+hcSettingsLabel.BackgroundTransparency = 1
+hcSettingsLabel.Text = "Hat Collision"
+hcSettingsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+hcSettingsLabel.TextTransparency = 0.2
+hcSettingsLabel.Font = Enum.Font.GothamBold
+hcSettingsLabel.TextSize = 12
+hcSettingsLabel.ZIndex = 4
+hcSettingsLabel.Parent = hcSettingsFrame
+
+local hcSettingsButton = Instance.new("TextButton")
+hcSettingsButton.Name = "Button"
+hcSettingsButton.Size = UDim2.new(1, 0, 1, 0)
+hcSettingsButton.BackgroundTransparency = 1
+hcSettingsButton.Text = ""
+hcSettingsButton.ZIndex = 5
+hcSettingsButton.Parent = hcSettingsFrame
+
+-- Hat collision functions
+local PhysicsService = game:GetService("PhysicsService")
+
+local function setHatCollision(character)
+    for _,v in pairs(character:GetDescendants()) do
+        if v:IsA("BasePart") and v.Parent:IsA("Accessory") then
+            v.CanCollide = true
+            v.Massless = false
+            pcall(function()
+                PhysicsService:SetPartCollisionGroup(v,"Default")
+            end)
+        end
+    end
+end
+
+local function playerCollisionEnabled()
+    local test1 = Instance.new("Part")
+    local test2 = Instance.new("Part")
+    local g1 = PhysicsService:GetCollisionGroupName(test1.CollisionGroupId)
+    local g2 = PhysicsService:GetCollisionGroupName(test2.CollisionGroupId)
+    test1:Destroy()
+    test2:Destroy()
+    return PhysicsService:CollisionGroupsAreCollidable(g1,g2)
+end
+
+local function setupCharacter(char)
+    task.wait(1)
+    setHatCollision(char)
+    if playerCollisionEnabled() then
+        setHatCollision(char)
+    end
+    hatCollisionConnection = char.DescendantAdded:Connect(function(v)
+        if v:IsA("BasePart") and v.Parent:IsA("Accessory") then
+            v.CanCollide = true
+            v.Massless = false
+            pcall(function()
+                PhysicsService:SetPartCollisionGroup(v,"Default")
+            end)
+        end
+    end)
+end
+
+hcSettingsButton.MouseButton1Click:Connect(function()
+    hatCollisionEnabled = not hatCollisionEnabled
+    local targetColor = hatCollisionEnabled and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetGradientEnd = hatCollisionEnabled and Color3.fromRGB(200, 200, 200) or Color3.fromRGB(0, 0, 0)
+    local targetStrokeColor = hatCollisionEnabled and Color3.fromRGB(220, 220, 220) or Color3.fromRGB(100, 100, 100)
+    local targetShadowColor = hatCollisionEnabled and Color3.fromRGB(255, 255, 255) or Color3.fromRGB(80, 80, 80)
+    local targetTextColor = hatCollisionEnabled and Color3.fromRGB(0, 0, 0) or Color3.fromRGB(255, 255, 255)
+    
+    TweenService:Create(hcSettingsFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = targetColor}):Play()
+    TweenService:Create(hcSettingsStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = targetStrokeColor}):Play()
+    TweenService:Create(hcSettingsShadow, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = targetShadowColor}):Play()
+    TweenService:Create(hcSettingsLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = targetTextColor}):Play()
+    hcSettingsGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, targetColor),
+        ColorSequenceKeypoint.new(1, targetGradientEnd)
+    }
+    
+    if hatCollisionEnabled then
+        -- Enable hat collision
+        if Players.LocalPlayer.Character then
+            setupCharacter(Players.LocalPlayer.Character)
+        end
+        hatCollisionCharConnection = Players.LocalPlayer.CharacterAdded:Connect(setupCharacter)
+        print("Hat Collision: ENABLED")
+    else
+        -- Disable hat collision
+        if hatCollisionConnection then
+            hatCollisionConnection:Disconnect()
+            hatCollisionConnection = nil
+        end
+        if hatCollisionCharConnection then
+            hatCollisionCharConnection:Disconnect()
+            hatCollisionCharConnection = nil
+        end
+        
+        -- Reset hats to non-collidable
+        if Players.LocalPlayer.Character then
+            for _,v in pairs(Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA("BasePart") and v.Parent:IsA("Accessory") then
+                    v.CanCollide = false
+                    v.Massless = true
+                end
+            end
+        end
+        print("Hat Collision: DISABLED")
     end
 end)
 
