@@ -695,6 +695,239 @@ local function sendStarGlitcher2Command()
 end
 
 --------------------------------------------------------------------------------
+-- ADMIN NOLI ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendAdminNoliItemsCommand()
+    sendChatMessage("-gh 138094177071382") -- Admin Noli Command Block
+    print("Sent Admin Noli Items command")
+end
+
+--------------------------------------------------------------------------------
+-- BLADE BALL ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendBladeBallCommand()
+    local ids = {
+        "6685365462",  -- Ball
+        "15997771866", -- Blade
+        "4504231783"   -- Crystal
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Blade Ball Items command")
+end
+
+--------------------------------------------------------------------------------
+-- KINETIC GUN ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendKineticGunCommand()
+    local ids = {
+        "17163596085", -- Gun
+        "4504231783"   -- Bullet
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Kinetic Gun Items command")
+end
+
+--------------------------------------------------------------------------------
+-- BASEBALL BAT ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendBaseballBatCommand()
+    sendChatMessage("-gh 12433640377") -- Baseball Bat
+    print("Sent Baseball Bat Items command")
+end
+
+--------------------------------------------------------------------------------
+-- KJ ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendKJItemsCommand()
+    sendChatMessage("-gh 17309357457") -- KJ Head
+    print("Sent KJ Items command")
+end
+
+--------------------------------------------------------------------------------
+-- DUBSTEP ITEMS COMMAND FUNCTION (selected items only)
+--------------------------------------------------------------------------------
+local function sendDubstepItemsCommand()
+    local ids = {
+        "137063455124987", -- DubStep Gun Bass Cannon
+        "4504231783",      -- Bullet
+        "16755106041"      -- Blue Aura
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Dubstep Items command")
+end
+
+--------------------------------------------------------------------------------
+-- TERRAPRISMA ITEMS COMMAND FUNCTION (Rainbow Neon Sword only)
+--------------------------------------------------------------------------------
+local function sendTerraprismaCommand()
+    sendChatMessage("-gh 84513687194285") -- Rainbow Neon Sword
+    print("Sent Terraprisma Items command")
+end
+
+--------------------------------------------------------------------------------
+-- JOHN DOE ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendJohnDoeItemsCommand()
+    local ids = {
+        "98612293654739",   -- Cursed John Doe Heart
+        "123121449935077",  -- Cursed Torso
+        "84526414637736",   -- John Doe Cursed Arm
+        "77880339772331",   -- Cursed Claw
+        "101906857191395"   -- John Doe Face
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent John Doe Items command")
+end
+
+--------------------------------------------------------------------------------
+-- FLAMETHOWER ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendFlameThrowerItemsCommand()
+    local ids = {
+        "13745241879", -- Flamethrower
+        "191101707"    -- Flaming Mohawk
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent FlameThrower Items command")
+end
+
+--------------------------------------------------------------------------------
+-- FE SNIPER ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendFESniperItemsCommand()
+    local ids = {
+        "14776099541", -- Halloween Camo Sniper Rifle
+        "4504231783"   -- Bullet
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent FE Sniper Items command")
+end
+
+--------------------------------------------------------------------------------
+-- STUDIO DUMMY ITEMS COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendStudioDummyItemsCommand()
+    sendChatMessage("-gh 17565823261") -- White Sinister Pumpkin
+    print("Sent Studio Dummy Items command")
+end
+
+--------------------------------------------------------------------------------
+-- JASON ITEMS COMMAND FUNCTION (selected items only)
+--------------------------------------------------------------------------------
+local function sendJasonItemsCommand()
+    local ids = {
+        "138480343439270", -- Two Time buddy
+        "5555611932",      -- Fire axe
+        "103821169902048", -- Jason mask
+        "89661258615392"   -- DOOM Chainsaw
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Jason Items command")
+end
+
+--------------------------------------------------------------------------------
+-- PISTOL ITEMS COMMAND FUNCTION (selected items only)
+--------------------------------------------------------------------------------
+local function sendPistolItemsCommand()
+    local ids = {
+        "12830338562", -- Blue Revolver
+        "4504231783"   -- Bullet
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Pistol Items command")
+end
+
+--------------------------------------------------------------------------------
+-- BANISHER ITEMS COMMAND FUNCTION (selected items only)
+--------------------------------------------------------------------------------
+local function sendBanisherItemsCommand()
+    local ids = {
+        "4623059912", -- RailGun
+        "4504231783"  -- Bullet
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Banisher Items command")
+end
+
+--------------------------------------------------------------------------------
+-- NEKO ITEMS COMMAND FUNCTION (selected items only)
+--------------------------------------------------------------------------------
+local function sendNekoItemsCommand()
+    local ids = {
+        "14132081157", -- Prop Knife Kawaii P1
+        "14132338037", -- Prop Knife Kawaii P2
+        "5645497792",  -- White Ball P1 (Boob)
+        "5645498661"   -- White Ball P2 (Boob)
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Neko Items command")
+end
+
+--------------------------------------------------------------------------------
+-- MOTORCYCLE ITEMS COMMAND FUNCTION (all motorcycles + fire + guns + bullet combined)
+--------------------------------------------------------------------------------
+local function sendMotorcycleItemsCommand()
+    local ids = {
+        "17465366506",     -- Black Rider Motorcycle
+        "11762093348",     -- Red Motorcycle
+        "11354413365",     -- Black Motorcycle
+        "5063566353",      -- Atomic Prussian Bike
+        "191101707",       -- Flame Mohawk
+        "5553390730",      -- Cartoony Flame Head
+        "14556054644",     -- Tactical Front SMG (BLUE)
+        "14556020572",     -- Tactical Front SMG (PINK)
+        "129290233039998", -- Pink Slimy SMG
+        "18209672127",     -- UZI
+        "4504231783"       -- Bullet
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Motorcycle Items command")
+end
+
+--------------------------------------------------------------------------------
+-- NOOB RIG COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendNoobRigCommand()
+    local ids = {
+        "14157137406",    -- Noob Head
+        "95290698984301", -- Noob Torso
+        "84451219120140", -- Left Noob Arm
+        "72292903231768", -- Right Noob Arm
+        "108186273151388",-- Noob Left Leg
+        "139904067056008" -- Noob Right Leg
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Noob Rig command")
+end
+
+--------------------------------------------------------------------------------
+-- UPDATED RIG COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendUpdatedRigCommand()
+    local ids = {
+        "90788603154080",  -- Hammer Head (Torso)
+        "87291559615126",  -- Literal Hammer Head White (Left Arm)
+        "128893482026011", -- Thin Hammer Head White (Right Arm)
+        "120111604252410", -- Thin Hammer Head Black (Left Leg)
+        "88886554182275"   -- Literal Hammer Head Black (Right Leg)
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Updated Rig command")
+end
+
+--------------------------------------------------------------------------------
+-- RANDOM RIG COMMAND FUNCTION
+--------------------------------------------------------------------------------
+local function sendRandomRigCommand()
+    local ids = {
+        "13779879140", -- Black Fluffy Fur Body (Torso)
+        "12344545199", -- Extra Left hand moving Blocky white (Left Arm R15)
+        "12344591101", -- Extra Right hand m (Right Arm R15)
+        "11159410305"  -- Rectangle Head (Leg)
+    }
+    sendChatMessage("-gh " .. table.concat(ids, " "))
+    print("Sent Random Rig command")
+end
 
 setLoadingProgress(0.20, "Loading scripts database...")
 task.wait(0.25)
@@ -995,8 +1228,7 @@ hatItems = {
         {name = "White Ball P2 (Boob)", id = "5645498661"},
         {name = "Black Ball P1 (Boob)", id = "13760253770"},
         {name = "Black Ball P2 (Boob)", id = "14852217948"}
-    }},
-    {category = "GONER", items = {
+    }},    {category = "GONER", items = {
         {name = "Goner Head", id = "17770317484"},
         {name = "Goner Blade P1", id = "17771175724"},
         {name = "Goner Blade P2", id = "17835236579"},
@@ -1185,24 +1417,18 @@ hatItems = {
         {name = "John Doe Face (Forsaken)", id = "101906857191395"},
         {name = "Noli Head (Forsaken)", id = "125055495409583"}
     }},
-    {category = "MOTORCYCLES", items = {
+    {category = "MOTORCYCLE ITEMS", items = {
         {name = "Black Rider Motorcycle", id = "17465366506"},
         {name = "Red Motorcycle", id = "11762093348"},
         {name = "Black Motorcycle", id = "11354413365"},
-        {name = "Atomic Prussian Bike", id = "5063566353"}
-    }},
-    {category = "FIRE", items = {
+        {name = "Atomic Prussian Bike", id = "5063566353"},
         {name = "Flame Mohawk", id = "191101707"},
-        {name = "Cartoony Flame Head", id = "5553390730"}
-    }},
-    {category = "GUNS", items = {
+        {name = "Cartoony Flame Head", id = "5553390730"},
         {name = "Tactical Front SMG (BLUE)", id = "14556054644"},
         {name = "Tactical Front SMG (PINK)", id = "14556020572"},
         {name = "Pink Slimy SMG", id = "129290233039998"},
-        {name = "UZI", id = "18209672127"}
-    }},
-    {category = "BULLET", items = {
-        {name = "Elemental Crystal Golem Shoulder Rock", id = "4504231783"}
+        {name = "UZI", id = "18209672127"},
+        {name = "Elemental Crystal Golem Shoulder Rock (Bullet)", id = "4504231783"}
     }},
     {category = "FE SNIPER", items = {
         {name = "Halloween Camo Sniper Rifle", id = "14776099541"},
@@ -2091,14 +2317,14 @@ local function createRigScrollFrame()
     rigChatToggleShadow.ScaleType = Enum.ScaleType.Slice
     rigChatToggleShadow.SliceCenter = Rect.new(49, 49, 450, 450)
     rigChatToggleShadow.Size = UDim2.new(0, 270, 0, 80)
-    rigChatToggleShadow.Position = UDim2.new(0, 55, 0, -5)
+    rigChatToggleShadow.Position = UDim2.new(0, 55, 0, 26)
     rigChatToggleShadow.ZIndex = 1
     rigChatToggleShadow.Parent = scrollFrame
 
     local rigChatToggleFrame = Instance.new("Frame")
     rigChatToggleFrame.Name = "RigChatToggleFrame"
     rigChatToggleFrame.Size = UDim2.new(0, 240, 0, 40)
-    rigChatToggleFrame.Position = UDim2.new(0, 70, 0, 10)
+    rigChatToggleFrame.Position = UDim2.new(0, 70, 0, 38)
     rigChatToggleFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
     rigChatToggleFrame.BorderSizePixel = 0
     rigChatToggleFrame.ZIndex = 3
@@ -2146,7 +2372,7 @@ local function createRigScrollFrame()
     local rigChatToggleDesc = Instance.new("TextLabel")
     rigChatToggleDesc.Name = "Description"
     rigChatToggleDesc.Size = UDim2.new(0, 300, 0, 15)
-    rigChatToggleDesc.Position = UDim2.new(0, 50, 0, 55)
+    rigChatToggleDesc.Position = UDim2.new(0, 50, 0, 83)
     rigChatToggleDesc.BackgroundTransparency = 1
     rigChatToggleDesc.Text = "Puts rig -gr (RIG ID) in chat"
     rigChatToggleDesc.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -2224,15 +2450,138 @@ local function createRigScrollFrame()
 
     -- Map category names to send functions
     local categorySendFns = {
-        ["BLACK RIG"] = sendBlackRigCommand,
-        ["WHITE RIG"] = sendWhiteRigCommand,
-        ["TACTICAL RIG"] = sendTacticalRigCommand,
-        ["BIG HAT RIG"] = sendBigHatRigCommand,
-        ["IMMORTALITY LORD RIG"] = sendImmortalityLordRigCommand,
-        ["ONYX HATS"] = sendOnyxHatsCommand,
+        ["BLACK RIG"]           = sendBlackRigCommand,
+        ["WHITE RIG"]           = sendWhiteRigCommand,
+        ["NOOB RIG"]            = sendNoobRigCommand,
+        ["UPDATED RIG"]         = sendUpdatedRigCommand,
+        ["RANDOM RIG"]          = sendRandomRigCommand,
+        ["TACTICAL RIG"]        = sendTacticalRigCommand,
+        ["BIG HAT RIG"]         = sendBigHatRigCommand,
+        ["IMMORTALITY LORD RIG"]= sendImmortalityLordRigCommand,
+        ["ONYX HATS"]           = sendOnyxHatsCommand,
     }
 
-    local currentY = 80
+    -- Head IDs for each rig category so Remove Head can strip them
+    local rigHeadIds = {
+        ["BLACK RIG"]            = "14160471787",
+        ["WHITE RIG"]            = "14157139555",
+        ["NOOB RIG"]             = "14157137406",
+        ["IMMORTALITY LORD RIG"] = "17375337078",
+        ["BIG HAT RIG"]          = "107852478332182",
+    }
+
+    -- Remove Head toggle (tiny, top of scroll frame)
+    local removeHeadEnabled = false
+
+    local rhShadow = Instance.new("ImageLabel")
+    rhShadow.BackgroundTransparency = 1
+    rhShadow.Image = "rbxassetid://6014261993"
+    rhShadow.ImageColor3 = Color3.fromRGB(80, 80, 80)
+    rhShadow.ImageTransparency = 0.5
+    rhShadow.ScaleType = Enum.ScaleType.Slice
+    rhShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+    rhShadow.Size = UDim2.new(0, 170, 0, 42)
+    rhShadow.Position = UDim2.new(0, -5, 0, -5)
+    rhShadow.ZIndex = 1
+    rhShadow.Parent = sf
+
+    local rhFrame = Instance.new("Frame")
+    rhFrame.Name = "RemoveHeadToggle"
+    rhFrame.Size = UDim2.new(0, 140, 0, 26)
+    rhFrame.Position = UDim2.new(0, 5, 0, 4)
+    rhFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    rhFrame.BorderSizePixel = 0
+    rhFrame.ZIndex = 3
+    rhFrame.Parent = sf
+
+    local rhCorner = Instance.new("UICorner")
+    rhCorner.CornerRadius = UDim.new(0, 8)
+    rhCorner.Parent = rhFrame
+
+    local rhGradient = Instance.new("UIGradient")
+    rhGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+    }
+    rhGradient.Rotation = 90
+    rhGradient.Parent = rhFrame
+
+    local rhStroke = Instance.new("UIStroke")
+    rhStroke.Thickness = 1
+    rhStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    rhStroke.Color = Color3.fromRGB(100, 100, 100)
+    rhStroke.Transparency = 0.4
+    rhStroke.Parent = rhFrame
+
+    local rhLabel = Instance.new("TextLabel")
+    rhLabel.Size = UDim2.new(1, 0, 1, 0)
+    rhLabel.BackgroundTransparency = 1
+    rhLabel.Text = "Remove Head"
+    rhLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    rhLabel.TextTransparency = 0.2
+    rhLabel.Font = Enum.Font.GothamBold
+    rhLabel.TextSize = 10
+    rhLabel.ZIndex = 4
+    rhLabel.Parent = rhFrame
+
+    local rhBtn = Instance.new("TextButton")
+    rhBtn.Size = UDim2.new(1, 0, 1, 0)
+    rhBtn.BackgroundTransparency = 1
+    rhBtn.Text = ""
+    rhBtn.ZIndex = 5
+    rhBtn.Parent = rhFrame
+
+    rhBtn.MouseButton1Click:Connect(function()
+        removeHeadEnabled = not removeHeadEnabled
+        local tc  = removeHeadEnabled and Color3.fromRGB(255,255,255) or Color3.fromRGB(80,80,80)
+        local tge = removeHeadEnabled and Color3.fromRGB(200,200,200) or Color3.fromRGB(0,0,0)
+        local tsc = removeHeadEnabled and Color3.fromRGB(220,220,220) or Color3.fromRGB(100,100,100)
+        local ttc = removeHeadEnabled and Color3.fromRGB(0,0,0)       or Color3.fromRGB(255,255,255)
+        TweenService:Create(rhFrame, TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {BackgroundColor3 = tc}):Play()
+        TweenService:Create(rhStroke, TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {Color = tsc}):Play()
+        TweenService:Create(rhShadow, TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {ImageColor3 = tc}):Play()
+        TweenService:Create(rhLabel, TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {TextColor3 = ttc}):Play()
+        rhGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, tc), ColorSequenceKeypoint.new(1, tge)}
+        print("Remove Head:", removeHeadEnabled)
+    end)
+
+    -- Helper: wrap any category send function to optionally strip the head ID
+    local function wrapWithRemoveHead(categoryName, sendFn)
+        return function()
+            if removeHeadEnabled and rigHeadIds[categoryName] then
+                -- Build custom command without the head ID
+                -- We need to rebuild the ID list minus the head
+                local headId = rigHeadIds[categoryName]
+                local found = false
+                for _, cat in ipairs(rigItems) do
+                    if cat.category == categoryName then
+                        local filtered = {}
+                        for _, item in ipairs(cat.items) do
+                            if item.id ~= headId then
+                                table.insert(filtered, item.id)
+                            end
+                        end
+                        if #filtered > 0 then
+                            sendChatMessage("-gh " .. table.concat(filtered, " "))
+                        end
+                        found = true
+                        break
+                    end
+                end
+                if not found then sendFn() end
+            else
+                sendFn()
+            end
+        end
+    end
+
+    -- Wrap category send functions with Remove Head logic
+    local wrappedSendFns = {}
+    for catName, fn in pairs(categorySendFns) do
+        wrappedSendFns[catName] = wrapWithRemoveHead(catName, fn)
+    end
+
+    local currentY = 46
     for catIndex, category in ipairs(rigItems) do
         local categoryLabel = Instance.new("TextLabel")
         categoryLabel.Name = "Category_" .. catIndex
@@ -2248,8 +2597,8 @@ local function createRigScrollFrame()
         categoryLabel.ZIndex = 3
         categoryLabel.Parent = scrollFrame
 
-        if categorySendFns[category.category] then
-            createCategoryBtn(currentY, categorySendFns[category.category])
+        if wrappedSendFns[category.category] then
+            createCategoryBtn(currentY, wrappedSendFns[category.category])
         end
 
         currentY = currentY + 40
@@ -2540,28 +2889,40 @@ local function createHatScrollFrame()
 
     -- Category send button map for hat items
     local hatCategorySendFns = {
-        ["C00LKIDD ITEMS"] = sendC00lkiddItemsCommand,
-        ["NOLI ITEMS"] = sendNoliItemsCommand,
-        ["GONER"] = sendGonerHatCommand,
+        ["C00LKIDD ITEMS"]      = sendC00lkiddItemsCommand,
+        ["NOLI ITEMS"]          = sendNoliItemsCommand,
+        ["GONER"]               = sendGonerHatCommand,
         ["BLACK LIGHTNING CANNON"] = sendBlackCannonHatCommand,
         ["WHITE LIGHTNING CANNON"] = sendWhiteCannonHatCommand,
-        ["Neptunian V"] = sendNeptunianVCommand,
-        ["AK-47"] = sendAK47Command,
-        ["Classic Linked"] = sendClassicLinkedCommand,
-        ["SIN DRAGON"] = sendSinDragonHatCommand,
-        ["MiniGun"] = sendMinigunHatCommand,
-        ["Normal BanHammer"] = sendBanHammerHatCommand,
-        ["Good Cop Bad Cop"] = sendGoodCopBadCopHatCommand,
-        ["Puppet Master"] = sendPuppetMasterCommand,
-        ["PURSUER ITEMS"] = sendPursuerHatCommand,
-        ["HACKLORD ITEMS"] = sendHackLordHatCommand,
-        ["MOTORCYCLES"] = sendMotorcyclesCommand,
-        ["FIRE"] = sendFireCommand,
-        ["GUNS"] = sendGunsCommand,
-        ["BULLET"] = sendBulletCommand,
-        ["OPERATOR ITEMS"] = sendOperatorCommand,
-        ["DOOMBRINGER ITEMS"] = sendDoombringerCommand,
+        ["Neptunian V"]         = sendNeptunianVCommand,
+        ["AK-47"]               = sendAK47Command,
+        ["Classic Linked"]      = sendClassicLinkedCommand,
+        ["SIN DRAGON"]          = sendSinDragonHatCommand,
+        ["MiniGun"]             = sendMinigunHatCommand,
+        ["Normal BanHammer"]    = sendBanHammerHatCommand,
+        ["Good Cop Bad Cop"]    = sendGoodCopBadCopHatCommand,
+        ["Puppet Master"]       = sendPuppetMasterCommand,
+        ["Neko"]                = sendNekoItemsCommand,
+        ["Banisher"]            = sendBanisherItemsCommand,
+        ["Pistol"]              = sendPistolItemsCommand,
+        ["PURSUER ITEMS"]       = sendPursuerHatCommand,
+        ["HACKLORD ITEMS"]      = sendHackLordHatCommand,
         ["STARGLITCHER 2.0 ITEMS"] = sendStarGlitcher2Command,
+        ["ADMIN NOLI ITEMS"]    = sendAdminNoliItemsCommand,
+        ["BLADE BALL ITEMS"]    = sendBladeBallCommand,
+        ["KINETIC GUN ITEMS"]   = sendKineticGunCommand,
+        ["BASEBALL BAT ITEMS"]  = sendBaseballBatCommand,
+        ["KJ ITEMS"]            = sendKJItemsCommand,
+        ["DUBSTEP ITEMS"]       = sendDubstepItemsCommand,
+        ["TERRAPRISMA ITEMS"]   = sendTerraprismaCommand,
+        ["JOHN DOE ITEMS"]      = sendJohnDoeItemsCommand,
+        ["FLAMETHOWER"]         = sendFlameThrowerItemsCommand,
+        ["FE SNIPER"]           = sendFESniperItemsCommand,
+        ["STUDIO DUMMY"]        = sendStudioDummyItemsCommand,
+        ["JASON ITEMS"]         = sendJasonItemsCommand,
+        ["MOTORCYCLE ITEMS"]    = sendMotorcycleItemsCommand,
+        ["OPERATOR ITEMS"]      = sendOperatorCommand,
+        ["DOOMBRINGER ITEMS"]   = sendDoombringerCommand,
     }
 
     local function createHatCategoryBtn(currentY, sendFn)
@@ -2952,24 +3313,43 @@ local function createSettingsScrollFrame()
         if onyxEspActive then
             cachedHighlights = {}
             originalColors = {}
-            local localCharacter = Players.LocalPlayer.Character
+
+            -- Track all characters this player has ever had (including dead bodies still in workspace)
+            -- so we never animate highlights on any of them
+            local function isLocalPlayerCharacter(obj)
+                local lp = Players.LocalPlayer
+                -- Check current character
+                if lp.Character and obj:IsDescendantOf(lp.Character) then return true end
+                -- Check any model named after the player still sitting in workspace (dead body)
+                for _, v in ipairs(workspace:GetChildren()) do
+                    if v:IsA("Model") and v.Name == lp.Name and obj:IsDescendantOf(v) then
+                        return true
+                    end
+                end
+                return false
+            end
+
+            -- Initial scan
             for _, obj in ipairs(game:GetDescendants()) do
                 if obj:IsA("Highlight") then
-                    if not (localCharacter and obj:IsDescendantOf(localCharacter)) then
+                    if not isLocalPlayerCharacter(obj) then
                         table.insert(cachedHighlights, obj)
                         originalColors[obj] = {FillColor=obj.FillColor,OutlineColor=obj.OutlineColor,FillTransparency=obj.FillTransparency,OutlineTransparency=obj.OutlineTransparency}
                     end
                 end
             end
+
+            -- When new highlights are added, skip anything belonging to local player
             onyxEspConnections.added = game.DescendantAdded:Connect(function(obj)
                 if obj:IsA("Highlight") then
-                    local localChar = Players.LocalPlayer.Character
-                    if not (localChar and obj:IsDescendantOf(localChar)) then
+                    if not isLocalPlayerCharacter(obj) then
                         table.insert(cachedHighlights, obj)
                         originalColors[obj] = {FillColor=obj.FillColor,OutlineColor=obj.OutlineColor,FillTransparency=obj.FillTransparency,OutlineTransparency=obj.OutlineTransparency}
                     end
                 end
             end)
+
+            -- When highlights are removed, clean them from the cache
             onyxEspConnections.removed = game.DescendantRemoving:Connect(function(obj)
                 if obj:IsA("Highlight") then
                     for i, h in ipairs(cachedHighlights) do
@@ -2977,6 +3357,31 @@ local function createSettingsScrollFrame()
                     end
                 end
             end)
+
+            -- On respawn/death: scrub any of our own character's highlights from the cache immediately
+            onyxEspConnections.charAdded = Players.LocalPlayer.CharacterAdded:Connect(function(newChar)
+                -- Give the old body a moment to settle then remove any highlights from it
+                task.wait(0.1)
+                for i = #cachedHighlights, 1, -1 do
+                    local h = cachedHighlights[i]
+                    if h and h.Parent then
+                        if isLocalPlayerCharacter(h) then
+                            -- Restore original color then remove from cache
+                            if originalColors[h] then
+                                h.FillColor = originalColors[h].FillColor
+                                h.OutlineColor = originalColors[h].OutlineColor
+                                h.FillTransparency = originalColors[h].FillTransparency
+                                h.OutlineTransparency = originalColors[h].OutlineTransparency
+                            end
+                            originalColors[h] = nil
+                            table.remove(cachedHighlights, i)
+                        end
+                    else
+                        table.remove(cachedHighlights, i)
+                    end
+                end
+            end)
+
             local speed = 2
             onyxEspConnections.renderStepped = RunService.RenderStepped:Connect(function()
                 local t = tick()
@@ -2997,6 +3402,7 @@ local function createSettingsScrollFrame()
             if onyxEspConnections.renderStepped then onyxEspConnections.renderStepped:Disconnect(); onyxEspConnections.renderStepped = nil end
             if onyxEspConnections.added then onyxEspConnections.added:Disconnect(); onyxEspConnections.added = nil end
             if onyxEspConnections.removed then onyxEspConnections.removed:Disconnect(); onyxEspConnections.removed = nil end
+            if onyxEspConnections.charAdded then onyxEspConnections.charAdded:Disconnect(); onyxEspConnections.charAdded = nil end
             for h, colors in pairs(originalColors) do
                 if h and h.Parent then
                     h.FillColor=colors.FillColor; h.OutlineColor=colors.OutlineColor
@@ -3461,82 +3867,72 @@ local function createUpdateLogScrollFrame()
         {
             version = "v1.5  —  Latest",
             changes = {
-                "+ Added ONYX HATS to RIG menu (Wings, Bandages, White rig body no head)",
-                "+ Added UPDATE LOG menu with full version history",
-                "+ Added mobile scaling — UI auto-fits phone and tablet screens",
-                "+ Main UI now hidden until loading screen fully fades out",
-                "+ Loading progress bar now shows % and takes its time per step",
-                "+ Added percentage label next to the loading bar",
-                "~ Fixed: Loading screen fade-out now destroys correctly every time",
-                "~ Fixed: Reveal tween on main UI runs after load screen is gone",
-                "~ Fixed: All duplicate service declarations cleaned up",
-                "~ Improved: RIG category send buttons use shared helper function",
-                "~ Improved: HAT ITEMS category send buttons use shared helper",
+                "+ ONYX HATS added to rig menu — wings, arm bandages, white body without head",
+                "+ UPDATE LOG tab added so you can actually see what changed",
+                "+ UI now scales properly on mobile, rotates with the screen too",
+                "+ Main hub stays hidden until the loading screen is fully gone",
+                "+ Loading bar moves slower and shows the % as it goes",
+                "~ Fixed the fade out — was missing the card and subtitle before",
+                "~ Fixed duplicate service declarations that were causing weirdness",
+                "~ RIG and HAT category send buttons cleaned up internally",
             }
         },
         {
             version = "v1.4",
             changes = {
-                "+ Added loading screen with progress bar and snow effect",
-                "+ Added IMMORTALITY LORD RIG category to RIG menu",
-                "+ Added BIG HAT RIG category to RIG menu",
-                "+ Added TACTICAL RIG category to RIG menu",
-                "+ Added NOOB RIG, UPDATED RIG, RANDOM RIG categories",
-                "+ Added Onyx ESP Highlight to SETTINGS",
-                "+ Added Self Outline toggle to SETTINGS",
-                "+ Added Hat Collision toggle to SETTINGS",
-                "+ Added Anti Hat Fall to SETTINGS",
-                "+ Added Lightning Cannon White toggle to SETTINGS",
-                "~ Fixed: Self Outline excluded from ESP Highlight animation",
-                "~ Fixed: Auto-enables Self Outline when any script loads",
+                "+ Loading screen added with snow, progress bar, and status text",
+                "+ Immortality Lord, Big Hat, and Tactical Rig categories added",
+                "+ Noob Rig, Updated Rig, and Random Rig added too",
+                "+ ESP Highlight in settings — animates highlights on other players",
+                "+ Self Outline toggle — puts a clean gray outline on your character",
+                "+ Hat Collision and Anti Hat Fall added to settings",
+                "+ Lightning Cannon White Mode toggle added",
+                "~ Self Outline is now excluded from the ESP animation",
+                "~ Self Outline auto-enables when you load a script",
             }
         },
         {
             version = "v1.3",
             changes = {
-                "+ Added SUPPORTED CLIENTS menu listing known executors",
-                "+ Virus executors shown in red with red stroke border",
-                "+ Clicking a client entry copies its link to clipboard",
-                "+ Added SETTINGS menu with Perma Death chat button",
-                "+ Added executor auto-detection — sends your executor to chat on load",
-                "+ Added Script Indicator UI — fades in top-right when you run a script",
-                "+ Each script has a unique gradient color on the indicator",
-                "~ Improved: Menu system now uses radio button behavior",
+                "+ Supported Clients tab — lists executors, virus ones are in red",
+                "+ Click any executor entry to copy the link",
+                "+ Settings tab with perma death button",
+                "+ Executor gets auto-detected and sent to chat when the hub loads",
+                "+ Script indicator shows top-right whenever you run something",
+                "+ Each script has its own color on the indicator",
+                "~ Menu tabs now work like radio buttons, one active at a time",
             }
         },
         {
             version = "v1.2",
             changes = {
-                "+ Added HAT ITEMS menu with full item database and thumbnails",
-                "+ HAT ITEMS has copy-to-clipboard or send-to-chat mode toggle",
-                "+ Category send buttons added to HAT ITEMS (sends all IDs at once)",
-                "+ Added RIG menu with image previews per item",
-                "+ RIG has copy-to-clipboard or send-to-chat mode toggle",
-                "+ Category send buttons added to RIG menu",
-                "+ Added Put rig in chat and Put hat in chat toggles",
+                "+ Hat Items tab with every item, thumbnails pulled from roblox api",
+                "+ Copy or send to chat mode toggle on hat items",
+                "+ Send button per category to blast all IDs at once",
+                "+ Rig tab with the same copy/chat toggle and category buttons",
+                "+ Put rig in chat and put hat in chat toggles added",
             }
         },
         {
             version = "v1.1",
             changes = {
-                "+ Added snow particle effect inside the main hub",
-                "+ Added avatar circle with rotating gradient stroke",
-                "+ Added display name and @username at bottom of hub",
-                "+ Added toggle button — click to hide/show the hub with fade",
-                "+ Shadow synced to main frame position at all times",
-                "+ Script buttons flash white then fade back when clicked",
-                "+ Draggable main frame and draggable toggle button",
+                "+ Snow falling inside the main hub",
+                "+ Avatar circle at the bottom with the spinning gradient ring",
+                "+ Display name and username shown below the avatar",
+                "+ Toggle button to hide and show the hub, fades cleanly",
+                "+ Shadow follows the main frame when you drag it",
+                "+ Script buttons flash white when clicked then go back",
+                "+ Both the hub and the toggle button are draggable",
             }
         },
         {
-            version = "v1.0",
+            version = "v1.0  —  Release",
             changes = {
-                "+ Initial release of Onyx Hub",
-                "+ MAIN menu with 45 scripts",
-                "+ C00lkidd script with pre-configured fling settings",
-                "+ Admin Noli, Tenna, Simple Dancer, forsaken characters list",
-                "+ Welcome message and hub credit sent to chat on load",
-                "+ Dark glass UI with gradient borders and shadow effects",
+                "+ First version shipped",
+                "+ 45 scripts in the main tab",
+                "+ C00lkidd comes pre-configured with fling on",
+                "+ Hub credits sent to chat on load",
+                "+ Dark UI with gradients and glow shadows",
             }
         }
     }
