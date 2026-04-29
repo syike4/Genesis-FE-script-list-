@@ -1561,8 +1561,8 @@ end
 --------------------------------------------------------------------------------
 local toggleFrame = Instance.new("Frame")
 toggleFrame.Name = "ToggleFrame"
-toggleFrame.Size = UDim2.new(0, 180, 0, 36)
-toggleFrame.Position = UDim2.new(0.5, -90, 0, 14)
+toggleFrame.Size = UDim2.new(0, 130, 0, 32)
+toggleFrame.Position = UDim2.new(0.5, -65, 0, 14)
 toggleFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 toggleFrame.BackgroundTransparency = 0.1
 toggleFrame.BorderSizePixel = 0
@@ -1590,8 +1590,8 @@ toggleShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
 toggleShadow.ImageTransparency = 0.3
 toggleShadow.ScaleType = Enum.ScaleType.Slice
 toggleShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-toggleShadow.Size = UDim2.new(1, 40, 1, 40)
-toggleShadow.Position = UDim2.new(0, -20, 0, -20)
+toggleShadow.Size = UDim2.new(1, 30, 1, 30)
+toggleShadow.Position = UDim2.new(0, -15, 0, -15)
 toggleShadow.ZIndex = toggleFrame.ZIndex - 1
 toggleShadow.Parent = toggleFrame
 
@@ -1875,7 +1875,6 @@ local rigBtn, rigData = createMenuButton("RIG", 200, 2)
 local hatBtn, hatData = createMenuButton("HAT ITEMS", 270, 3)
 local settingsBtn, settingsData = createMenuButton("SETTINGS", 340, 4)
 local clientsBtn, clientsData = createMenuButton("SUPPORTED CLIENTS", 400, 5)
-local updateLogBtn, updateLogData = createMenuButton("UPDATE LOG", 465, 6)
 
 mainBtn.MouseButton1Click:Connect(function()
     handleRadioToggle(mainData)
@@ -1897,17 +1896,13 @@ clientsBtn.MouseButton1Click:Connect(function()
     handleRadioToggle(clientsData)
     switchMenu("SUPPORTED CLIENTS")
 end)
-updateLogBtn.MouseButton1Click:Connect(function()
-    handleRadioToggle(updateLogData)
-    switchMenu("UPDATE LOG")
-end)
 
 --------------------------------------------------------------------------------
 -- SEPARATOR LINE
 --------------------------------------------------------------------------------
 local separatorLine = Instance.new("Frame")
 separatorLine.Name = "SeparatorLine"
-separatorLine.Size = UDim2.new(0, 2, 0, 270)
+separatorLine.Size = UDim2.new(0, 2, 0, 205)
 separatorLine.Position = UDim2.new(0, 180, 0, 120)
 separatorLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 separatorLine.BackgroundTransparency = 0.7
@@ -2344,15 +2339,15 @@ local function createRigScrollFrame()
     rigChatToggleShadow.ImageTransparency = 0.5
     rigChatToggleShadow.ScaleType = Enum.ScaleType.Slice
     rigChatToggleShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-    rigChatToggleShadow.Size = UDim2.new(0, 270, 0, 80)
-    rigChatToggleShadow.Position = UDim2.new(0, 55, 0, 26)
+    rigChatToggleShadow.Size = UDim2.new(0, 270, 0, 58)
+    rigChatToggleShadow.Position = UDim2.new(0, 55, 0, 8)
     rigChatToggleShadow.ZIndex = 1
     rigChatToggleShadow.Parent = scrollFrame
 
     local rigChatToggleFrame = Instance.new("Frame")
     rigChatToggleFrame.Name = "RigChatToggleFrame"
-    rigChatToggleFrame.Size = UDim2.new(0, 240, 0, 40)
-    rigChatToggleFrame.Position = UDim2.new(0, 70, 0, 38)
+    rigChatToggleFrame.Size = UDim2.new(0, 240, 0, 28)
+    rigChatToggleFrame.Position = UDim2.new(0, 70, 0, 22)
     rigChatToggleFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
     rigChatToggleFrame.BorderSizePixel = 0
     rigChatToggleFrame.ZIndex = 3
@@ -2400,7 +2395,7 @@ local function createRigScrollFrame()
     local rigChatToggleDesc = Instance.new("TextLabel")
     rigChatToggleDesc.Name = "Description"
     rigChatToggleDesc.Size = UDim2.new(0, 300, 0, 15)
-    rigChatToggleDesc.Position = UDim2.new(0, 50, 0, 83)
+    rigChatToggleDesc.Position = UDim2.new(0, 50, 0, 54)
     rigChatToggleDesc.BackgroundTransparency = 1
     rigChatToggleDesc.Text = "Puts rig -gr (RIG ID) in chat"
     rigChatToggleDesc.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -2831,15 +2826,15 @@ local function createHatScrollFrame()
     chatToggleShadow.ImageTransparency = 0.5
     chatToggleShadow.ScaleType = Enum.ScaleType.Slice
     chatToggleShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-    chatToggleShadow.Size = UDim2.new(0, 270, 0, 80)
+    chatToggleShadow.Size = UDim2.new(0, 270, 0, 58)
     chatToggleShadow.Position = UDim2.new(0, 55, 0, -5)
     chatToggleShadow.ZIndex = 1
     chatToggleShadow.Parent = scrollFrame
 
     local chatToggleFrame = Instance.new("Frame")
     chatToggleFrame.Name = "ChatToggleFrame"
-    chatToggleFrame.Size = UDim2.new(0, 240, 0, 40)
-    chatToggleFrame.Position = UDim2.new(0, 70, 0, 10)
+    chatToggleFrame.Size = UDim2.new(0, 240, 0, 28)
+    chatToggleFrame.Position = UDim2.new(0, 70, 0, 5)
     chatToggleFrame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
     chatToggleFrame.BorderSizePixel = 0
     chatToggleFrame.ZIndex = 3
@@ -2887,7 +2882,7 @@ local function createHatScrollFrame()
     local chatToggleDesc = Instance.new("TextLabel")
     chatToggleDesc.Name = "Description"
     chatToggleDesc.Size = UDim2.new(0, 300, 0, 15)
-    chatToggleDesc.Position = UDim2.new(0, 50, 0, 55)
+    chatToggleDesc.Position = UDim2.new(0, 50, 0, 37)
     chatToggleDesc.BackgroundTransparency = 1
     chatToggleDesc.Text = "Puts hat -gh (HAT ID) in chat"
     chatToggleDesc.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -3799,313 +3794,6 @@ local function createSupportedClientsScrollFrame()
 
     scrollFrames[menuName] = {frame = scrollFrame, shadow = scrollFrameShadow}
 end
-
-
-setLoadingProgress(0.93, "Building UPDATE LOG menu...")
-task.wait(0.25)
-
---------------------------------------------------------------------------------
--- UPDATE LOG SCROLL FRAME
---------------------------------------------------------------------------------
-local function createUpdateLogScrollFrame()
-    local menuName = "UPDATE LOG"
-
-    local ulScrollFrameShadow = Instance.new("ImageLabel")
-    ulScrollFrameShadow.Name = menuName .. "ScrollFrameShadow"
-    ulScrollFrameShadow.BackgroundTransparency = 1
-    ulScrollFrameShadow.Image = "rbxassetid://6014261993"
-    ulScrollFrameShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-    ulScrollFrameShadow.ImageTransparency = 0.3
-    ulScrollFrameShadow.ScaleType = Enum.ScaleType.Slice
-    ulScrollFrameShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-    ulScrollFrameShadow.Size = UDim2.new(1, 30, 1, 30)
-    ulScrollFrameShadow.Position = UDim2.new(0, -15, 0, -15)
-    ulScrollFrameShadow.ZIndex = 0
-    ulScrollFrameShadow.Parent = rightBox
-
-    local ulScrollFrame = Instance.new("ScrollingFrame")
-    ulScrollFrame.Name = menuName .. "ScrollFrame"
-    ulScrollFrame.Size = UDim2.new(1, -20, 1, -20)
-    ulScrollFrame.Position = UDim2.new(0, 10, 0, 10)
-    ulScrollFrame.BackgroundTransparency = 1
-    ulScrollFrame.BorderSizePixel = 0
-    ulScrollFrame.ScrollBarThickness = 8
-    ulScrollFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
-    ulScrollFrame.ScrollBarImageTransparency = 0
-    ulScrollFrame.ZIndex = 2
-    ulScrollFrame.Visible = false
-    ulScrollFrame.Parent = rightBox
-
-    local ulScrollFrameCorner = Instance.new("UICorner")
-    ulScrollFrameCorner.CornerRadius = UDim.new(0, 8)
-    ulScrollFrameCorner.Parent = ulScrollFrame
-
-    -- Title
-    local ulTitle = Instance.new("TextLabel")
-    ulTitle.Name = "UpdateLogTitle"
-    ulTitle.Size = UDim2.new(1, -20, 0, 40)
-    ulTitle.Position = UDim2.new(0, 10, 0, 10)
-    ulTitle.BackgroundTransparency = 1
-    ulTitle.Text = "UPDATE LOG"
-    ulTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-    ulTitle.TextTransparency = 0.1
-    ulTitle.Font = Enum.Font.GothamBold
-    ulTitle.TextSize = 18
-    ulTitle.TextXAlignment = Enum.TextXAlignment.Center
-    ulTitle.ZIndex = 3
-    ulTitle.Parent = ulScrollFrame
-
-    local ulTitleGradient = Instance.new("UIGradient")
-    ulTitleGradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(80, 80, 80)),
-        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 255, 255)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 80, 80))
-    }
-    ulTitleGradient.Rotation = 0
-    ulTitleGradient.Parent = ulTitle
-
-    -- Subtitle
-    local ulSubtitle = Instance.new("TextLabel")
-    ulSubtitle.Name = "UpdateLogSubtitle"
-    ulSubtitle.Size = UDim2.new(1, -20, 0, 20)
-    ulSubtitle.Position = UDim2.new(0, 10, 0, 48)
-    ulSubtitle.BackgroundTransparency = 1
-    ulSubtitle.Text = "Onyx Hub by fxtmse — Patch notes"
-    ulSubtitle.TextColor3 = Color3.fromRGB(120, 120, 120)
-    ulSubtitle.TextTransparency = 0.2
-    ulSubtitle.Font = Enum.Font.Gotham
-    ulSubtitle.TextSize = 11
-    ulSubtitle.TextXAlignment = Enum.TextXAlignment.Center
-    ulSubtitle.ZIndex = 3
-    ulSubtitle.Parent = ulScrollFrame
-
-    -- Divider under title
-    local ulDivider = Instance.new("Frame")
-    ulDivider.Name = "TitleDivider"
-    ulDivider.Size = UDim2.new(1, -30, 0, 1)
-    ulDivider.Position = UDim2.new(0, 15, 0, 74)
-    ulDivider.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
-    ulDivider.BackgroundTransparency = 0
-    ulDivider.BorderSizePixel = 0
-    ulDivider.ZIndex = 3
-    ulDivider.Parent = ulScrollFrame
-
-    -- Update entries table
-    local updateEntries = {
-        {
-            version = "v1.5  —  Latest",
-            changes = {
-                "+ ONYX HATS added to rig menu — wings, arm bandages, white body without head",
-                "+ UPDATE LOG tab added so you can actually see what changed",
-                "+ UI now scales properly on mobile, rotates with the screen too",
-                "+ Main hub stays hidden until the loading screen is fully gone",
-                "+ Loading bar moves slower and shows the % as it goes",
-                "~ Fixed the fade out — was missing the card and subtitle before",
-                "~ Fixed duplicate service declarations that were causing weirdness",
-                "~ RIG and HAT category send buttons cleaned up internally",
-            }
-        },
-        {
-            version = "v1.4",
-            changes = {
-                "+ Loading screen added with snow, progress bar, and status text",
-                "+ Immortality Lord, Big Hat, and Tactical Rig categories added",
-                "+ Noob Rig, Updated Rig, and Random Rig added too",
-                "+ ESP Highlight in settings — animates highlights on other players",
-                "+ Self Outline toggle — puts a clean gray outline on your character",
-                "+ Hat Collision and Anti Hat Fall added to settings",
-                "+ Lightning Cannon White Mode toggle added",
-                "~ Self Outline is now excluded from the ESP animation",
-                "~ Self Outline auto-enables when you load a script",
-            }
-        },
-        {
-            version = "v1.3",
-            changes = {
-                "+ Supported Clients tab — lists executors, virus ones are in red",
-                "+ Click any executor entry to copy the link",
-                "+ Settings tab with perma death button",
-                "+ Executor gets auto-detected and sent to chat when the hub loads",
-                "+ Script indicator shows top-right whenever you run something",
-                "+ Each script has its own color on the indicator",
-                "~ Menu tabs now work like radio buttons, one active at a time",
-            }
-        },
-        {
-            version = "v1.2",
-            changes = {
-                "+ Hat Items tab with every item, thumbnails pulled from roblox api",
-                "+ Copy or send to chat mode toggle on hat items",
-                "+ Send button per category to blast all IDs at once",
-                "+ Rig tab with the same copy/chat toggle and category buttons",
-                "+ Put rig in chat and put hat in chat toggles added",
-            }
-        },
-        {
-            version = "v1.1",
-            changes = {
-                "+ Snow falling inside the main hub",
-                "+ Avatar circle at the bottom with the spinning gradient ring",
-                "+ Display name and username shown below the avatar",
-                "+ Toggle button to hide and show the hub, fades cleanly",
-                "+ Shadow follows the main frame when you drag it",
-                "+ Script buttons flash white when clicked then go back",
-                "+ Both the hub and the toggle button are draggable",
-            }
-        },
-        {
-            version = "v1.0  —  Release",
-            changes = {
-                "+ First version shipped",
-                "+ 45 scripts in the main tab",
-                "+ C00lkidd comes pre-configured with fling on",
-                "+ Hub credits sent to chat on load",
-                "+ Dark UI with gradients and glow shadows",
-            }
-        }
-    }
-
-    -- Pre-calculate canvas size
-    local totalCanvasHeight = 84
-    for _, entry in ipairs(updateEntries) do
-        totalCanvasHeight = totalCanvasHeight + 60 + (#entry.changes * 25) + 20
-    end
-    ulScrollFrame.CanvasSize = UDim2.new(0, 0, 0, totalCanvasHeight + 30)
-
-    local currentY = 84
-
-    for entryIndex, entry in ipairs(updateEntries) do
-
-        -- Shadow behind version header
-        local versionShadow = Instance.new("ImageLabel")
-        versionShadow.Name = "VersionShadow_" .. entryIndex
-        versionShadow.BackgroundTransparency = 1
-        versionShadow.Image = "rbxassetid://6014261993"
-        versionShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-        versionShadow.ImageTransparency = 0.5
-        versionShadow.ScaleType = Enum.ScaleType.Slice
-        versionShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-        versionShadow.Size = UDim2.new(0, 430, 0, 55)
-        versionShadow.Position = UDim2.new(0, -10, 0, currentY - 8)
-        versionShadow.ZIndex = 2
-        versionShadow.Parent = ulScrollFrame
-
-        -- Version header frame
-        local versionFrame = Instance.new("Frame")
-        versionFrame.Name = "Version_" .. entryIndex
-        versionFrame.Size = UDim2.new(0, 390, 0, 30)
-        versionFrame.Position = UDim2.new(0, 10, 0, currentY)
-        versionFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-        versionFrame.BorderSizePixel = 0
-        versionFrame.ZIndex = 3
-        versionFrame.Parent = ulScrollFrame
-
-        local versionFrameCorner = Instance.new("UICorner")
-        versionFrameCorner.CornerRadius = UDim.new(0, 12)
-        versionFrameCorner.Parent = versionFrame
-
-        local versionFrameGradient = Instance.new("UIGradient")
-        versionFrameGradient.Color = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(72, 72, 72)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(28, 28, 28))
-        }
-        versionFrameGradient.Rotation = 90
-        versionFrameGradient.Parent = versionFrame
-
-        local versionFrameStroke = Instance.new("UIStroke")
-        versionFrameStroke.Thickness = 1.5
-        versionFrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-        versionFrameStroke.Color = Color3.fromRGB(85, 85, 85)
-        versionFrameStroke.Transparency = 0.3
-        versionFrameStroke.Parent = versionFrame
-
-        -- Version name (centered, full width, no date label)
-        local versionLabel = Instance.new("TextLabel")
-        versionLabel.Size = UDim2.new(1, -24, 1, 0)
-        versionLabel.Position = UDim2.new(0, 12, 0, 0)
-        versionLabel.BackgroundTransparency = 1
-        versionLabel.Text = entry.version
-        versionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-        versionLabel.TextTransparency = 0.05
-        versionLabel.Font = Enum.Font.GothamBold
-        versionLabel.TextSize = 12
-        versionLabel.TextXAlignment = Enum.TextXAlignment.Center
-        versionLabel.ZIndex = 4
-        versionLabel.Parent = versionFrame
-
-        currentY = currentY + 40
-
-        -- Change lines
-        for changeIndex, changeText in ipairs(entry.changes) do
-            local isAddition = changeText:sub(1, 1) == "+"
-            local isFix      = changeText:sub(1, 1) == "~"
-
-            local lineColor
-            if isAddition then
-                lineColor = Color3.fromRGB(140, 210, 140)
-            elseif isFix then
-                lineColor = Color3.fromRGB(160, 160, 255)
-            else
-                lineColor = Color3.fromRGB(190, 190, 190)
-            end
-
-            -- Bullet dot
-            local bullet = Instance.new("Frame")
-            bullet.Name = "Bullet_" .. changeIndex
-            bullet.Size = UDim2.new(0, 4, 0, 4)
-            bullet.Position = UDim2.new(0, 18, 0, currentY + 9)
-            bullet.BackgroundColor3 = lineColor
-            bullet.BackgroundTransparency = 0.3
-            bullet.BorderSizePixel = 0
-            bullet.ZIndex = 3
-            bullet.Parent = ulScrollFrame
-
-            local bulletCorner = Instance.new("UICorner")
-            bulletCorner.CornerRadius = UDim.new(1, 0)
-            bulletCorner.Parent = bullet
-
-            -- Change text
-            local changeLabel = Instance.new("TextLabel")
-            changeLabel.Name = "Change_" .. changeIndex
-            changeLabel.Size = UDim2.new(0, 368, 0, 22)
-            changeLabel.Position = UDim2.new(0, 28, 0, currentY)
-            changeLabel.BackgroundTransparency = 1
-            changeLabel.Text = changeText
-            changeLabel.TextColor3 = lineColor
-            changeLabel.TextTransparency = 0.1
-            changeLabel.Font = Enum.Font.Gotham
-            changeLabel.TextSize = 11
-            changeLabel.TextXAlignment = Enum.TextXAlignment.Left
-            changeLabel.TextWrapped = true
-            changeLabel.ZIndex = 3
-            changeLabel.Parent = ulScrollFrame
-
-            currentY = currentY + 23
-        end
-
-        currentY = currentY + 18
-
-        -- Thin separator between entries (skip after last)
-        if entryIndex < #updateEntries then
-            local entrySep = Instance.new("Frame")
-            entrySep.Name = "EntrySep_" .. entryIndex
-            entrySep.Size = UDim2.new(0, 380, 0, 1)
-            entrySep.Position = UDim2.new(0, 15, 0, currentY - 10)
-            entrySep.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-            entrySep.BackgroundTransparency = 0
-            entrySep.BorderSizePixel = 0
-            entrySep.ZIndex = 3
-            entrySep.Parent = ulScrollFrame
-        end
-    end
-
-    scrollFrames[menuName] = {
-        frame = ulScrollFrame,
-        shadow = ulScrollFrameShadow
-    }
-end
-
-createUpdateLogScrollFrame()
 
 setLoadingProgress(0.95, "Finalizing menus...")
 task.wait(0.25)
