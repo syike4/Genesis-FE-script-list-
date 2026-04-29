@@ -1557,52 +1557,80 @@ local function makeDraggable(gui)
 end
 
 --------------------------------------------------------------------------------
--- TOGGLE BUTTON (LEFT MIDDLE)
+-- TOGGLE BUTTON (TOP CENTER - WIDE THIN BAR)
 --------------------------------------------------------------------------------
 local toggleFrame = Instance.new("Frame")
 toggleFrame.Name = "ToggleFrame"
-toggleFrame.Size = UDim2.new(0, 60, 0, 60)
-toggleFrame.Position = UDim2.new(0, 20, 0.5, -30)
-toggleFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
-toggleFrame.BackgroundTransparency = 1
+toggleFrame.Size = UDim2.new(0, 180, 0, 36)
+toggleFrame.Position = UDim2.new(0.5, -90, 0, 14)
+toggleFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+toggleFrame.BackgroundTransparency = 0.1
 toggleFrame.BorderSizePixel = 0
 toggleFrame.ZIndex = 100
 toggleFrame.Visible = false
 toggleFrame.Parent = screenGui
 makeDraggable(toggleFrame)
 
+local toggleCorner = Instance.new("UICorner")
+toggleCorner.CornerRadius = UDim.new(0, 10)
+toggleCorner.Parent = toggleFrame
+
+local toggleBtnGradient = Instance.new("UIGradient")
+toggleBtnGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(70, 70, 70)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+}
+toggleBtnGradient.Rotation = 90
+toggleBtnGradient.Parent = toggleFrame
+
 local toggleShadow = Instance.new("ImageLabel")
 toggleShadow.BackgroundTransparency = 1
 toggleShadow.Image = "rbxassetid://6014261993"
-toggleShadow.ImageColor3 = Color3.fromRGB(0,0,0)
-toggleShadow.ImageTransparency = 0.15
+toggleShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+toggleShadow.ImageTransparency = 0.3
 toggleShadow.ScaleType = Enum.ScaleType.Slice
-toggleShadow.SliceCenter = Rect.new(49,49,450,450)
-toggleShadow.Size = UDim2.new(1,50,1,50)
-toggleShadow.Position = UDim2.new(0,-25,0,-25)
+toggleShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+toggleShadow.Size = UDim2.new(1, 40, 1, 40)
+toggleShadow.Position = UDim2.new(0, -20, 0, -20)
 toggleShadow.ZIndex = toggleFrame.ZIndex - 1
 toggleShadow.Parent = toggleFrame
 
-local toggleCorner = Instance.new("UICorner")
-toggleCorner.CornerRadius = UDim.new(0,12)
-toggleCorner.Parent = toggleFrame
-
 local toggleDecal = Instance.new("ImageLabel")
 toggleDecal.Name = "ToggleDecal"
-toggleDecal.Size = UDim2.new(0,55,0,55)
-toggleDecal.Position = UDim2.new(0.5,-27.5,0.5,-27.5)
+toggleDecal.Size = UDim2.new(0, 22, 0, 22)
+toggleDecal.Position = UDim2.new(0, 8, 0.5, -11)
 toggleDecal.BackgroundTransparency = 1
 toggleDecal.Image = "rbxassetid://79761862161846"
 toggleDecal.ScaleType = Enum.ScaleType.Fit
 toggleDecal.ZIndex = toggleFrame.ZIndex + 1
 toggleDecal.Parent = toggleFrame
 
+local toggleBtnLabel = Instance.new("TextLabel")
+toggleBtnLabel.Size = UDim2.new(1, -40, 1, 0)
+toggleBtnLabel.Position = UDim2.new(0, 36, 0, 0)
+toggleBtnLabel.BackgroundTransparency = 1
+toggleBtnLabel.Text = "Onyx Hub"
+toggleBtnLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleBtnLabel.TextTransparency = 0.2
+toggleBtnLabel.Font = Enum.Font.GothamBold
+toggleBtnLabel.TextSize = 13
+toggleBtnLabel.TextXAlignment = Enum.TextXAlignment.Left
+toggleBtnLabel.ZIndex = toggleFrame.ZIndex + 1
+toggleBtnLabel.Parent = toggleFrame
+
+local toggleLabelGrad = Instance.new("UIGradient")
+toggleLabelGrad.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(180, 180, 180)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
+}
+toggleLabelGrad.Parent = toggleBtnLabel
+
 local toggleClicker = Instance.new("TextButton")
 toggleClicker.Name = "Clicker"
-toggleClicker.Size = UDim2.new(1,0,1,0)
+toggleClicker.Size = UDim2.new(1, 0, 1, 0)
 toggleClicker.BackgroundTransparency = 1
 toggleClicker.Text = ""
-toggleClicker.ZIndex = toggleDecal.ZIndex + 1
+toggleClicker.ZIndex = toggleFrame.ZIndex + 2
 toggleClicker.Parent = toggleFrame
 
 --------------------------------------------------------------------------------
